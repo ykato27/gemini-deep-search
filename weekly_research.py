@@ -202,8 +202,18 @@ def generate_report():
 
             response = agent_executor.invoke({"messages": [HumanMessage(content=prompt)]})
 
+            # --- 安全にレスポンスを取得 ---
+            try:
+                messages = response.get("messages", [])
+                if messages and hasattr(messages[-1], "content"):
+                    final_report = messages[-1].content or "（内容なし）"
+                else:
+                    final_report = "（レポート生成に失敗しました。レスポンス形式を確認してください。）"
+            except Exception as e_inner:
+                print(f"⚠️ レスポンス解析中にエラー: {e_inner}")
+                final_report = "（レポート生成に失敗しました。詳細はログを確認してください。）"
+
             # 成功したらループを抜ける
-            final_report = response["messages"][-1].content
             break
 
         except Exception as e:
