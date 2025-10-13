@@ -1,50 +1,54 @@
 """
 週次スキルマネジメント・タレントマネジメント調査レポート生成スクリプト
 """
+
 import os
 import sys
+import time
+import traceback
 from datetime import datetime
+
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_tavily import TavilySearch
 from langgraph.prebuilt import create_react_agent
-import time
 
 
 def generate_report():
     """週次レポートを生成する"""
-    
-    # 環境変数の確認
-    google_api_key = os.environ.get('GOOGLE_API_KEY')
-    tavily_api_key = os.environ.get('TAVILY_API_KEY')
-    
+
+    # --- 1. 環境変数の確認 ---
+    google_api_key = os.environ.get("GOOGLE_API_KEY")
+    tavily_api_key = os.environ.get("TAVILY_API_KEY")
+
     if not google_api_key or not tavily_api_key:
         print("❌ エラー: APIキーが設定されていません")
         print(f"GOOGLE_API_KEY: {'設定済み' if google_api_key else '未設定'}")
         print(f"TAVILY_API_KEY: {'設定済み' if tavily_api_key else '未設定'}")
         sys.exit(1)
-    
+
     print("✓ APIキーを確認しました")
-    
-    # --- 1. LLMとツールの準備 ---
+
+    # --- 2. LLMとツールの準備 ---
     model = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash",
-        temperature=0
+        temperature=0,
     )
-    # 検索結果を増やし、深い検索を有効化
+
     search_tool = TavilySearch(
         max_results=10,
         search_depth="advanced",
-        include_raw_content=True
+        include_raw_content=True,
     )
+
     tools = [search_tool]
-    
-    # --- 2. エージェントの作成 ---
+
+    # --- 3. エージェントの作成 ---
     agent_executor = create_react_agent(model, tools)
-    
-    # --- 3. 調査プロンプトの定義 ---
+
+    # --- 4. 調査プロンプトの定義 ---
     today = datetime.now()
-    
+
     prompt = f"""
 あなたは優秀なリサーチアナリストです。以下のタスクを実行してください。
 
@@ -179,78 +183,72 @@ def generate_report():
     
     print(f"📊 調査対象: 過去1週間以内の最新記事")
     print("🔍 スキルマネジメント・タレントマネジメントの最新動向調査を開始します...\n")
-    
-    # --- 4. エージェントの実行 ---
-   MAX_RETRIES = 5  # 最大再試行回数
-   INITIAL_DELAY = 10  # 初期遅延時間（秒）
 
-   for attempt in range(MAX_RETRIES):
-      try:
-         if attempt > 0:
-               delay = INITIAL_DELAY * (2 ** (attempt - 1)) # 指数関数的バックオフ
-               print(f"\n⚠️ Quota超過のため、{delay:.0f}秒待機してから再試行します... (試行回数: {attempt}/{MAX_RETRIES})")
-               time.sleep(delay)
+    # --- 5. エージェントの実行 ---
+    MAX_RETRIES = 5
+    INITIAL_DELAY = 10
 
-         response = agent_executor.invoke({
-               "messages": [HumanMessage(content=prompt)]
-         })
-         
-         # 成功したらループを抜ける
-         final_report = response['messages'][-1].content
-         break  # 成功
-         
-      except Exception as e:
-         error_message = str(e)
-         # 429 エラーまたは ResourceExhausted エラーをチェック
-         if "429 You exceeded your current quota" in error_message or "ResourceExhausted" in error_message:
-               if attempt == MAX_RETRIES - 1:
-                  print(f"\n❌ エラー: 最大再試行回数 ({MAX_RETRIES}) に達しました。APIの割り当てを確認してください。")
-                  import traceback
-                  traceback.print_exc()
-                  sys.exit(1)
-               # 再試行ロジック内で待機と継続が行われる
-               continue # ループの次へ
-         else:
-               # その他の予期せぬエラー
-               print(f"\n❌ 予期せぬエラーが発生しました: {error_message}")
-               import traceback
-               traceback.print_exc()
-               sys.exit(1)
-   else:
-      # MAX_RETRIES回試行しても成功しなかった場合の処理 (上ですでに sys.exit(1) しているため不要だが形式的に残す)
-      sys.exit(1)
-        
-        # --- 5. レポートの保存 ---
-        # reportsディレクトリの作成
-        os.makedirs('reports', exist_ok=True)
-        
-        # ファイル名に日付を含める（YYYYMMDD形式）
-        date_str = today.strftime('%Y%m%d')
-        file_name = f"reports/週次レポート_{date_str}.md"
-        
+    final_report = None
+
+    for attempt in range(MAX_RETRIES):
+        try:
+            if attempt > 0:
+                delay = INITIAL_DELAY * (2 ** (attempt - 1))
+                print(
+                    f"\n⚠️ Quota超過のため、{delay:.0f}秒待機してから再試行します... "
+                    f"(試行回数: {attempt}/{MAX_RETRIES})"
+                )
+                time.sleep(delay)
+
+            response = agent_executor.invoke({"messages": [HumanMessage(content=prompt)]})
+
+            # 成功したらループを抜ける
+            final_report = response["messages"][-1].content
+            break
+
+        except Exception as e:
+            error_message = str(e)
+
+            if "429 You exceeded your current quota" in error_message or "ResourceExhausted" in error_message:
+                if attempt == MAX_RETRIES - 1:
+                    print(f"\n❌ エラー: 最大再試行回数 ({MAX_RETRIES}) に達しました。APIの割り当てを確認してください。")
+                    traceback.print_exc()
+                    sys.exit(1)
+                continue
+
+            print(f"\n❌ 予期せぬエラーが発生しました: {error_message}")
+            traceback.print_exc()
+            sys.exit(1)
+
+    else:
+        # すべての試行が失敗した場合
+        sys.exit(1)
+
+    # --- 6. レポートの保存 ---
+    os.makedirs("reports", exist_ok=True)
+    date_str = today.strftime("%Y%m%d")
+    file_name = f"reports/週次レポート_{date_str}.md"
+
+    try:
         with open(file_name, "w", encoding="utf-8") as f:
-            # レポートヘッダーを追加
-            header = f"""# 週次レポート: スキルマネジメント・タレントマネジメント動向
-**調査対象**: 過去1週間以内の最新記事  
-**生成日時**: {today.strftime('%Y年%m月%d日 %H:%M:%S')}
-
----
-
-"""
+            header = (
+                "# 週次レポート: スキルマネジメント・タレントマネジメント動向\n"
+                f"**調査対象**: 過去1週間以内の最新記事  \n"
+                f"**生成日時**: {today.strftime('%Y年%m月%d日 %H:%M:%S')}\n\n---\n\n"
+            )
             f.write(header + final_report)
-        
-        print("\n" + "="*60)
-        print("     ✓ レポート生成完了")
-        print("="*60)
+
+        print("\n" + "=" * 60)
+        print("✓ レポート生成完了")
+        print("=" * 60)
         print(f"📄 保存先: {file_name}")
-        print(f"📊 調査対象: 過去1週間以内の最新記事")
-        print("="*60 + "\n")
-        
+        print("📊 調査対象: 過去1週間以内の最新記事")
+        print("=" * 60 + "\n")
+
         return file_name
-        
+
     except Exception as e:
         print(f"\n❌ エラーが発生しました: {str(e)}")
-        import traceback
         traceback.print_exc()
         sys.exit(1)
 
