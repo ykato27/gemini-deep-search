@@ -27,7 +27,7 @@ def generate_report():
     
     # --- 1. LLMとツールの準備 ---
     model = ChatGoogleGenerativeAI(
-        model="gemini-1.5-pro",
+        model="gemini-2.5-flash",
         temperature=0
     )
     search_tool = TavilySearch(max_results=10)
