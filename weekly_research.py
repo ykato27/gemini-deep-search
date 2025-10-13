@@ -8,6 +8,7 @@ from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_tavily import TavilySearch
 from langgraph.prebuilt import create_react_agent
+import time
 
 
 def generate_report():
@@ -180,7 +181,6 @@ def generate_report():
     print("🔍 スキルマネジメント・タレントマネジメントの最新動向調査を開始します...\n")
     
     # --- 4. エージェントの実行 ---
-   import time
    MAX_RETRIES = 5  # 最大再試行回数
    INITIAL_DELAY = 10  # 初期遅延時間（秒）
 
