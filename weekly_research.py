@@ -3,7 +3,7 @@
 """
 import os
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_tavily import TavilySearch
@@ -27,45 +27,66 @@ def generate_report():
     
     # --- 1. LLMとツールの準備 ---
     model = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
+        model="gemini-1.5-pro",
         temperature=0
     )
-    search_tool = TavilySearch(max_results=10)
+    # 検索結果を増やし、深い検索を有効化
+    search_tool = TavilySearch(
+        max_results=10,
+        search_depth="advanced",
+        include_raw_content=True
+    )
     tools = [search_tool]
     
     # --- 2. エージェントの作成 ---
     agent_executor = create_react_agent(model, tools)
     
     # --- 3. 調査プロンプトの定義 ---
-    # 現在の日付と7日前の日付を取得
     today = datetime.now()
-    seven_days_ago = today - timedelta(days=7)
-    date_range = f"{seven_days_ago.strftime('%Y年%m月%d日')}～{today.strftime('%Y年%m月%d日')}"
     
     prompt = f"""
 あなたは優秀なリサーチアナリストです。以下のタスクを実行してください。
 
 # 🎯 タスク
-過去7日間（{date_range}）の**スキルマネジメント・タレントマネジメント**に関する欧米の最新記事を調査し、詳細なレポートを作成してください。
+**過去1週間以内に公開された**スキルマネジメント・タレントマネジメント**に関する欧米の最新記事を調査し、詳細なレポートを作成してください。
+
+**重要な検索方法**:
+- 検索クエリには必ず時間フィルタを含めてください:
+  - "past week"
+  - "last 7 days"  
+  - "2025"
+- 複数の検索を実行して、幅広い情報を収集してください
+- 各記事のURLを必ずweb_fetchで取得し、詳細を確認してください
 
 # 🔍 調査対象
 **対象地域**: 米国、英国、ドイツ、フランス、オランダ、スウェーデン、イタリア、スペイン
 
 **検索キーワード（これらを組み合わせて複数回検索してください）**: 
-- "skill management" OR "skills management" OR "talent management"
-- "competency mapping" OR "skills taxonomy"
-- "workforce upskilling" OR "reskilling"
-- "digital credentials" OR "learning experience platform"
-- "manufacturing workforce" OR "factory training"
-- "skills-based organization" OR "skills-first hiring"
-- "learning record store" OR "xAPI" OR "skills graph"
+- "skill management" + "past week"
+- "skills management" + "last 7 days"
+- "talent management" + "2025"
+- "competency mapping" + "recent"
+- "skills taxonomy" + "past week"
+- "workforce upskilling" + "last 7 days"
+- "reskilling" + "2025"
+- "digital credentials" + "recent"
+- "learning experience platform" + "past week"
+- "manufacturing workforce" + "2025"
+- "factory training" + "recent"
+- "skills-based organization" + "last 7 days"
+- "skills-first hiring" + "past week"
+- "learning record store" + "2025"
+- "xAPI" + "recent"
+- "skills graph" + "past week"
+
+**必須**: 最低でも10～15回の検索を実行し、その後web_fetchで記事の詳細を取得してください。
 
 # 📋 各記事から抽出すべき情報
 1. **基本情報**
    - 記事タイトル
    - URL（必須・正確にコピー）
    - 情報源（メディア名）
-   - 公開日
+   - 公開日（記事から取得）
    - 対象地域/国
 
 2. **分類・カテゴリ**
@@ -101,6 +122,8 @@ def generate_report():
 4. **重複除外**: 同じ内容の記事は除外
 
 5. **URLの正確性**: 検索結果から正確にURLをコピーすること
+
+6. **最新性の確認**: 記事の公開日を必ず確認し、本当に最新の記事かチェック
 
 # 📄 レポート出力フォーマット
 以下の構成でMarkdown形式のレポートを作成してください：
@@ -150,10 +173,10 @@ def generate_report():
 
 ---
 
-それでは調査を開始してください。必ず複数回のweb_search→web_fetchを実行し、詳細な情報を収集してください。
+それでは調査を開始してください。**必ず15回以上のweb_search→web_fetchの組み合わせ**を実行し、詳細な情報を収集してください。
 """
     
-    print(f"📊 調査期間: {date_range}")
+    print(f"📊 調査対象: 過去1週間以内の最新記事")
     print("🔍 スキルマネジメント・タレントマネジメントの最新動向調査を開始します...\n")
     
     # --- 4. エージェントの実行 ---
@@ -176,7 +199,7 @@ def generate_report():
         with open(file_name, "w", encoding="utf-8") as f:
             # レポートヘッダーを追加
             header = f"""# 週次レポート: スキルマネジメント・タレントマネジメント動向
-**調査期間**: {date_range}  
+**調査対象**: 過去1週間以内の最新記事  
 **生成日時**: {today.strftime('%Y年%m月%d日 %H:%M:%S')}
 
 ---
@@ -188,13 +211,15 @@ def generate_report():
         print("     ✓ レポート生成完了")
         print("="*60)
         print(f"📄 保存先: {file_name}")
-        print(f"📊 調査期間: {date_range}")
+        print(f"📊 調査対象: 過去1週間以内の最新記事")
         print("="*60 + "\n")
         
         return file_name
         
     except Exception as e:
         print(f"\n❌ エラーが発生しました: {str(e)}")
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
 
 
