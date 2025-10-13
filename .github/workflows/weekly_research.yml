@@ -2,11 +2,12 @@ name: Weekly Research Report
 
 on:
   schedule:
-    # 毎週月曜日 08:00 JST (= 日曜日 23:00 UTC)
     - cron: '0 23 * * 0'
-  
-  # 手動実行も可能にする
   workflow_dispatch:
+
+# ← この部分を追加
+permissions:
+  contents: write
 
 jobs:
   generate-report:
