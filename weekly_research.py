@@ -79,7 +79,7 @@ def generate_report():
 - "xAPI" + "recent"
 - "skills graph" + "past week"
 
-**必須**: 最低でも10～15回の検索を実行し、その後web_fetchで記事の詳細を取得してください。
+**必須**: 5～10回程度の**多様な検索**を実行し、情報を収集してください。
 
 # 📋 各記事から抽出すべき情報
 1. **基本情報**
@@ -180,13 +180,45 @@ def generate_report():
     print("🔍 スキルマネジメント・タレントマネジメントの最新動向調査を開始します...\n")
     
     # --- 4. エージェントの実行 ---
-    try:
-        response = agent_executor.invoke({
-            "messages": [HumanMessage(content=prompt)]
-        })
-        
-        # 最後のメッセージからレポートを取得
-        final_report = response['messages'][-1].content
+   import time
+   MAX_RETRIES = 5  # 最大再試行回数
+   INITIAL_DELAY = 10  # 初期遅延時間（秒）
+
+   for attempt in range(MAX_RETRIES):
+      try:
+         if attempt > 0:
+               delay = INITIAL_DELAY * (2 ** (attempt - 1)) # 指数関数的バックオフ
+               print(f"\n⚠️ Quota超過のため、{delay:.0f}秒待機してから再試行します... (試行回数: {attempt}/{MAX_RETRIES})")
+               time.sleep(delay)
+
+         response = agent_executor.invoke({
+               "messages": [HumanMessage(content=prompt)]
+         })
+         
+         # 成功したらループを抜ける
+         final_report = response['messages'][-1].content
+         break  # 成功
+         
+      except Exception as e:
+         error_message = str(e)
+         # 429 エラーまたは ResourceExhausted エラーをチェック
+         if "429 You exceeded your current quota" in error_message or "ResourceExhausted" in error_message:
+               if attempt == MAX_RETRIES - 1:
+                  print(f"\n❌ エラー: 最大再試行回数 ({MAX_RETRIES}) に達しました。APIの割り当てを確認してください。")
+                  import traceback
+                  traceback.print_exc()
+                  sys.exit(1)
+               # 再試行ロジック内で待機と継続が行われる
+               continue # ループの次へ
+         else:
+               # その他の予期せぬエラー
+               print(f"\n❌ 予期せぬエラーが発生しました: {error_message}")
+               import traceback
+               traceback.print_exc()
+               sys.exit(1)
+   else:
+      # MAX_RETRIES回試行しても成功しなかった場合の処理 (上ですでに sys.exit(1) しているため不要だが形式的に残す)
+      sys.exit(1)
         
         # --- 5. レポートの保存 ---
         # reportsディレクトリの作成
