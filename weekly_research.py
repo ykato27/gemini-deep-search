@@ -1,5 +1,6 @@
 """
 週次スキルマネジメント・タレントマネジメント調査レポート生成スクリプト
+（検索対象年をパラメータとして指定可能）
 """
 
 import os
@@ -14,7 +15,7 @@ from langchain_tavily import TavilySearch
 from langgraph.prebuilt import create_react_agent
 
 
-def generate_report():
+def generate_report(target_year: int = None):
     """週次レポートを生成する"""
 
     # --- 1. 環境変数の確認 ---
@@ -46,20 +47,24 @@ def generate_report():
     # --- 3. エージェントの作成 ---
     agent_executor = create_react_agent(model, tools)
 
-    # --- 4. 調査プロンプトの定義 ---
+    # --- 4. 検索対象年の設定 ---
     today = datetime.now()
+    start_date = (today - timedelta(days=7)).strftime("%Y-%m-%d")
+    year = target_year or today.year  # ← デフォルトは現在の年
+    print(f"📅 検索対象年: {year}")
 
+    # --- 5. 調査プロンプトの定義 ---
     prompt = f"""
 あなたは優秀なリサーチアナリストです。以下のタスクを実行してください。
 
 # 🎯 タスク
-**過去1週間以内に公開された**スキルマネジメント・タレントマネジメント**に関する欧米の最新記事を調査し、詳細なレポートを作成してください。
+**過去1週間以内（{start_date}以降）に公開された**スキルマネジメント・タレントマネジメント**に関する欧米の最新記事を調査し、詳細なレポートを作成してください。
 
 **重要な検索方法**:
 - 検索クエリには必ず時間フィルタを含めてください:
   - "past week"
   - "last 7 days"  
-  - "2025"
+  - "{year}"
 - 複数の検索を実行して、幅広い情報を収集してください
 - 各記事のURLを必ずweb_fetchで取得し、詳細を確認してください
 
@@ -69,18 +74,18 @@ def generate_report():
 **検索キーワード（これらを組み合わせて複数回検索してください）**: 
 - "skill management" + "past week"
 - "skills management" + "last 7 days"
-- "talent management" + "2025"
+- "talent management" + "{year}"
 - "competency mapping" + "recent"
 - "skills taxonomy" + "past week"
 - "workforce upskilling" + "last 7 days"
-- "reskilling" + "2025"
+- "reskilling" + "{year}"
 - "digital credentials" + "recent"
 - "learning experience platform" + "past week"
-- "manufacturing workforce" + "2025"
+- "manufacturing workforce" + "{year}"
 - "factory training" + "recent"
 - "skills-based organization" + "last 7 days"
 - "skills-first hiring" + "past week"
-- "learning record store" + "2025"
+- "learning record store" + "{year}"
 - "xAPI" + "recent"
 - "skills graph" + "past week"
 
@@ -180,48 +185,36 @@ def generate_report():
 
 それでは調査を開始してください。**必ず15回以上のweb_search→web_fetchの組み合わせ**を実行し、詳細な情報を収集してください。
 """
-    
-    print(f"📊 調査対象: 過去1週間以内の最新記事")
+
+    print(f"📊 調査対象: 過去1週間以内の最新記事 ({year}年版)")
     print("🔍 スキルマネジメント・タレントマネジメントの最新動向調査を開始します...\n")
 
-    # --- 5. エージェントの実行 ---
+    # --- 6. エージェントの実行 ---
     MAX_RETRIES = 5
     INITIAL_DELAY = 10
-
     final_report = None
 
     for attempt in range(MAX_RETRIES):
         try:
             if attempt > 0:
                 delay = INITIAL_DELAY * (2 ** (attempt - 1))
-                print(
-                    f"\n⚠️ Quota超過のため、{delay:.0f}秒待機してから再試行します... "
-                    f"(試行回数: {attempt}/{MAX_RETRIES})"
-                )
+                print(f"\n⚠️ Quota超過のため、{delay:.0f}秒待機してから再試行します... (試行回数: {attempt}/{MAX_RETRIES})")
                 time.sleep(delay)
 
             response = agent_executor.invoke({"messages": [HumanMessage(content=prompt)]})
 
-            # --- 安全にレスポンスを取得 ---
-            try:
-                messages = response.get("messages", [])
-                if messages and hasattr(messages[-1], "content"):
-                    final_report = messages[-1].content or "（内容なし）"
-                else:
-                    final_report = "（レポート生成に失敗しました。レスポンス形式を確認してください。）"
-            except Exception as e_inner:
-                print(f"⚠️ レスポンス解析中にエラー: {e_inner}")
-                final_report = "（レポート生成に失敗しました。詳細はログを確認してください。）"
-
-            # 成功したらループを抜ける
+            messages = response.get("messages", [])
+            if messages and hasattr(messages[-1], "content"):
+                final_report = messages[-1].content or "（内容なし）"
+            else:
+                final_report = "（レポート生成に失敗しました。レスポンス形式を確認してください。）"
             break
 
         except Exception as e:
             error_message = str(e)
-
             if "429 You exceeded your current quota" in error_message or "ResourceExhausted" in error_message:
                 if attempt == MAX_RETRIES - 1:
-                    print(f"\n❌ エラー: 最大再試行回数 ({MAX_RETRIES}) に達しました。APIの割り当てを確認してください。")
+                    print(f"\n❌ 最大再試行回数に達しました。APIの割り当てを確認してください。")
                     traceback.print_exc()
                     sys.exit(1)
                 continue
@@ -230,20 +223,16 @@ def generate_report():
             traceback.print_exc()
             sys.exit(1)
 
-    else:
-        # すべての試行が失敗した場合
-        sys.exit(1)
-
-    # --- 6. レポートの保存 ---
+    # --- 7. レポートの保存 ---
     os.makedirs("reports", exist_ok=True)
     date_str = today.strftime("%Y%m%d")
-    file_name = f"reports/週次レポート_{date_str}.md"
+    file_name = f"reports/週次レポート_{year}_{date_str}.md"
 
     try:
         with open(file_name, "w", encoding="utf-8") as f:
             header = (
                 "# 週次レポート: スキルマネジメント・タレントマネジメント動向\n"
-                f"**調査対象**: 過去1週間以内の最新記事  \n"
+                f"**調査対象**: 過去1週間以内の最新記事 ({year}年版)  \n"
                 f"**生成日時**: {today.strftime('%Y年%m月%d日 %H:%M:%S')}\n\n---\n\n"
             )
             f.write(header + final_report)
@@ -264,4 +253,12 @@ def generate_report():
 
 
 if __name__ == "__main__":
-    generate_report()
+    # コマンドライン引数で年を指定できるようにする
+    year_arg = None
+    if len(sys.argv) > 1:
+        try:
+            year_arg = int(sys.argv[1])
+        except ValueError:
+            print("⚠️ 年指定が不正です。整数で指定してください。例: python weekly_research.py 2026")
+
+    generate_report(target_year=year_arg)
