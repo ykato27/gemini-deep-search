@@ -42,7 +42,7 @@ def search_and_extract_data(target_year: int = None):
     )
 
     search_tool = TavilySearch(
-        max_results=10,
+        max_results=15,
         search_depth="advanced",
         include_raw_content=True,
     )
