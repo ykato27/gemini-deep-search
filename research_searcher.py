@@ -109,8 +109,8 @@ def search_and_extract_data(target_year: int = None):
     print("🔍 スキルマネジメント・タレントマネジメントの最新動向調査を開始します...")
 
     # --- 6. エージェントの実行 ---
-    MAX_RETRIES = 10
-    INITIAL_DELAY = 15
+    MAX_RETRIES = 7
+    INITIAL_DELAY = 5
     raw_json_output = None
 
     for attempt in range(MAX_RETRIES):
