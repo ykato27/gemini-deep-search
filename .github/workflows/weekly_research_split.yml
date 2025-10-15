@@ -1,0 +1,61 @@
+name: Weekly Research Report (Split Phase)
+
+on:
+schedule:
+- cron: '0 23 * * 0' # 毎週日曜日の23:00 (UTC) に実行
+workflow_dispatch:
+
+artifacts/reports ディレクトリへの書き込み権限を付与
+permissions:
+contents: write
+
+jobs:
+generate-report:
+runs-on: ubuntu-latest
+
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
+    
+  - name: Set up Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: '3.11'
+      
+  - name: Install dependencies
+    run: |
+      pip install --upgrade pip
+      # LangChain, Google GenAI, Tavily, LangGraph をインストール
+      pip install langchain-google-genai langchain-tavily langgraph
+      
+  - name: Create reports directory
+    run: |
+      mkdir -p reports
+      
+  # --- Phase 1: 検索とデータ収集 ---
+  - name: Phase 1: Search and Extract Data (research_searcher.py)
+    id: search_phase
+    env:
+      # GOOGLE_API_KEYは検索エージェントと分析LLMの両方で必要
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+    run: |
+      python research_searcher.py
+      
+  # --- Phase 2: 分析とレポート構造化 ---
+  # Phase 1で作成されたJSONファイルを読み込んで実行
+  - name: Phase 2: Analyze and Generate Report (research_analyzer.py)
+    env:
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+    run: |
+      python research_analyzer.py
+      
+  - name: Commit and push report
+    run: |
+      # Git設定
+      git config --local user.email "action@github.com"
+      git config --local user.name "GitHub Action"
+      # reports/ ディレクトリ内のすべてを追加
+      git add reports/
+      # 変更がある場合のみコミットとプッシュを実行
+      git diff --quiet && git diff --staged --quiet || (git commit -m "Add weekly research report $(date +'%Y%m%d')" && git push)
