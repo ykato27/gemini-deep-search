@@ -110,7 +110,7 @@ def search_and_extract_data(target_year: int = None):
 
     # --- 6. エージェントの実行 ---
     MAX_RETRIES = 7
-    INITIAL_DELAY = 5
+    INITIAL_DELAY = 7
     raw_json_output = None
 
     for attempt in range(MAX_RETRIES):
