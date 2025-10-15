@@ -5,7 +5,6 @@ on:
     - cron: '0 23 * * 0'
   workflow_dispatch:
 
-# ← この部分を追加
 permissions:
   contents: write
 
