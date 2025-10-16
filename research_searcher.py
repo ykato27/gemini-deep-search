@@ -42,7 +42,7 @@ def search_and_extract_data(target_year: int = None):
     )
 
     search_tool = TavilySearch(
-        max_results=15,
+        max_results=10,
         search_depth="advanced",
         include_raw_content=True,
     )
@@ -70,7 +70,7 @@ def search_and_extract_data(target_year: int = None):
 
 # 🔍 調査対象とキーワード
 - **対象地域**: 米国、英国、ドイツ、フランス、オランダ、スウェーデン、イタリア、スペイン
-- **検索キーワード**: 以下のキーワードと時間フィルタ（"past week", "last 7 days", "{year}"）を組み合わせて、**多様な検索を10回以上実行**してください。
+- **検索キーワード**: 以下のキーワードと時間フィルタ（"past week", "last 7 days", "{year}"）を組み合わせて、**多様な検索を5回以上実行**してください。
   - "skill management", "skills management", "talent management", "competency mapping", "skills taxonomy", "workforce upskilling", "reskilling", "digital credentials", "learning experience platform", "skills-based organization", "skills-first hiring", "manufacturing workforce", "factory training"
 - **必須**: 検索結果のURLに対して**web_fetch**ツールを必ず使用し、記事本文を読んで情報を抽出してください。
 
