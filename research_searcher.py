@@ -2,6 +2,7 @@
 Phase 1: 事例検索・データ収集スクリプト（トークン最適化版）
 - Phase 1: エージェントで構造化されていないテキスト形式で記事情報を抽出
 - Phase 2: 別のLLMコールでシンプルにJSON整形（トークン使用量を大幅削減）
+- レート制限対策: 適切な待機時間とバッチ処理
 """
 import os
 import sys
@@ -44,9 +45,9 @@ def search_and_extract_data(target_year: int = None):
     )
 
     search_tool = TavilySearch(
-        max_results=10,
-        search_depth="advanced",
-        include_raw_content=True,
+        max_results=5,  # 結果数を減らしてトークンを節約
+        search_depth="basic",  # basicに変更してトークンを節約
+        include_raw_content=False,  # raw contentを無効化してトークンを節約
     )
     tools = [search_tool]
     
@@ -62,85 +63,85 @@ def search_and_extract_data(target_year: int = None):
     print(f"📅 検索対象年: {year}")
     print(f"🗓️ 検索開始日: {start_date} (過去1週間)")
 
-    # --- 5. Phase 1: 非構造化テキスト抽出プロンプト ---
+    # --- 5. Phase 1: 非構造化テキスト抽出プロンプト（簡潔版） ---
     search_prompt = f"""
-あなたは優秀なリサーチアナリストです。Web検索と情報抽出を行い、結果を**シンプルなテキスト形式**で出力してください。
+あなたは優秀なリサーチアナリストです。以下のタスクを**効率的に**実行してください。
 
-# 🎯 タスク
-**過去1週間以内（{start_date}以降）に公開された**スキルマネジメント・タレントマネジメント**に関する欧米の最新記事を調査し、各記事の情報を抽出してください。
+# タスク
+過去1週間（{start_date}以降）のスキルマネジメント・タレントマネジメント関連の欧米記事を**3～5件**収集し、簡潔に情報を抽出してください。
 
-# 🔍 調査対象とキーワード
-- **対象地域**: 米国、英国、ドイツ、フランス、オランダ、スウェーデン、イタリア、スペイン
-- **検索キーワード**: 以下のキーワードと時間フィルタ（"past week", "last 7 days", "{year}"）を組み合わせて、**多様な検索を5回以上実行**してください。
-  - "skill management", "skills management", "talent management", "competency mapping", "skills taxonomy", "workforce upskilling", "reskilling", "digital credentials", "learning experience platform", "skills-based organization", "skills-first hiring", "manufacturing workforce", "factory training"
-- **必須**: 検索結果のURLに対して**web_fetch**ツールを使用し、記事本文を読んで情報を抽出してください。
+# 検索方法
+1. 以下のキーワードで**2～3回**だけ検索してください：
+   - "skills management {year} past week"
+   - "talent management workforce {year} recent"
+   
+2. 検索結果から**最も関連性の高い3～5記事**を選んでください
 
-# 📄 出力形式
-各記事について、以下の情報を**簡潔なテキスト形式**で出力してください。目標は**10～20件**の記事です。
+3. **web_fetchツールは使用せず**、検索結果のスニペット情報のみを使用してください（トークン節約のため）
 
-各記事は以下の形式で記載してください：
-
----
-## 記事 [番号]
-
-**タイトル**: [記事タイトル]
-**URL**: [正確な記事URL]
-**情報源**: [メディア名]
-**公開日**: [YYYY-MM-DD形式]
-**地域**: [対象地域/国]
-**カテゴリー**: [feature/partnership/case_study/integration/funding/acquisition/pricing/regulation/research/dev_update のいずれか]
-**関連企業**: [企業名をカンマ区切り、なければ「なし」]
-
-**要約**:
-[3～5文の日本語要約]
-
-**重要ポイント**:
-- [ポイント1]
-- [ポイント2]
-- [ポイント3]
-
-**タグ**: [tag1, tag2, tag3 などカンマ区切り]
-**製造業関連性**: [あり/なし]
-**関連性理由**: [ある場合は1～2文で説明、なければ「該当なし」]
-**信頼度**: [0.0～1.0の数値]
+# 出力形式
+各記事を以下の**簡潔な形式**で出力してください：
 
 ---
+記事 1
+タイトル: [タイトル]
+URL: [URL]
+情報源: [メディア名]
+公開日: [YYYY-MM-DD]
+地域: [国/地域]
+カテゴリー: [feature/case_study/partnership/etc]
+関連企業: [企業名、なければ「なし」]
+要約: [2～3文の日本語要約]
+重要ポイント: [ポイント1] / [ポイント2] / [ポイント3]
+タグ: [tag1, tag2, tag3]
+製造業関連: [あり/なし]
+関連性理由: [1文、なければ「該当なし」]
+信頼度: [0.0～1.0]
+---
 
-# ⚠️ 重要な調査ルール
-1. **必ずweb_fetchツールを使用して記事本文を読むこと**
-2. 目標件数は**10～20件**の記事を収集すること
-3. 最も関連性の高い記事を優先すること（特に製造業関連）
-4. 重複記事は除外すること
-5. 出力は上記のシンプルなテキスト形式で、記事ごとに「---」で区切ること
+# 重要
+- 検索は**最小限**（2～3回）に抑えてください
+- web_fetchは**使用しない**でください
+- 記事数は**3～5件**で十分です
+- 簡潔に情報をまとめてください
 """
     
-    print("🔍 スキルマネジメント・タレントマネジメントの最新動向調査を開始します...")
+    print("🔍 最新動向調査を開始します（トークン節約モード）...")
 
     # --- 6. Phase 1: エージェントの実行（テキスト抽出） ---
-    MAX_RETRIES = 5
-    INITIAL_DELAY = 10
+    MAX_RETRIES = 3  # 再試行回数を減らす
+    INITIAL_DELAY = 60  # 初期待機時間を60秒に延長
     raw_text_output = None
 
     for attempt in range(MAX_RETRIES):
         try:
             if attempt > 0:
-                delay = INITIAL_DELAY * (2 ** (attempt - 1))
-                print(f"\n⚠️ Quota超過のため、{delay:.0f}秒待機してから再試行します... (試行回数: {attempt + 1}/{MAX_RETRIES})")
+                # APIクォータリセット待ち（1分間隔を考慮）
+                delay = max(60, INITIAL_DELAY * (2 ** (attempt - 1)))
+                print(f"\n⚠️ APIクォータ超過のため、{delay:.0f}秒待機します... (試行 {attempt + 1}/{MAX_RETRIES})")
                 time.sleep(delay)
 
-            response = agent_executor.invoke({"messages": [HumanMessage(content=search_prompt)]})
+            print(f"📡 エージェント実行中... (試行 {attempt + 1}/{MAX_RETRIES})")
+            response = agent_executor.invoke(
+                {"messages": [HumanMessage(content=search_prompt)]},
+                config={"recursion_limit": 15}  # 再帰制限を設定してトークンを節約
+            )
             
             messages = response.get("messages", [])
             if messages and hasattr(messages[-1], "content"):
                 raw_text_output = messages[-1].content
                 
-                # テキスト出力の簡易検証（最低限の内容があるか）
-                if len(raw_text_output) > 500 and "##" in raw_text_output:
-                    print(f"✅ テキストデータを正常に取得しました。文字数: {len(raw_text_output)}")
+                # テキスト出力の簡易検証
+                if len(raw_text_output) > 200 and ("記事" in raw_text_output or "タイトル" in raw_text_output):
+                    print(f"✅ テキストデータを取得しました。文字数: {len(raw_text_output)}")
                     break
                 else:
-                    print("\n⚠️ 出力が短すぎるか形式が不正です。再試行します。")
+                    print("\n⚠️ 出力が不十分です。再試行します。")
                     if attempt == MAX_RETRIES - 1:
+                        # 最後の試行でも失敗した場合、部分的な結果でも使用
+                        if raw_text_output and len(raw_text_output) > 100:
+                            print("⚠️ 部分的な結果を使用します")
+                            break
                         raise ValueError("有効なテキスト出力が得られませんでした")
                     continue
             else:
@@ -151,21 +152,34 @@ def search_and_extract_data(target_year: int = None):
 
         except Exception as e:
             error_message = str(e)
-            if "429 You exceeded your current quota" in error_message or "ResourceExhausted" in error_message:
+            if "429" in error_message or "ResourceExhausted" in error_message or "Quota exceeded" in error_message:
                 if attempt == MAX_RETRIES - 1:
-                    print(f"\n❌ 最大再試行回数に達しました。APIの割り当てを確認してください。")
+                    print(f"\n❌ 最大再試行回数に達しました。")
+                    print("💡 対策: しばらく待ってから再実行するか、有料プランへのアップグレードを検討してください。")
+                    print("📊 Gemini API無料枠: 1分あたり250,000トークン")
                     traceback.print_exc()
                     sys.exit(1)
+                print(f"⏳ APIクォータ超過を検出。待機後に再試行します...")
                 continue
             
             print(f"\n❌ 予期せぬエラーが発生しました: {error_message}")
             traceback.print_exc()
-            sys.exit(1)
+            if attempt == MAX_RETRIES - 1:
+                sys.exit(1)
+            continue
+
+    if not raw_text_output:
+        print("❌ テキスト出力の取得に失敗しました")
+        sys.exit(1)
 
     # --- 7. Phase 2: JSON整形（別LLMコール・トークン削減） ---
     print("\n" + "=" * 60)
     print("🔄 Phase 2: JSONフォーマットへの変換を開始")
     print("=" * 60)
+    
+    # クォータリセット待ち
+    print("⏳ APIクォータリセットのため60秒待機します...")
+    time.sleep(60)
     
     # JSON整形用の軽量LLMインスタンス（エージェント履歴なし）
     formatting_model = ChatGoogleGenerativeAI(
@@ -174,48 +188,42 @@ def search_and_extract_data(target_year: int = None):
     )
     
     json_formatting_prompt = f"""
-以下のテキストには、複数の記事情報が含まれています。
-これらの情報を、指定されたJSONスキーマに従って整形してください。
+以下のテキストには記事情報が含まれています。これをJSON配列に整形してください。
 
-# 入力テキスト:
+入力テキスト:
 {raw_text_output}
 
-# 出力JSONスキーマ:
-以下の形式のJSON配列として出力してください。他のテキストや説明は一切含めず、純粋なJSON配列のみを出力してください。
-```json
+出力: 以下の形式のJSON配列のみを出力（説明文やコードブロック記号なし）
+
 [
   {{
     "title": "記事タイトル",
-    "url": "正確な記事のURL",
-    "source": "情報源（メディア名）",
+    "url": "URL",
+    "source": "情報源",
     "published_date": "YYYY-MM-DD",
-    "region": "対象地域/国",
-    "category": "feature/partnership/case_study/integration/funding/acquisition/pricing/regulation/research/dev_updateのいずれか",
-    "related_companies": ["企業名1", "企業名2"],
-    "summary_japanese": "3～5文の日本語要約",
-    "key_points": ["重要ポイント1", "重要ポイント2", "重要ポイント3"],
-    "tags": ["tag1", "tag2", "tag3"],
-    "manufacturing_relevance": "あり" or "なし",
-    "relevance_reason": "関連性がある場合の理由（1～2文）",
-    "confidence_score": 0.0から1.0の間の数値
+    "region": "地域",
+    "category": "カテゴリー",
+    "related_companies": ["企業名"],
+    "summary_japanese": "要約",
+    "key_points": ["ポイント1", "ポイント2", "ポイント3"],
+    "tags": ["tag1", "tag2"],
+    "manufacturing_relevance": "あり or なし",
+    "relevance_reason": "理由 or 該当なし",
+    "confidence_score": 0.0～1.0の数値
   }}
 ]
-```
 
-# 重要事項:
-- 出力は上記JSONスキーマに厳密に従うこと
-- JSON配列のみを出力し、前後に説明文やマークダウンのコードブロック記号（```）を含めないこと
-- すべての記事を配列に含めること
-- フィールドが不明な場合は妥当な推測値または空の値を使用すること
+重要: JSON配列のみを出力。前後に一切の説明やマークダウンを含めないこと。
 """
 
     for attempt in range(MAX_RETRIES):
         try:
             if attempt > 0:
-                delay = INITIAL_DELAY * (2 ** (attempt - 1))
-                print(f"\n⚠️ Quota超過のため、{delay:.0f}秒待機してから再試行します... (試行回数: {attempt + 1}/{MAX_RETRIES})")
+                delay = 60
+                print(f"\n⚠️ 待機中... (試行 {attempt + 1}/{MAX_RETRIES})")
                 time.sleep(delay)
 
+            print(f"🔄 JSON変換中... (試行 {attempt + 1}/{MAX_RETRIES})")
             formatting_response = formatting_model.invoke([HumanMessage(content=json_formatting_prompt)])
             json_output = formatting_response.content
             
@@ -232,7 +240,7 @@ def search_and_extract_data(target_year: int = None):
             # JSONパースを試行
             parsed_data = json.loads(json_output)
             
-            if isinstance(parsed_data, list) and parsed_data:
+            if isinstance(parsed_data, list) and len(parsed_data) > 0:
                 print(f"✅ JSONデータを正常に変換しました。記事数: {len(parsed_data)}件")
                 break
             else:
@@ -241,16 +249,16 @@ def search_and_extract_data(target_year: int = None):
         except json.JSONDecodeError as e:
             print(f"\n❌ JSON変換に失敗しました: {str(e)}")
             if attempt == MAX_RETRIES - 1:
-                print("生のJSON出力（デバッグ用）:")
-                print(json_output[:1000])  # 最初の1000文字のみ表示
+                print("\n生のJSON出力（デバッグ用）:")
+                print(json_output[:2000] if len(json_output) > 2000 else json_output)
                 sys.exit(1)
             continue
             
         except Exception as e:
             error_message = str(e)
-            if "429 You exceeded your current quota" in error_message or "ResourceExhausted" in error_message:
+            if "429" in error_message or "ResourceExhausted" in error_message or "Quota exceeded" in error_message:
                 if attempt == MAX_RETRIES - 1:
-                    print(f"\n❌ 最大再試行回数に達しました。APIの割り当てを確認してください。")
+                    print(f"\n❌ 最大再試行回数に達しました。")
                     traceback.print_exc()
                     sys.exit(1)
                 continue
@@ -266,10 +274,10 @@ def search_and_extract_data(target_year: int = None):
     
     try:
         with open(RESEARCH_DATA_PATH, "w", encoding="utf-8") as f:
-            f.write(json.dumps(parsed_data, indent=2, ensure_ascii=False))
+            json.dump(parsed_data, f, indent=2, ensure_ascii=False)
 
         print("\n" + "=" * 60)
-        print("✓ データ収集完了")
+        print("✅ データ収集完了")
         print(f"💾 保存先: {RESEARCH_DATA_PATH}")
         print(f"📊 記事数: {len(parsed_data)}件")
         print("=" * 60 + "\n")
