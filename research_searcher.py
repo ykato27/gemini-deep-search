@@ -45,8 +45,8 @@ def search_and_extract_data(target_year: int = None):
     )
 
     search_tool = TavilySearch(
-        max_results=5,  # 結果数を減らしてトークンを節約
-        search_depth="basic",  # basicに変更してトークンを節約
+        max_results=7,  # 結果数を減らしてトークンを節約
+        search_depth="advanced",  # basicに変更してトークンを節約
         include_raw_content=False,  # raw contentを無効化してトークンを節約
     )
     tools = [search_tool]
@@ -109,7 +109,7 @@ URL: [URL]
     print("🔍 最新動向調査を開始します（トークン節約モード）...")
 
     # --- 6. Phase 1: エージェントの実行（テキスト抽出） ---
-    MAX_RETRIES = 3  # 再試行回数を減らす
+    MAX_RETRIES = 4  # 再試行回数を減らす
     INITIAL_DELAY = 60  # 初期待機時間を60秒に延長
     raw_text_output = None
 
