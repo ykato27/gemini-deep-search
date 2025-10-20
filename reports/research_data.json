@@ -1,104 +1,114 @@
 [
   {
-    "title": "Global workforce management for a borderless business future",
-    "url": "http://bridgewaysolution.com/global-workforce-management-for-a-borderless-business-future/",
-    "source": "Bridgeway Solution",
-    "published_date": "不明",
-    "region": "グローバル",
-    "category": "feature",
-    "related_companies": [
-      "Deloitte"
-    ],
-    "summary_japanese": "2024年のDeloitte調査によると、世界の組織のほぼ半数が、ワークフォースマネジメントを改善すべき分野として認識しています。これは、国境を越えたビジネス環境におけるグローバルなワークフォース管理の重要性を示唆しています。",
-    "key_points": [
-      "グローバルワークフォース管理の重要性",
-      "Deloitte調査",
-      "改善の必要性"
-    ],
-    "tags": [
-      "workforce management",
-      "global",
-      "Deloitte",
-      "HR"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "グローバルなワークフォース管理の現状と課題について言及しており、タレントマネジメントの文脈で関連性が高い。",
-    "confidence_score": 0.7
-  },
-  {
-    "title": "Talent Management Solutions Market Trends by Application: France",
-    "url": "https://www.linkedin.com/pulse/talent-management-solutions-market-trends-application-6otxc/",
-    "source": "LinkedIn Pulse",
-    "published_date": "不明",
-    "region": "フランス",
-    "category": "market_analysis",
-    "related_companies": [],
-    "summary_japanese": "タレントマネジメントソリューション市場は、2025年に78億ドルの価値があり、2026年から2033年にかけて年平均成長率14.81%で成長し、178.6億ドルに達すると予測されています。この記事はフランスにおける市場動向に焦点を当てています。",
-    "key_points": [
-      "タレントマネジメントソリューション市場の成長",
-      "2025年の市場規模",
-      "フランスの市場動向"
-    ],
-    "tags": [
-      "talent management",
-      "market trends",
-      "solutions",
-      "France"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "タレントマネジメントソリューション市場の成長予測に焦点を当てており、欧州における動向を示唆しているため関連性が高い。",
-    "confidence_score": 0.6
-  },
-  {
-    "title": "Rethinking talent management: Why skills visibility is the new competitive advantage",
-    "url": "https://www.muchskills.com/blog/rethinking-talent-management-why-skills-visibility-is-the-new-competitive-advantage",
-    "source": "MuchSkills",
-    "published_date": "不明",
-    "region": "グローバル",
-    "category": "feature",
-    "related_companies": [
-      "MuchSkills"
-    ],
-    "summary_japanese": "スキルの可視化は、隠れた才能を明らかにし、ワークフォースの展開を最適化することで、機会を民主化し、従業員のエンゲージメントと定着率を高めます。これは、タレントマネジメントを再考する上で新たな競争優位性となります。",
-    "key_points": [
-      "スキルの可視化",
-      "競争優位性",
-      "従業員エンゲージメントと定着率"
-    ],
-    "tags": [
-      "talent management",
-      "skills visibility",
-      "competitive advantage",
-      "employee engagement"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "スキルマネジメントとタレントマネジメントの接点である「スキルの可視化」の重要性を論じており、現代のタレントマネジメントのトレンドを捉えているため関連性が高い。",
-    "confidence_score": 0.7
-  },
-  {
-    "title": "Talent News Roundup: From Metrics to Meaning - SHRM",
-    "url": "https://www.shrm.org/topics-tools/news/talent-acquisition/shrm-talent-news-roundup-metrics-h1bvisas-loneliness",
-    "source": "SHRM",
-    "published_date": "不明",
+    "title": "Talent News | HR Dive",
+    "url": "https://www.hrdive.com/topic/talent/",
+    "source": "HR Dive",
+    "published_date": "2025-10-14",
     "region": "米国",
-    "category": "news_roundup",
-    "related_companies": [],
-    "summary_japanese": "採用指標の最適化、H-1Bビザの変更案への対応、職場での孤独感への対処が、エンゲージメントと定着率を高めるために重要です。これは、タレントマネジメントにおける最新の課題と解決策をまとめたものです。",
+    "category": "feature",
+    "related_companies": [
+      "SHRM",
+      "Express Employment Professionals",
+      "Think Power Solutions",
+      "British Standards Institution"
+    ],
+    "summary_japanese": "企業は従業員の離職を防ぐためにスキルベースの採用に注力すべきであり、AIによる自動化が進む中で、中小企業がアップスキリングの主軸となる可能性がある。また、AIが一部の雇用を削減する一方で、スキルギャップの解消が経済にとって重要であると指摘されている。",
     "key_points": [
-      "採用指標の最適化",
-      "H-1Bビザ",
-      "職場での孤独感",
-      "エンゲージメントと定着率"
+      "スキルベース採用の重要性",
+      "AIによる雇用への影響",
+      "中小企業のアップスキリングにおける役割"
     ],
     "tags": [
-      "talent management",
-      "talent acquisition",
-      "HR",
-      "US",
-      "H-1B"
+      "スキルマネジメント",
+      "タレントマネジメント",
+      "AI",
+      "アップスキリング",
+      "採用"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "米国におけるタレントマネジメントの最新のトピックを網羅しており、具体的な課題と解決策に言及しているため関連性が高い。",
+    "relevance_reason": "スキルマネジメントとタレントマネジメントの最新動向、特にAIの影響とスキルギャップへの対応に焦点を当てているため。",
     "confidence_score": 0.9
+  },
+  {
+    "title": "The Best Workforce Planning With Talent Pools of 2025 - MokaHR",
+    "url": "https://www.mokahr.io/articles/en/the-best-workforce-planning-with-talent-pools",
+    "source": "MokaHR",
+    "published_date": "2025-01-01",
+    "region": "グローバル",
+    "category": "feature",
+    "related_companies": [
+      "MokaHR",
+      "Workday",
+      "SAP SuccessFactors",
+      "Oracle HCM Cloud",
+      "Eightfold AI"
+    ],
+    "summary_japanese": "2025年の最適な人材プールを活用したワークフォースプランニングについて、MokaHR、Workday、SAP SuccessFactorsなどの主要なタレントマネジメントプラットフォームを比較している。AIを活用したスキルベースの予測、ダイナミックな人材プール、データ駆動型の意思決定が重要であると強調されている。",
+    "key_points": [
+      "AI駆動型タレントマネジメントプラットフォーム",
+      "スキルベースのワークフォースプランニング",
+      "データ駆動型意思決定"
+    ],
+    "tags": [
+      "タレントマネジメント",
+      "ワークフォースプランニング",
+      "AI",
+      "HRテクノロジー",
+      "スキルベース"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "2025年のタレントマネジメントにおける主要なテクノロジーと戦略に焦点を当てており、具体的なソリューションプロバイダーにも言及しているため。",
+    "confidence_score": 0.85
+  },
+  {
+    "title": "Hiring trends in 2025: the 4 big shifts shaping tech talent this year",
+    "url": "https://ravio.com/blog/hiring-trends",
+    "source": "Ravio",
+    "published_date": "2025-01-01",
+    "region": "グローバル",
+    "category": "feature",
+    "related_companies": [],
+    "summary_japanese": "2025年の採用トレンドとして、AI人材の需要が急増し、エンジニアリング組織の20-50%がAIエンジニアになると予測されている。また、初期段階の企業では、よりリーンで意図的な企業構築が重視され、少数の優秀な人材に投資する傾向が見られる。",
+    "key_points": [
+      "AI人材の需要急増",
+      "リーンな企業構築",
+      "優秀な人材への集中投資"
+    ],
+    "tags": [
+      "採用トレンド",
+      "AI人材",
+      "テック業界",
+      "タレントマネジメント"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "2025年の採用市場におけるAI人材の重要性と、タレントマネジメント戦略の変化について言及しているため。",
+    "confidence_score": 0.8
+  },
+  {
+    "title": "Future of Work Trends and Work Forecast 2024-2025 - Compunnel",
+    "url": "https://www.compunnel.com/blogs/the-future-of-work-2024-trends-and-2025-work-forecast/",
+    "source": "Compunnel",
+    "published_date": "2025-01-01",
+    "region": "グローバル",
+    "category": "feature",
+    "related_companies": [
+      "McKinsey"
+    ],
+    "summary_japanese": "ギグエコノミーの成長、週4日勤務の普及、従業員のウェルビーイングへの注力など、2025年に向けて労働市場が大きく変化していることを示している。AIが職務内容を変革し、柔軟な働き方が普及する中で、企業は変化する労働環境に適応する必要がある。",
+    "key_points": [
+      "ギグエコノミーの成長",
+      "週4日勤務",
+      "従業員のウェルビーイング"
+    ],
+    "tags": [
+      "労働市場",
+      "働き方改革",
+      "ギグエコノミー",
+      "AI",
+      "タレントマネジメント"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "2025年の労働市場の全体的なトレンドと、それがタレントマネジメントに与える影響について包括的に説明しているため。",
+    "confidence_score": 0.85
   }
 ]
