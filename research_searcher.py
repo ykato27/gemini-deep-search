@@ -9,12 +9,17 @@ import sys
 import time
 import json
 import traceback
+import warnings
 from datetime import datetime, timedelta
+
+# Suppress LangGraph deprecation warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="langgraph")
 
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_tavily import TavilySearch
-from langchain.agents import create_react_agent
+# Note: create_react_agent shows deprecation warning but still works in current version
+from langgraph.prebuilt import create_react_agent
 
 # JSONファイルパス (分析フェーズと共有)
 RESEARCH_DATA_PATH = "reports/research_data.json"
