@@ -134,7 +134,18 @@ URL: [URL]
             
             messages = response.get("messages", [])
             if messages and hasattr(messages[-1], "content"):
-                raw_text_output = messages[-1].content
+                content = messages[-1].content
+
+                # contentがリスト形式の場合（新しいAPI形式）、テキストを抽出
+                if isinstance(content, list) and len(content) > 0:
+                    # リストの最初の要素からテキストを抽出
+                    if isinstance(content[0], dict) and 'text' in content[0]:
+                        raw_text_output = content[0]['text']
+                    else:
+                        raw_text_output = str(content)
+                else:
+                    # 従来の文字列形式
+                    raw_text_output = content
 
                 # デバッグ: 実際の出力内容を表示（最初の500文字）
                 print(f"\n📊 デバッグ: 出力文字数 = {len(raw_text_output)}")
@@ -153,7 +164,7 @@ URL: [URL]
                         if raw_text_output and len(raw_text_output) > 100:
                             print("⚠️ 部分的な結果を使用します")
                             break
-                        print(f"\n📊 最終的な出力内容（全文）:\n{raw_text_output}\n")
+                        print(f"\n📊 最終的な出力内容（デバッグ）:\n{raw_text_output[:1000]}\n")
                         raise ValueError("有効なテキスト出力が得られませんでした")
                     continue
             else:
