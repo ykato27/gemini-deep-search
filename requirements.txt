@@ -1,4 +1,3 @@
-langchain
 langchain-google-genai
 langchain-tavily
 langgraph
