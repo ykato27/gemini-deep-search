@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_tavily import TavilySearch
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_react_agent
 
 # JSONファイルパス (分析フェーズと共有)
 RESEARCH_DATA_PATH = "reports/research_data.json"
@@ -130,22 +130,30 @@ URL: [URL]
             messages = response.get("messages", [])
             if messages and hasattr(messages[-1], "content"):
                 raw_text_output = messages[-1].content
-                
+
+                # デバッグ: 実際の出力内容を表示（最初の500文字）
+                print(f"\n📊 デバッグ: 出力文字数 = {len(raw_text_output)}")
+                print(f"📊 デバッグ: 出力プレビュー（最初の500文字）:\n{raw_text_output[:500]}\n")
+
                 # テキスト出力の簡易検証
                 if len(raw_text_output) > 200 and ("記事" in raw_text_output or "タイトル" in raw_text_output):
                     print(f"✅ テキストデータを取得しました。文字数: {len(raw_text_output)}")
                     break
                 else:
                     print("\n⚠️ 出力が不十分です。再試行します。")
+                    print(f"   - 文字数条件: {len(raw_text_output) > 200} (実際: {len(raw_text_output)}文字)")
+                    print(f"   - キーワード条件: {'記事' in raw_text_output or 'タイトル' in raw_text_output}")
                     if attempt == MAX_RETRIES - 1:
                         # 最後の試行でも失敗した場合、部分的な結果でも使用
                         if raw_text_output and len(raw_text_output) > 100:
                             print("⚠️ 部分的な結果を使用します")
                             break
+                        print(f"\n📊 最終的な出力内容（全文）:\n{raw_text_output}\n")
                         raise ValueError("有効なテキスト出力が得られませんでした")
                     continue
             else:
                 print("❌ エージェントからの出力取得に失敗しました。")
+                print(f"📊 デバッグ: messages = {messages}")
                 if attempt == MAX_RETRIES - 1:
                     sys.exit(1)
                 continue
