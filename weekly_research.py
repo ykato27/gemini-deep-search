@@ -37,7 +37,7 @@ def generate_report(target_year: int = None):
     )
 
     search_tool = TavilySearch(
-        max_results=10,
+        max_results=25,  # Deep Research風に検索結果数を増加（無料プラン1000クレ/月の範囲内）
         search_depth="advanced",
         include_raw_content=True,
         time_range="week",  # 過去1週間のデータのみを取得
@@ -72,25 +72,36 @@ def generate_report(target_year: int = None):
 # 🔍 調査対象
 **対象地域**: 米国、英国、ドイツ、フランス、オランダ、スウェーデン、イタリア、スペイン
 
-**検索キーワード（これらを組み合わせて複数回検索してください）**: 
-- "skill management" + "past week"
-- "skills management" + "last 7 days"
-- "talent management" + "{year}"
-- "competency mapping" + "recent"
-- "skills taxonomy" + "past week"
-- "workforce upskilling" + "last 7 days"
-- "reskilling" + "{year}"
-- "digital credentials" + "recent"
-- "learning experience platform" + "past week"
-- "manufacturing workforce" + "{year}"
-- "factory training" + "recent"
-- "skills-based organization" + "last 7 days"
-- "skills-first hiring" + "past week"
-- "learning record store" + "{year}"
-- "xAPI" + "recent"
-- "skills graph" + "past week"
+**検索キーワード（これらを組み合わせて複数回検索してください）**:
 
-**必須**: 5～10回程度の**多様な検索**を実行し、情報を収集してください。
+**基本検索ワード（各3回ずつ異なる組み合わせで検索）**:
+- "skill management" / "skills management" / "talent management"
+- "competency management" / "competency mapping" / "skills assessment"
+- "workforce development" / "workforce upskilling" / "reskilling"
+- "learning and development" / "L&D trends" / "employee training"
+
+**技術・プラットフォーム関連**:
+- "skills taxonomy" / "skills ontology" / "skills graph"
+- "learning experience platform" / "LXP" / "learning management system"
+- "digital credentials" / "digital badges" / "micro-credentials"
+- "learning record store" / "xAPI" / "learning analytics"
+- "AI skills management" / "AI-powered learning" / "AI talent development"
+- "skills-based organization" / "skills-first hiring" / "skills marketplace"
+
+**製造業・産業特化**:
+- "manufacturing workforce" / "factory training" / "industrial upskilling"
+- "manufacturing skills gap" / "factory automation training" / "smart factory workforce"
+- "manufacturing talent" / "production workforce development"
+
+**地域・業界トレンド**:
+- "HR technology trends" / "HRTech innovation" / "talent tech"
+- "future of work skills" / "workforce transformation" / "skills economy"
+- "employee retention" / "talent retention strategies"
+
+**必須**: 25～35回程度の**多様な検索**を実行し、幅広く深い情報を収集してください。
+- 各カテゴリから複数のキーワードを選択
+- 同じキーワードでも異なる組み合わせで検索
+- 検索結果が少ない場合は、別のキーワードで追加検索
 
 # 📋 各記事から抽出すべき情報
 1. **基本情報**
@@ -123,7 +134,7 @@ def generate_report(target_year: int = None):
    - 検索結果のスニペットだけで判断しない
    - 各記事の詳細内容を確認してから情報を抽出する
 
-2. **目標件数**: 10～20件の記事を収集
+2. **目標件数**: 20～40件の記事を収集（Deep Research風に詳細な調査）
 
 3. **優先順位**:
    - 第1優先: 製造業に直接関連する記事
@@ -139,12 +150,13 @@ def generate_report(target_year: int = None):
 # 📄 レポート出力フォーマット
 以下の構成でMarkdown形式のレポートを作成してください：
 
-## エグゼクティブサマリー
-- 今週のハイライト（3～5点）
-- 注目トレンド
-- 製造業関連の重要トピック
+## エグゼクティブサマリー (Executive Summary)
+- **今週の最重要ハイライト（Top 3 Insights）**: データから得られた最も重要な3つの洞察
+- **注目トレンドとそのリスク/機会**: 特定されたトレンドと、製造業にとっての機会とリスクを明示
+- **推奨される即時アクション**: 経営層が今すぐ着手すべき具体的なアクション（2-3項目）
 
-## 調査結果詳細
+## 調査結果詳細 (Detailed Findings)
+
 各記事を以下のフォーマットで記載：
 
 ### [連番]. [記事タイトル]
@@ -157,34 +169,65 @@ def generate_report(target_year: int = None):
 - **製造業関連**: ✓ あり / - なし
 - **信頼性スコア**: 0.0～1.0
 
-**要約**:
-[3～5文の日本語要約]
+**戦略的要約と意義**:
+[この記事が示す戦略的な意味合いと、なぜ今重要なのかを3-5文で記載]
 
-**重要ポイント**:
-- [ポイント1]
-- [ポイント2]
-- [ポイント3]
+**重要ポイント (Key Strategic Takeaways)**:
+- [ビジネスインパクトの観点からのポイント1]
+- [競争優位性の観点からのポイント2]
+- [実装可能性の観点からのポイント3]
 
 **関連技術タグ**: `tag1` `tag2` `tag3`
 
-**製造業との関連性**: [ある場合の理由を記載]
+**製造業との関連性**: [製造業のどの領域（例: 技能伝承、多能工育成、OJT、DX推進等）にどのように活用できるか具体的に記載]
 
 ---
 
-## トレンド分析
-- 主要なテーマ（出現頻度順）
-- 注目企業・組織
-- 技術トレンド
+## 戦略的トレンド分析 (Strategic Trend Analysis)
 
-## 製造業向け推奨アクション
-製造業企業が注目すべきポイントと推奨される次のステップ
+### 1. 主要なテーマと進化の方向性
+- 今週のデータから浮かび上がる主要テーマ（3-5個）
+- これらのテーマが今後6-12ヶ月でどう進化するかの予測
+- 各テーマの成熟度（萌芽期/成長期/成熟期）
+
+### 2. 市場の焦点と競争地図 (Competitive Landscape)
+- 注目を集めている企業・組織とその戦略
+- 資金調達やM&Aの動向
+- 競争が激化している領域と新たな市場機会
+
+### 3. テクノロジーの成熟度評価
+各技術トレンドについて、以下を評価：
+- 現在の成熟度（萌芽期/成長期/成熟期/衰退期）
+- 製造業への適用可能性（高/中/低）
+- 投資のタイミング（今すぐ/6ヶ月以内/12ヶ月以内/様子見）
+
+---
+
+## 製造業向け行動提言 (Recommended Actions for Manufacturing)
+
+### フォーカスすべき優先課題
+製造業が今週の調査結果から優先的に取り組むべき3-5つの課題と、その理由
+
+### 次期検討ステップ
+- **短期（1-3ヶ月）**: すぐに着手できる具体的なアクション
+- **中期（3-6ヶ月）**: 計画・準備が必要な施策
+- **長期（6-12ヶ月）**: 戦略的に検討すべき投資や変革
 
 ## 参考情報源一覧
 調査に使用した全URL（箇条書き）
 
 ---
 
-それでは調査を開始してください。**必ず15回以上のweb_search→web_fetchの組み合わせ**を実行し、詳細な情報を収集してください。
+それでは調査を開始してください。**必ず30回以上の検索を実行**し、各検索結果から関連性の高い記事を選んでweb_fetchで詳細を確認してください。
+
+**調査の進め方**:
+1. まず基本検索ワードで10回程度検索し、主要トレンドを把握
+2. 技術・プラットフォーム関連で10回程度検索し、具体的なソリューションを調査
+3. 製造業特化で5回程度検索し、産業別の動向を確認
+4. 地域・業界トレンドで5回程度検索し、広い視野で情報を収集
+5. 不足している情報があれば、追加で5-10回検索して補完
+
+合計30-40回の検索を通じて、包括的かつ深い調査レポートを作成してください。
 """
 
     print(f"📊 調査対象: 過去1週間以内の最新記事 ({year}年版)")
@@ -231,9 +274,14 @@ def generate_report(target_year: int = None):
 
     try:
         with open(file_name, "w", encoding="utf-8") as f:
+            # レポート内の記事数をカウント（簡易的な推定）
+            article_count = final_report.count("**URL**:")
+
             header = (
-                "# 週次レポート: スキルマネジメント・タレントマネジメント動向\n"
-                f"**調査対象**: 過去1週間以内の最新記事 ({year}年版)  \n"
+                "# 週次レポート: スキルマネジメント・タレントマネジメント動向 "
+                f"({year}年版)\n"
+                "**主席コンサルタントによる分析**\n"
+                f"**調査対象データ件数**: {article_count}件\n"
                 f"**生成日時**: {today.strftime('%Y年%m月%d日 %H:%M:%S')}\n\n---\n\n"
             )
             f.write(header + final_report)
