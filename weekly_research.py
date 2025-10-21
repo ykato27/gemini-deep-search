@@ -40,6 +40,7 @@ def generate_report(target_year: int = None):
         max_results=10,
         search_depth="advanced",
         include_raw_content=True,
+        time_range="week",  # 過去1週間のデータのみを取得
     )
 
     tools = [search_tool]
