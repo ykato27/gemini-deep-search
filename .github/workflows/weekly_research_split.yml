@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install langchain-google-genai langchain-tavily langgraph
+          pip install -r requirements.txt
       
       - name: Phase1 Search and Extract Data (research_searcher.py)
         env:
