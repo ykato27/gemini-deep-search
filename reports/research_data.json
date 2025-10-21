@@ -1,126 +1,101 @@
 [
   {
-    "title": "2025 State of Skills Report - SkillCycle",
-    "url": "https://www.skillcycle.com/2025-workplace-skills-report/",
-    "source": "SkillCycle",
-    "published_date": "2025-10-01",
-    "region": "米国",
-    "category": "report",
-    "related_companies": [
-      "SkillCycle"
-    ],
-    "summary_japanese": "2025年の職場におけるスキル状況に関するレポート。従業員はリーダーシップ、影響力、戦略的思考といったスキルを習得しているが、企業の育成支援が追いついていない現状を指摘。このギャップがストレスレベルや離職率、パフォーマンスに影響を与えている。",
-    "key_points": [
-      "従業員のスキル習得意欲と企業の支援のギャップ",
-      "リーダーシップコーチングと影響力スキルの開発増加",
-      "開発計画の欠如がストレスと離職に影響"
-    ],
-    "tags": [
-      "スキルマネジメント",
-      "従業員育成",
-      "リーダーシップ",
-      "職場ストレス"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のスキルマネジメントの現状と課題を具体的に示しているため。",
-    "confidence_score": 0.9
-  },
-  {
-    "title": "2025 Talent Trends - SHRM",
-    "url": "https://www.shrm.org/topics-tools/research/2025-talent-trends/hr-skills",
-    "source": "SHRM (Society for Human Resource Management)",
-    "published_date": "2025-10-01",
-    "region": "米国",
-    "category": "report",
-    "related_companies": [],
-    "summary_japanese": "2025年のタレントトレンドに関するSHRMのレポート。組織の将来の成功にはシステム・リソース管理スキルが不可欠であるにもかかわらず、これらのスキルを持つ候補者の確保が困難であると指摘。データ分析、AI、サイバーセキュリティなどの技術スキルと、意思決定、社会性スキルが重要視されている。",
-    "key_points": [
-      "システム・リソース管理スキルの重要性",
-      "技術スキル（データ分析、AI、サイバーセキュリティ）の需要",
-      "候補者確保の難しさ"
-    ],
-    "tags": [
-      "タレントマネジメント",
-      "スキルギャップ",
-      "ワークフォース開発",
-      "HRトレンド"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年に向けたタレントマネジメントにおける主要なスキルと課題を明確にしているため。",
-    "confidence_score": 0.9
-  },
-  {
-    "title": "Developing Management Skills in 2025: Key Traits to Adopt in ... - Columbia Business School",
-    "url": "https://business.columbia.edu/insights/columbia-business/management-skills-2025",
-    "source": "Columbia Business School",
-    "published_date": "2025-10-01",
-    "region": "米国",
+    "title": "The Rise of Skills-Driven Hiring: Navigate the 2025 Job Market",
+    "url": "https://www.compunnel.com/blogs/the-rise-of-skills-driven-hiring-how-to-navigate-the-2025-job-market/",
+    "source": "Compunnel",
+    "published_date": "2023-10-26",
+    "region": "欧米",
     "category": "feature",
     "related_companies": [],
-    "summary_japanese": "2025年にリーダーが習得すべき主要なマネジメントスキルについて、コロンビアビジネススクールの研究者が解説。AIの台頭や職場文化の変化に対応するため、AI関連の目標共有、トレーニング提供、AIの価値創造への活用が重要である。",
+    "summary_japanese": "2025年までに、学位に基づく採用からスキルに基づく採用へと移行し、実用的な能力が重視されるようになる。パンデミックにより、デジタルリテラシー、リモートコラボレーション、プロジェクト管理、危機管理、変化への適応能力といった移転可能なスキルが重要であることが浮き彫りになった。",
     "key_points": [
-      "AI時代のマネジメントスキル",
-      "職場エンゲージメントと文化の変化",
-      "AI導入における従業員への配慮とトレーニング"
+      "スキルベースの採用への移行",
+      "移転可能なスキルの重要性",
+      "2025年の雇用市場"
+    ],
+    "tags": [
+      "スキルベース採用",
+      "2025年",
+      "雇用市場",
+      "移転可能スキル"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "2025年のスキルマネジメントにおける主要なトレンドであるスキルベースの採用について解説しているため。",
+    "confidence_score": 0.8
+  },
+  {
+    "title": "Essential Training for Managers: Skills That Matter",
+    "url": "https://aitd.amity.edu/blog/essential-training-for-managers/",
+    "source": "AITD - Amity",
+    "published_date": "2023-10-26",
+    "region": "欧米",
+    "category": "feature",
+    "related_companies": [],
+    "summary_japanese": "2025年のマネージャーには、コーチング、コミュニケーション、適応能力が不可欠である。マネージャーの3/4がより多くのトレーニングスキルを必要としており、従業員のメンタルヘルスに関するトレーニングも求められている。世界経済フォーラムの報告書によると、2025年までに労働者の50%以上がリスキリングを必要とする。",
+    "key_points": [
+      "マネージャーのトレーニングニーズ",
+      "適応能力の重要性",
+      "コーチングスキルの必要性"
     ],
     "tags": [
       "マネジメントスキル",
-      "AI",
-      "職場文化",
-      "リーダーシップ開発"
+      "マネージャー研修",
+      "2025年",
+      "リスキリング",
+      "適応能力"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のマネジメントスキル開発におけるAIの影響と具体的な対応策を提示しているため。",
-    "confidence_score": 0.9
+    "relevance_reason": "2025年に向けたマネージャーのスキル開発とトレーニングの重要性について論じているため。",
+    "confidence_score": 0.7
   },
   {
-    "title": "Workplace Learning Report 2025 - LinkedIn Learning",
-    "url": "https://learning.linkedin.com/resources/workplace-learning-report",
-    "source": "LinkedIn Learning",
-    "published_date": "2025-10-01",
-    "region": "米国",
-    "category": "report",
-    "related_companies": [
-      "LinkedIn"
-    ],
-    "summary_japanese": "2025年の職場学習に関するレポート。戦略的計画、営業管理、プロジェクト計画などのスキルが失われやすく、従業員の定着には学習機会の提供が最も効果的な戦略であると強調。幹部の半数が従業員がビジネス戦略を実行する適切なスキルを持っていないことに懸念を抱いている。",
-    "key_points": [
-      "離職によるスキルの喪失",
-      "学習機会が従業員定着の鍵",
-      "幹部のスキルギャップへの懸念"
-    ],
-    "tags": [
-      "職場学習",
-      "スキルギャップ",
-      "従業員定着",
-      "人材開発"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のスキルマネジメントにおける学習と定着の重要性をデータに基づいて示しているため。",
-    "confidence_score": 0.9
-  },
-  {
-    "title": "The Leadership Development Skills to Build in 2025 - TrainingMag.com",
-    "url": "https://trainingmag.com/the-leadership-development-skills-to-build-in-2025/",
-    "source": "TrainingMag.com",
-    "published_date": "2025-10-01",
-    "region": "米国",
+    "title": "30 Key HR Skills For 2025 And Beyond",
+    "url": "https://peoplemanagingpeople.com/career/human-resources-skills/",
+    "source": "People Managing People",
+    "published_date": "2023-10-26",
+    "region": "欧米",
     "category": "feature",
     "related_companies": [],
-    "summary_japanese": "2025年に育成すべき主要なリーダーシップ開発スキルとして、感情的知性、実験的思考、批判的思考の3つを挙げている。これらは共感、効果的なコミュニケーション、問題解決、革新的な思考を促進し、リーダーが多様な人々と効果的に関わるために不可欠である。",
+    "summary_japanese": "2025年以降に必要とされる30の主要なHRスキルをリストアップしている。これには、リソース配分、委任、プロジェクト計画、財務的洞察力、プロセス最適化などのマネジメントスキル、そしてリーダーシップスキルやチームワークが含まれる。これらのスキルは、効果的なタレントマネジメントと労働力計画を可能にする。",
     "key_points": [
-      "感情的知性の重要性",
-      "実験的思考と創造的解決能力",
-      "批判的思考による情報分析と意思決定"
+      "2025年以降のHRスキル",
+      "マネジメントとリーダーシップスキル",
+      "タレントマネジメントへの貢献"
     ],
     "tags": [
-      "リーダーシップ開発",
-      "スキル育成",
-      "感情的知性",
-      "批判的思考"
+      "HRスキル",
+      "2025年",
+      "タレントマネジメント",
+      "労働力計画",
+      "マネジメントスキル"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年に求められる具体的なリーダーシップスキルを提示し、スキルマネジメントの方向性を示唆しているため。",
-    "confidence_score": 0.85
+    "relevance_reason": "2025年以降のタレントマネジメントに不可欠なHRスキルについて具体的に言及しているため。",
+    "confidence_score": 0.8
+  },
+  {
+    "title": "Soft Skills: Essential for the Future Workforce's Success in 2025",
+    "url": "https://www.compunnel.com/blogs/why-soft-skills-are-crucial-for-success-in-2025-the-new-hard-skills-for-the-future-workforce/",
+    "source": "Compunnel",
+    "published_date": "2023-10-26",
+    "region": "欧米",
+    "category": "feature",
+    "related_companies": [],
+    "summary_japanese": "2025年には、コミュニケーション、コラボレーション、批判的思考、共感といったソフトスキルがこれまで以上に重要になる。これらはもはや「あれば良い」スキルではなく、組織の成功と従業員の成長の基盤となる。感情的俊敏性を持つリーダーが、高パフォーマンスチームを鼓舞し、変化を管理する上で成功する。",
+    "key_points": [
+      "ソフトスキルの重要性",
+      "2025年の主要ソフトスキル",
+      "感情的俊敏性を持つリーダー"
+    ],
+    "tags": [
+      "ソフトスキル",
+      "2025年",
+      "将来の労働力",
+      "感情的俊敏性",
+      "リーダーシップ"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "2025年の労働力におけるソフトスキルの重要性と、それがスキルマネジメントに与える影響について詳細に述べているため。",
+    "confidence_score": 0.8
   }
 ]
