@@ -29,12 +29,16 @@ Google Gemini（Generative AI）＋ Tavily（ウェブ検索API）＋ LangGraph�
 
 ```
 gemini-deep-search/
-├── weekly_research.py       # メインスクリプト（週次レポート生成）
+├── weekly_research.py            # メインスクリプト（週次レポート生成）
+├── email_report.py                # メール送信スクリプト
+├── research_searcher.py           # Phase1: 検索・データ収集
+├── research_analyzer.py           # Phase2: 分析・レポート生成
 ├── .github/
 │   └── workflows/
-│       └── weekly_research.yml   # GitHub Actions設定（自動実行）
+│       └── weekly_research_split.yml   # GitHub Actions設定（自動実行）
 └── reports/
-    └── 週次レポート_2025_YYYYMMDD.md  # 自動生成されるレポート
+    ├── 週次レポート_2025_YYYYMMDD.md  # 自動生成されるレポート
+    └── research_data.json              # 検索データ（中間ファイル）
 ```
 
 ---
@@ -100,12 +104,64 @@ reports/
 ### 設定方法
 
 1. GitHubリポジトリ → **Settings → Secrets → Actions**
-2. 以下の2つを追加：
+2. 以下のシークレットを追加：
 
-   * `GOOGLE_API_KEY`
-   * `TAVILY_API_KEY`
+   **必須（レポート生成用）**:
+   * `GOOGLE_API_KEY` - Gemini APIキー
+   * `TAVILY_API_KEY` - Tavily Search APIキー
+
+   **メール送信用（オプション）**:
+   * `GMAIL_USER` - 送信元Gmailアドレス（例: your-email@gmail.com）
+   * `GMAIL_APP_PASSWORD` - Googleアプリパスワード（[取得方法](#gmail-app-password%E3%81%AE%E5%8F%96%E5%BE%97%E6%96%B9%E6%B3%95)）
+   * `RECIPIENT_EMAIL` - 送信先メールアドレス
+
 3. 次回スケジュール（毎週日曜）に自動実行され、
-   `/reports/` に新しいMarkdownレポートが自動コミットされます。
+   `/reports/` に新しいMarkdownレポートが自動コミット＆メール送信されます。
+
+---
+
+## 📧 メール送信機能
+
+### 概要
+
+`email_report.py` により、生成されたレポートの要約をGmail経由で自動送信できます。
+
+**メールの内容**:
+- **件名**: 週次レポート：スキルマネジメント・タレントマネジメント動向（日付）
+- **本文**: Gemini APIで生成した3-5分で読める要約
+- **リンク**: 詳細レポートへのGitHubリンク
+
+### Gmail App Passwordの取得方法
+
+1. **Googleアカウントの2段階認証を有効化**
+   - https://myaccount.google.com/security
+   - 「2段階認証プロセス」を有効にする
+
+2. **アプリパスワードを生成**
+   - https://myaccount.google.com/apppasswords
+   - アプリを選択: 「メール」
+   - デバイスを選択: 「その他（カスタム名）」→「GitHub Actions」
+   - 「生成」をクリック
+   - 表示された16文字のパスワードをコピー
+
+3. **GitHub Secretsに設定**
+   - コピーしたパスワードを `GMAIL_APP_PASSWORD` として登録
+   - スペースは削除してください
+
+### 手動でメール送信
+
+ローカルで手動実行する場合：
+
+```bash
+# 環境変数を設定
+export GOOGLE_API_KEY="your_gemini_api_key"
+export GMAIL_USER="your-email@gmail.com"
+export GMAIL_APP_PASSWORD="your_app_password"
+export RECIPIENT_EMAIL="recipient@example.com"
+
+# メール送信スクリプトを実行
+python email_report.py
+```
 
 ---
 
