@@ -46,6 +46,7 @@ def search_and_extract_data(target_year: int = None):
     # --- 2. 検索対象年の設定と期間の計算 ---
     today = datetime.now()
     start_date = (today - timedelta(days=7)).strftime("%Y-%m-%d")
+    end_date = today.strftime("%Y-%m-%d")
     year = target_year or today.year
     
     print(f"📅 検索対象年: {year}")
