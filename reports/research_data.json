@@ -1,130 +1,127 @@
 [
   {
-    "title": "[PDF] 2025 L&D EXECUTIVES BENCHMARKING - Data Brief: - SHRM",
-    "url": "https://www.shrm.org/content/dam/en/shrm/topics-tools/research/2025-executives-benchmarking-data-brief.pdf",
-    "source": "SHRM",
-    "published_date": "N/A",
+    "title": "Navigating the Future: Key Talent Management Trends for 2025",
+    "url": "https://www.phenom.com/blog/talent-management-trends",
+    "source": "Phenom",
+    "published_date": "2025-10-XX",
     "region": "欧米",
-    "category": "research_report",
-    "related_companies": [],
-    "summary_japanese": "2025年には、CHROがリーダーシップとマネジメントスキルを最優先事項としており、企業はアップスキリングとリスキリングへの投資を増やしている。特に、リーダーやマネージャーがチームを効果的に指導するためのプログラムの必要性が強調されている。",
+    "category": "feature",
+    "related_companies": [
+      "Phenom"
+    ],
+    "summary_japanese": "2025年のタレントマネジメント戦略では、ソフトスキルが中心となり、従来の資格からスキルベースのアプローチへの移行が進んでいます。組織は、成功に必要な特定のスキルを特定し育成することに注力し、パフォーマンス評価にもスキルを組み込んでいます。",
     "key_points": [
-      "CHROの優先事項",
-      "アップスキリング・リスキリング投資の増加",
-      "リーダー・マネージャー育成の必要性"
+      "ソフトスキルの重要性",
+      "スキルベース戦略への移行",
+      "パフォーマンス評価へのスキル統合"
     ],
     "tags": [
+      "タレントマネジメント",
       "スキルマネジメント",
-      "人材開発",
-      "L&D",
-      "2025トレンド"
+      "ソフトスキル",
+      "2025"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のスキルマネジメントの優先順位と投資動向を明確に示しているため。",
+    "relevance_reason": "2025年のタレントマネジメントにおける主要トレンドとスキル戦略について具体的に述べているため。",
     "confidence_score": 0.9
   },
   {
-    "title": "The Rise of Skills-Driven Hiring: Navigate the 2025 Job Market",
-    "url": "https://www.compunnel.com/blogs/the-rise-of-skills-driven-hiring-how-to-navigate-the-2025-job-market/",
-    "source": "Compunnel",
-    "published_date": "N/A",
+    "title": "Developing Management Skills in 2025: Key Traits to Adopt in Business",
+    "url": "https://business.columbia.edu/insights/columbia-business/management-skills-2025",
+    "source": "Columbia Business School",
+    "published_date": "2025-10-XX",
     "region": "欧米",
-    "category": "blog_post",
-    "related_companies": [
-      "Google",
-      "Apple",
-      "IBM"
-    ],
-    "summary_japanese": "2025年までに、学位ではなくスキルに基づいた採用が主流になる。パンデミックにより、デジタルリテラシー、リモートコラボレーション、プロジェクトマネジメント、危機管理、適応性といった実践的な能力の重要性が浮き彫りになった。",
-    "key_points": [
-      "スキルベース採用への移行",
-      "学位要件の撤廃",
-      "重要な実践的スキル"
-    ],
-    "tags": [
-      "スキルベース採用",
-      "採用トレンド",
-      "2025ジョブマーケット",
-      "ワークフォース"
-    ],
-    "manufacturing_relevance": "あり",
-    "relevance_reason": "2025年の採用市場におけるスキルマネジメントの大きな変化を詳細に説明しているため。",
-    "confidence_score": 0.8
-  },
-  {
-    "title": "10 Essential Skills Every HR Professional Needs in 2025",
-    "url": "https://www.icslearn.co.uk/blog/human-resources/bloghuman-resources10-essential-skills-every-hr-professional-needs/",
-    "source": "ICS Learn",
-    "published_date": "N/A",
-    "region": "欧米",
-    "category": "blog_post",
+    "category": "feature",
     "related_companies": [],
-    "summary_japanese": "2025年にHRプロフェッショナルに不可欠なスキルとして、感情的知性（EQ）、文化的認識と感受性、紛争管理などが挙げられている。これらのスキルは、従業員のエンゲージメントを高め、協力的で生産的な職場環境を構築するために重要である。",
+    "summary_japanese": "2025年の職場では、AIの台頭やエンゲージメントの変化により、経営スキルの開発が不可欠です。コロンビアビジネススクールの専門家が、新しい要求に対応するための主要な特性と行動について洞察を提供しています。",
     "key_points": [
-      "HRプロフェッショナル向けスキル",
-      "感情的知性",
-      "文化的認識",
-      "紛争管理"
+      "AIの影響",
+      "職場文化の変化",
+      "経営スキルの重要性"
     ],
     "tags": [
-      "HRスキル",
-      "スキル開発",
-      "2025トレンド",
-      "従業員エンゲージメント"
+      "経営スキル",
+      "AI",
+      "職場トレンド",
+      "2025"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "HR分野における具体的なスキル要件と、それが組織の成功にどう貢献するかを説明しているため。",
-    "confidence_score": 0.7
+    "relevance_reason": "2025年に求められる経営スキルと、その背景にある職場環境の変化について論じているため。",
+    "confidence_score": 0.95
   },
   {
-    "title": "Geopolitics and Talent Management: Global Workforce Strategies ...",
-    "url": "https://www.sdcexec.com/professional-development/hiring/article/22949300/emapta-geopolitics-and-talent-management-global-workforce-strategies-must-evolve-amid-disruption",
-    "source": "SDCExec",
-    "published_date": "N/A",
+    "title": "The 8 Key Leadership Skills You Need to Know in 2025",
+    "url": "https://www.imd.org/blog/leadership/leadership-skills/",
+    "source": "IMD (International Institute for Management Development)",
+    "published_date": "2025-10-XX",
     "region": "欧米",
-    "category": "article",
-    "related_companies": [
-      "PwC"
-    ],
-    "summary_japanese": "2025年のグローバルなワークフォース戦略において、歴史的にコスト効率と人材の可用性が重視されてきたが、レジリエンスが新たな決定要因として浮上している。多くのリーダーは効率性に注力しすぎており、将来への備えやレジリエンスを優先していないため、組織は混乱に対して脆弱である。",
+    "category": "feature",
+    "related_companies": [],
+    "summary_japanese": "2025年にリーダーが知っておくべき8つの主要なリーダーシップスキルが紹介されています。これには、関係構築、俊敏性、適応性、イノベーション、創造性、従業員のモチベーション、意思決定、紛争管理などが含まれます。",
     "key_points": [
-      "グローバルワークフォース戦略",
-      "レジリエンスの重要性",
-      "将来への備えの欠如"
+      "8つの主要リーダーシップスキル",
+      "関係構築の重要性",
+      "紛争管理の課題"
+    ],
+    "tags": [
+      "リーダーシップスキル",
+      "2025",
+      "職場スキル"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "2025年に必要とされる具体的なリーダーシップスキルをリストアップし、その重要性を説明しているため。",
+    "confidence_score": 0.95
+  },
+  {
+    "title": "The Future of Talent Management: Trends and Strategies for 2025",
+    "url": "https://www.aihr.com/blog/future-of-talent-management/",
+    "source": "AIHR Digital",
+    "published_date": "2025-10-XX",
+    "region": "欧米",
+    "category": "feature",
+    "related_companies": [],
+    "summary_japanese": "2025年のタレントマネジメントの未来は、スキルベースのアプローチ、AIと自動化の活用、従業員体験の重視によって形作られます。組織は、変化する労働力とビジネス目標に対応するために、これらのトレンドに適応する必要があります。",
+    "key_points": [
+      "スキルベースのアプローチ",
+      "AIと自動化の活用",
+      "従業員体験の重視"
     ],
     "tags": [
       "タレントマネジメント",
-      "ワークフォース戦略",
-      "レジリエンス",
-      "2025トレンド"
+      "2025",
+      "AI",
+      "従業員体験",
+      "スキルベース"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のタレントマネジメントにおける新たな戦略的視点（レジリエンス）と課題を提示しているため。",
-    "confidence_score": 0.8
+    "relevance_reason": "2025年のタレントマネジメントの主要なトレンドと戦略を包括的に説明しているため。",
+    "confidence_score": 0.9
   },
   {
-    "title": "Hiring trends in 2025: the 4 big shifts shaping tech talent this year",
-    "url": "https://ravio.com/blog/hiring-trends",
-    "source": "ravio.com",
-    "published_date": "N/A",
+    "title": "10 Skills Leaders Must Prioritize in 2025 to Future-Proof Their Workforce",
+    "url": "https://franklinskills.com/10-skills-leaders-must-prioritize-in-2025-to-future-proof-their-workforce/",
+    "source": "FranklinCovey (Franklin Skills)",
+    "published_date": "2025-10-XX",
     "region": "欧米",
-    "category": "blog_post",
-    "related_companies": [],
-    "summary_japanese": "2025年の採用トレンドとして、AI人材が新たな競争の場となっており、AI/ML職の新規採用が前年比88%増加している。初期段階の企業では、よりリーンで意図的な企業構築が志向され、AI人材の報酬と役割の明確化が課題となっている。",
+    "category": "feature",
+    "related_companies": [
+      "FranklinCovey"
+    ],
+    "summary_japanese": "2025年のリーダーは、技術の流暢さ、AI、機械学習、自動化などの戦略的実装能力を含む10の重要なスキルを優先する必要があります。これは、拡大する技術人材危機や世界的なスキルギャップに対応し、将来に備えた労働力を構築するためです。",
     "key_points": [
-      "AI人材の需要増加",
-      "テック採用トレンド",
-      "報酬と役割の明確化",
-      "リーンな企業構築"
+      "技術の流暢さ",
+      "AIと機械学習の戦略的実装",
+      "将来に備えた労働力"
     ],
     "tags": [
-      "タレントマネジメント",
-      "採用トレンド",
-      "AI人材",
-      "テック業界"
+      "リーダーシップスキル",
+      "2025",
+      "テクノロジー",
+      "スキルギャップ",
+      "AI"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年の特定の分野（テック・AI）におけるタレントマネジメントの動向と課題を具体的に示しているため。",
-    "confidence_score": 0.7
+    "relevance_reason": "2025年にリーダーが優先すべき具体的なスキルと、その背景にある技術トレンドについて詳細に述べているため。",
+    "confidence_score": 0.85
   }
 ]
