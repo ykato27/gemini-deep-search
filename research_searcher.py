@@ -62,7 +62,7 @@ def search_and_extract_data(target_year: int = None):
         max_results=5,  # 結果数を減らしてトークンを節約
         search_depth="advanced",  # basicに変更してトークンを節約
         include_raw_content=False,  # raw contentを無効化してトークンを節約
-        time_range=f"{start_date}:{end_date}"
+        time_range="week"
     )
     tools = [search_tool]
     
