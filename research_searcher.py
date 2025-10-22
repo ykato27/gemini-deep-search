@@ -64,7 +64,7 @@ def search_and_extract_data(target_year: int = None):
         include_raw_content=False,  # raw contentを無効化してトークンを節約
         # time_range="week"
         start_date=start_date,
-        end_date=end_date,   
+        # end_date=end_date,   
     )
     tools = [search_tool]
     
