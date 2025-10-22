@@ -1,128 +1,80 @@
 [
   {
-    "title": "2025 Talent Trends - SHRM",
-    "url": "https://www.shrm.org/topics-tools/research/2025-talent-trends/hr-skills",
-    "source": "SHRM",
-    "published_date": "2025-10-XX",
-    "region": "欧米",
+    "title": "Navigating the Future: Key Talent Management Trends for 2025",
+    "url": "https://www.phenom.com/blog/talent-management-trends",
+    "source": "Phenom",
+    "published_date": "2025-10-15",
+    "region": "欧米 (想定)",
     "category": "feature",
     "related_companies": [],
-    "summary_japanese": "2025年に向けて、組織の約半数がシステムおよびリソース管理スキルを将来の成功に不可欠と認識しているが、78%がこれらのスキルを持つ候補者を見つけるのに苦労している。データ分析、AI、サイバーセキュリティが新しいテクノロジー関連スキルとして上位3つに挙げられている。",
+    "summary_japanese": "2025年のタレントマネジメント戦略では、ソフトスキルが中心的な役割を果たす。組織は従来の資格から特定のスキルを特定し育成することに焦点を移し、スキルをパフォーマンス評価や人材レビューに組み込むことで、アジャイルな労働力を確保する。",
     "key_points": [
-      "システム・リソース管理スキルの重要性",
-      "スキルギャップの課題",
-      "AI・データ分析スキルの需要"
+      "ソフトスキルの重要性",
+      "スキルベースのアプローチへの移行",
+      "パフォーマンス評価へのスキル統合"
     ],
     "tags": [
-      "スキルマネジメント",
-      "人材開発",
-      "2025トレンド",
-      "スキルギャップ"
+      "talent management",
+      "skills management",
+      "soft skills",
+      "2025 trends"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のスキルマネジメントのトレンドと課題に直接関連しているため。",
+    "relevance_reason": "2025年のタレントマネジメントにおけるスキルの重要性を明確に示しているため。",
     "confidence_score": 0.9
   },
   {
     "title": "Developing Management Skills in 2025: Key Traits to Adopt in ...",
     "url": "https://business.columbia.edu/insights/columbia-business/management-skills-2025",
     "source": "Columbia Business School",
-    "published_date": "2025-10-XX",
-    "region": "欧米",
+    "published_date": "2025-10-15",
+    "region": "米国",
     "category": "feature",
-    "related_companies": [],
-    "summary_japanese": "2025年のリーダーにとって、AIスキルや職場文化を含むマネジメントスキルの開発が重要である。AIの台頭や職場エンゲージメントの変化に対応するため、リーダーはマネジメントスキルを磨き、チームや組織全体の目標を調整する必要がある。",
-    "key_points": [
-      "2025年のマネジメントスキル",
-      "AIと職場文化の影響",
-      "リーダーシップ開発"
-    ],
-    "tags": [
-      "マネジメントスキル",
-      "AI",
-      "リーダーシップ",
-      "2025トレンド"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年に求められるマネジメントスキルとリーダーシップ開発に焦点を当てているため。",
-    "confidence_score": 0.85
-  },
-  {
-    "title": "Workplace Learning Report 2025 - LinkedIn Learning",
-    "url": "https://learning.linkedin.com/resources/workplace-learning-report",
-    "source": "LinkedIn Learning",
-    "published_date": "2025-10-XX",
-    "region": "欧米",
-    "category": "report",
     "related_companies": [
-      "LinkedIn"
+      "Columbia Business School"
     ],
-    "summary_japanese": "組織の約半数がスキル危機を認識しており、幹部は従業員がビジネス戦略を実行するための適切なスキルを持っていないことを懸念している。従業員の定着戦略として学習機会の提供が最も重要であり、継続的な学習がキャリア成功に不可欠である。",
+    "summary_japanese": "AIの台頭や職場環境の変化に対応するため、2025年には経営管理スキルの向上が不可欠となる。コロンビアビジネススクールの研究者が、リーダーが習得すべき主要な特性と、これらのトレンドを理解し行動に移すことの重要性を強調している。",
     "key_points": [
-      "スキル危機の認識",
-      "継続学習の重要性",
-      "従業員定着と学習"
+      "AIと職場変化への対応",
+      "経営管理スキルの重要性",
+      "リーダーシップ特性"
     ],
     "tags": [
-      "職場学習",
-      "スキル開発",
-      "人材定着",
-      "2025レポート"
+      "management skills",
+      "leadership",
+      "AI",
+      "workplace trends",
+      "2025"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年の職場におけるスキル危機と学習の重要性について報告しているため。",
+    "relevance_reason": "2025年に求められる経営管理スキルと、その背景にあるトレンドを具体的に解説しているため。",
     "confidence_score": 0.9
   },
   {
-    "title": "Korn Ferry's Workforce 2025 Survey: Power Shifts",
-    "url": "https://www.kornferry.com/insights/featured-topics/workforce-management/workforce-planning-insights",
-    "source": "Korn Ferry",
-    "published_date": "2025-10-XX",
-    "region": "欧米",
-    "category": "survey_report",
+    "title": "HR Trends to Watch in 2025: Building the Human-Centric Workplace",
+    "url": "https://www.workday.com/en-us/perspectives/human-resources/2025/02/hr-trends-to-watch-in-2025-building-the-human-centric-workplace.html",
+    "source": "Workday",
+    "published_date": "2025-02-01",
+    "region": "欧米 (想定)",
+    "category": "feature",
     "related_companies": [
-      "Korn Ferry"
+      "Workday"
     ],
-    "summary_japanese": "Korn Ferryの2025年ワークフォース調査によると、信頼できるマネージャーが従業員が組織に留まり、仕事に意欲的である主な理由である。給与は依然として新しい仕事を受け入れる上での最重要要素であり、多くの国で生活費が高騰している中で特に重要性が増している。",
+    "summary_japanese": "2025年のHRトレンドとして、人間中心の職場構築が挙げられ、批判的思考、問題解決、自己管理、感情的知性といったヒューマンスキルが重要視される。AIが反復作業を担う中で、これらのスキルは信頼構築、コラボレーション、進歩を促進する。",
     "key_points": [
-      "マネージャーの役割の重要性",
-      "給与の重要性",
-      "ワークフォースの進化"
+      "人間中心の職場",
+      "ヒューマンスキルの重要性",
+      "AIとスキルの関係"
     ],
     "tags": [
-      "ワークフォースマネジメント",
-      "人材定着",
-      "2025調査",
-      "報酬"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のワークフォースと人材管理における主要な動向と課題を提示しているため。",
-    "confidence_score": 0.88
-  },
-  {
-    "title": "Global Talent Trends 2024-2025 - Mercer",
-    "url": "https://www.mercer.com/en-us/insights/people-strategy/future-of-work/global-talent-trends/",
-    "source": "Mercer",
-    "published_date": "2025-10-XX",
-    "region": "欧米",
-    "category": "report",
-    "related_companies": [
-      "Mercer"
-    ],
-    "summary_japanese": "2025年に向けて、仕事の世界は急速な技術進歩とリスクへの注目の高まりによって変化し続けている。AIは単なるツールではなく、ワークフォースの不可欠な要素となっており、組織は人間中心の生産性を推進し、信頼と公平性を重視し、デジタルファーストの文化を育む必要がある。",
-    "key_points": [
-      "グローバル人材トレンド",
-      "AIとワークフォースの統合",
-      "人間中心の生産性"
-    ],
-    "tags": [
-      "グローバル人材",
+      "HR trends",
+      "human skills",
+      "emotional intelligence",
       "AI",
-      "ワークフォース",
-      "2025トレンド"
+      "2025"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のグローバルな人材トレンドとAIがワークフォースに与える影響について包括的に述べているため。",
-    "confidence_score": 0.87
+    "relevance_reason": "2025年のHRトレンドとして、スキルマネジメントの核となるヒューマンスキルの重要性を強調しているため。",
+    "confidence_score": 0.85
   }
 ]
