@@ -3,16 +3,114 @@
 （検索対象年をパラメータとして指定可能）
 """
 
+import json
 import os
 import sys
 import time
 import traceback
+from collections import Counter
 from datetime import datetime, timedelta
+from pathlib import Path
 
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_tavily import TavilySearch
 from langgraph.prebuilt import create_react_agent
+
+
+def save_weekly_data(start_date: str, end_date: str, article_count: int, today: datetime):
+    """週次データをJSON形式で保存する"""
+
+    # research_data.jsonを読み込む
+    research_data_path = Path("reports/research_data.json")
+    if not research_data_path.exists():
+        print("⚠️ research_data.jsonが見つかりません。データ保存をスキップします。")
+        return
+
+    try:
+        with open(research_data_path, "r", encoding="utf-8") as f:
+            articles = json.load(f)
+    except Exception as e:
+        print(f"⚠️ research_data.jsonの読み込みに失敗しました: {e}")
+        return
+
+    # 週次データディレクトリの作成
+    weekly_data_dir = Path("reports/weekly_data")
+    weekly_data_dir.mkdir(parents=True, exist_ok=True)
+
+    # キーワード、企業、カテゴリの集計
+    all_tags = []
+    all_companies = []
+    category_counts = Counter()
+    manufacturing_related = 0
+    confidence_scores = []
+
+    for article in articles:
+        # タグの収集
+        if "tags" in article and article["tags"]:
+            all_tags.extend(article["tags"])
+
+        # 企業の収集
+        if "related_companies" in article and article["related_companies"]:
+            all_companies.extend(article["related_companies"])
+
+        # カテゴリのカウント
+        if "category" in article and article["category"]:
+            category_counts[article["category"]] += 1
+
+        # 製造業関連のカウント
+        if article.get("manufacturing_relevance") == "あり":
+            manufacturing_related += 1
+
+        # 信頼度スコアの収集
+        if "confidence_score" in article and article["confidence_score"]:
+            try:
+                confidence_scores.append(float(article["confidence_score"]))
+            except (ValueError, TypeError):
+                pass
+
+    # トップキーワードとトップ企業を抽出
+    keyword_counter = Counter(all_tags)
+    company_counter = Counter(all_companies)
+
+    top_keywords = [kw for kw, count in keyword_counter.most_common(10)]
+    top_companies = [company for company, count in company_counter.most_common(10)]
+
+    # 平均信頼度スコアの計算
+    avg_confidence = sum(confidence_scores) / len(confidence_scores) if confidence_scores else 0.0
+
+    # 週次データの構築
+    weekly_data = {
+        "metadata": {
+            "report_date": today.strftime("%Y-%m-%d"),
+            "start_date": start_date,
+            "end_date": end_date,
+            "article_count": article_count,
+            "execution_time": today.strftime("%Y-%m-%d %H:%M:%S")
+        },
+        "articles": articles,
+        "extracted_insights": {
+            "top_keywords": top_keywords,
+            "top_companies": top_companies,
+            "category_distribution": dict(category_counts),
+            "manufacturing_related_count": manufacturing_related,
+            "avg_confidence_score": round(avg_confidence, 2)
+        }
+    }
+
+    # ファイル名: YYYYMMDD.json
+    date_str = today.strftime("%Y%m%d")
+    weekly_file = weekly_data_dir / f"{date_str}.json"
+
+    # 保存
+    with open(weekly_file, "w", encoding="utf-8") as f:
+        json.dump(weekly_data, f, ensure_ascii=False, indent=2)
+
+    print(f"✓ 週次データを保存しました: {weekly_file}")
+    print(f"  - 記事数: {article_count}件")
+    print(f"  - トップキーワード: {', '.join(top_keywords[:5])}")
+    print(f"  - トップ企業: {', '.join(top_companies[:3])}")
+    print(f"  - 製造業関連: {manufacturing_related}件 ({manufacturing_related/article_count*100:.1f}%)" if article_count > 0 else "")
 
 
 def generate_report(target_year: int = None):
@@ -327,6 +425,9 @@ TavilySearchツールは、start_dateとend_dateパラメータをサポート�
                 f"**生成日時**: {today.strftime('%Y年%m月%d日 %H:%M:%S')}\n\n---\n\n"
             )
             f.write(header + final_report)
+
+        # --- 8. 週次データの保存（新機能） ---
+        save_weekly_data(start_date, end_date, article_count, today)
 
         print("\n" + "=" * 60)
         print("✓ レポート生成完了")
