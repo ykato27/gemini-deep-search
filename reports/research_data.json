@@ -2,105 +2,106 @@
   {
     "title": "Navigating the Future: Key Talent Management Trends for 2025",
     "url": "https://www.phenom.com/blog/talent-management-trends",
-    "source": "Phenom Blog",
-    "published_date": "2025-10-XX",
+    "source": "Phenom",
+    "published_date": null,
     "region": "欧米",
     "category": "feature",
-    "related_companies": [
-      "Phenom"
-    ],
-    "summary_japanese": "2025年のタレントマネジメント戦略では、ソフトスキルが中心となり、従来の資格からスキルベースのアプローチへの移行が進む。組織は、成功を推進するために必要な特定のスキルを特定し育成することに注力し、スキルをパフォーマンス評価や人材レビューに統合する。",
+    "related_companies": [],
+    "summary_japanese": "2025年のタレントマネジメント戦略では、ソフトスキルが中心的な役割を果たす。組織は従来の資格から、成功に必要な特定のスキルを特定し育成することに焦点を移している。スキルはパフォーマンス評価やタレントレビューにも組み込まれ、従業員の貢献度を再定義している。",
     "key_points": [
       "ソフトスキルの重要性",
-      "スキルベース戦略への移行",
-      "パフォーマンス評価へのスキル統合"
+      "スキルベースのアプローチへの移行",
+      "パフォーマンス評価におけるスキルの活用"
     ],
     "tags": [
-      "talent management",
-      "skills",
-      "soft skills",
-      "2025 trends"
+      "タレントマネジメント",
+      "スキルマネジメント",
+      "ソフトスキル",
+      "2025",
+      "HRトレンド"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のタレントマネジメントにおけるスキルの重要性とトレンドを詳細に説明しているため。",
+    "relevance_reason": "2025年のスキルマネジメントとタレントマネジメントの主要トレンドを扱っているため。",
     "confidence_score": 0.8
   },
   {
-    "title": "Developing Management Skills in 2025: Key Traits to Adopt in ...",
-    "url": "https://business.columbia.edu/insights/columbia-business/management-skills-2025",
-    "source": "Columbia Business School Insights",
-    "published_date": "2025-10-XX",
+    "title": "Workplace Learning Report 2025 - LinkedIn Learning",
+    "url": "https://learning.linkedin.com/resources/workplace-learning-report",
+    "source": "LinkedIn Learning",
+    "published_date": null,
     "region": "欧米",
-    "category": "expert_insight",
+    "category": "report",
     "related_companies": [
-      "Columbia Business School"
+      "LinkedIn"
     ],
-    "summary_japanese": "2025年には、AIの台頭や職場環境の変化に対応するため、リーダーシップとマネジメントスキルの開発が不可欠となる。コロンビアビジネススクールの専門家が、新しい要求に対応するための主要な特性と行動を強調している。",
+    "summary_japanese": "2025年の職場学習レポートによると、多くの組織が従業員の定着に懸念を抱いており、学習機会の提供が主要な定着戦略となっている。L&Dプロフェッショナルは、継続的な学習がキャリア成功に不可欠であると認識しており、半数近くがスキル危機を感じている。",
     "key_points": [
-      "AIと職場変化への対応",
-      "マネジメントスキル開発の重要性",
-      "コロンビアビジネススクールの洞察"
+      "従業員定着と学習機会",
+      "スキル危機",
+      "継続的な学習の重要性"
     ],
     "tags": [
-      "management skills",
-      "leadership",
-      "AI",
-      "workplace trends",
+      "職場学習",
+      "スキル開発",
+      "従業員定着",
+      "L&D",
       "2025"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年に求められるマネジメントスキルの開発と、その背景にあるトレンドについて論じているため。",
+    "relevance_reason": "2025年のスキル開発と学習に関する重要なレポートであり、スキルマネジメントに直接関連するため。",
     "confidence_score": 0.9
   },
   {
-    "title": "What Leaders Need to Succeed: Top Trends Shaping 2025",
-    "url": "https://www.leadershipchallenge.com/blog/what-leaders-need-to-succeed-top-trends-shaping-2025/",
-    "source": "The Leadership Challenge Blog",
-    "published_date": "2025-10-XX",
+    "title": "HR Trends to Watch in 2025: Building the Human-Centric Workplace",
+    "url": "https://www.workday.com/en-us/perspectives/human-resources/2025/02/hr-trends-to-watch-in-2025-building-the-human-centric-workplace.html",
+    "source": "Workday",
+    "published_date": "2025-02-01",
     "region": "欧米",
     "category": "feature",
     "related_companies": [
-      "The Leadership Challenge"
+      "Workday"
     ],
-    "summary_japanese": "2025年にリーダーが成功するために必要なトップ3スキルは、戦略的ビジョンと計画、効果的なコミュニケーション、そして変化管理であると予測されている。これは、広範な不確実性を考慮すると当然の結果である。",
+    "summary_japanese": "2025年のHRトレンドとして、人間中心の職場構築が挙げられる。AIが定型業務を担う中で、共感、コラボレーション、信頼構築といった人間的なスキルがより重要になる。ビジネスリーダーの半数以上が人材不足を懸念しており、AIがスキルマネジメントに貢献する可能性も示唆されている。",
     "key_points": [
-      "戦略的ビジョン",
-      "効果的なコミュニケーション",
-      "変化管理"
+      "人間中心の職場",
+      "AIとヒューマンスキル",
+      "人材不足とスキルマネジメント"
     ],
     "tags": [
-      "leadership skills",
-      "2025 trends",
-      "change management"
+      "HRトレンド",
+      "2025",
+      "スキルマネジメント",
+      "AI",
+      "ヒューマンスキル"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年にリーダーに求められる主要なスキルを具体的に挙げ、スキルマネジメントの観点から重要であるため。",
-    "confidence_score": 0.85
+    "relevance_reason": "2025年のHRトレンドとスキルマネジメントの関連性、特にAIの影響について言及しているため。",
+    "confidence_score": 0.8
   },
   {
-    "title": "The 8 Key Leadership Skills You Need to Know in 2025",
-    "url": "https://www.imd.org/blog/leadership/leadership-skills/",
-    "source": "IMD Blog",
-    "published_date": "2025-10-XX",
+    "title": "The Leadership Development Skills to Build in 2025",
+    "url": "https://trainingmag.com/the-leadership-development-skills-to-build-in-2025/",
+    "source": "Training Magazine",
+    "published_date": null,
     "region": "欧米",
-    "category": "listicle",
-    "related_companies": [
-      "IMD"
-    ],
-    "summary_japanese": "2025年にリーダーに不可欠な8つの主要なリーダーシップスキルが挙げられている。これには、人間関係構築、俊敏性と適応性、イノベーションと創造性、従業員のモチベーション、意思決定、紛争管理、交渉、批判的思考が含まれる。",
+    "category": "feature",
+    "related_companies": [],
+    "summary_japanese": "2025年に育成すべきリーダーシップ開発スキルとして、感情的知性、実験的思考、批判的思考、適応性が挙げられている。これらのスキルは、変化の激しい現代において、チームを動機付け、コラボレーションを促進し、課題を乗り越えるために不可欠である。",
     "key_points": [
-      "8つの主要リーダーシップスキル",
-      "人間関係構築の重要性",
-      "紛争管理の課題"
+      "リーダーシップスキル",
+      "感情的知性",
+      "適応性",
+      "批判的思考"
     ],
     "tags": [
-      "leadership skills",
+      "リーダーシップ開発",
+      "スキル開発",
       "2025",
-      "soft skills",
-      "conflict management"
+      "感情的知性",
+      "適応性"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年に必要とされる具体的なリーダーシップスキルを網羅的に提示しており、スキル開発の参考になるため。",
-    "confidence_score": 0.85
+    "relevance_reason": "2025年に求められる具体的なスキルセットに焦点を当てており、スキルマネジメントの観点から重要であるため。",
+    "confidence_score": 0.7
   }
 ]
