@@ -1,101 +1,130 @@
 [
   {
-    "title": "Navigating the Future: Key Talent Management Trends for 2025",
-    "url": "https://www.phenom.com/blog/talent-management-trends",
-    "source": "Phenom",
-    "published_date": "不明",
-    "region": "欧米",
-    "category": "feature",
-    "related_companies": [],
-    "summary_japanese": "2025年のタレントマネジメント戦略では、ソフトスキルが中心となる。組織は従来の資格から、成功に必要な特定のスキルを特定し育成することに焦点を移している。スキルはパフォーマンス評価やタレントレビューにも組み込まれ、従業員の貢献度を評価・認識する方法を再定義する。",
-    "key_points": [
-      "ソフトスキルの重要性",
-      "スキルベースのアプローチへの移行",
-      "パフォーマンス評価におけるスキルの活用"
-    ],
-    "tags": [
-      "タレントマネジメント",
-      "スキルマネジメント",
-      "ソフトスキル",
-      "2025"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のスキルマネジメント・タレントマネジメントのトレンドを包括的に扱っているため。",
-    "confidence_score": 0.8
-  },
-  {
-    "title": "Developing Management Skills in 2025: Key Traits to Adopt in ...",
+    "title": "Developing Management Skills in 2025: Key Traits to Adopt in Business",
     "url": "https://business.columbia.edu/insights/columbia-business/management-skills-2025",
     "source": "Columbia Business School",
     "published_date": "不明",
-    "region": "欧米",
+    "region": "米国",
     "category": "feature",
     "related_companies": [],
-    "summary_japanese": "AIの台頭や職場環境の変化により、2025年にはマネジメントスキルの開発がリーダーにとって不可欠となる。コロンビアビジネススクールの研究者が、AIスキルから職場文化まで、リーダーが習得すべき主要な特性を強調している。",
+    "summary_japanese": "AIの台頭や職場文化の変化により、2025年の職場は急速に進化しており、リーダーは新たな課題に対応し、機会を活用するために経営スキルを磨く必要があります。コロンビアビジネススクールの研究者が、今年リーダーが習得すべき主要な特性を強調しています。",
     "key_points": [
-      "AIとマネジメントスキル",
-      "職場トレンドへの対応",
-      "リーダーシップ開発"
+      "AIスキル",
+      "職場文化",
+      "アジャイルなマネジメント"
     ],
     "tags": [
-      "マネジメントスキル",
-      "AI",
+      "スキルマネジメント",
       "リーダーシップ",
-      "2025"
+      "AI",
+      "職場トレンド"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のマネジメントスキル開発に焦点を当てており、スキルマネジメントに関連する。",
+    "relevance_reason": "2025年のスキルマネジメントの重要性と具体的な特性について論じているため。",
     "confidence_score": 0.9
   },
   {
     "title": "HR Trends to Watch in 2025: Building the Human-Centric Workplace",
     "url": "https://www.workday.com/en-us/perspectives/human-resources/2025/02/hr-trends-to-watch-in-2025-building-the-human-centric-workplace.html",
     "source": "Workday",
-    "published_date": "2025-02",
-    "region": "欧米",
+    "published_date": "2025-02-01",
+    "region": "米国",
     "category": "feature",
     "related_companies": [
       "Workday"
     ],
-    "summary_japanese": "2025年のHRトレンドでは、人間中心の職場構築が重要視される。世界経済フォーラムのレポートによると、批判的思考、分析、問題解決、自己管理などのスキルが将来の労働力に不可欠であり、AIが反復作業を行う中で、感情的知性を持つリーダーが求められる。",
+    "summary_japanese": "2025年のHRトレンドとして、人間中心の職場構築が注目されています。AIが定型業務を担う中で、感情的知性などの人間的スキルがリーダーにとって不可欠になると予測されています。",
     "key_points": [
       "人間中心の職場",
-      "将来の労働力に必要なスキル",
-      "感情的知性の重要性"
+      "感情的知性",
+      "AIとスキルの関係"
     ],
     "tags": [
       "HRトレンド",
-      "スキルマネジメント",
+      "ワークフォース",
       "AI",
-      "感情的知性",
-      "2025"
+      "スキル"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のHRトレンドと、それに伴うスキルマネジメントの重要性について言及しているため。",
+    "relevance_reason": "2025年のHRトレンドと、AI時代における人間的スキルの重要性について言及しているため。",
     "confidence_score": 0.85
   },
   {
-    "title": "2025 Talent Trends - SHRM",
-    "url": "https://www.shrm.org/topics-tools/research/2025-talent-trends/hr-skills",
-    "source": "SHRM",
+    "title": "Korn Ferry's Workforce 2025 Survey: Power Shifts",
+    "url": "https://www.kornferry.com/insights/featured-topics/workforce-management/workforce-planning-insights",
+    "source": "Korn Ferry",
     "published_date": "不明",
-    "region": "欧米",
-    "category": "research",
-    "related_companies": [],
-    "summary_japanese": "2025年のタレントトレンドでは、システムおよびリソース管理スキルが最も重要になると予測されている。HR専門家は、データ駆動型のスキル予測と戦略的行動を連携させ、変化するテクノロジーと生産性の要求に対応する必要がある。",
+    "region": "米国",
+    "category": "survey_report",
+    "related_companies": [
+      "Korn Ferry"
+    ],
+    "summary_japanese": "Korn Ferryの2025年ワークフォース調査によると、信頼できるマネージャーが従業員の定着とエンゲージメントに大きく貢献しています。給与は依然として転職の主要な動機ですが、多くの企業で中間管理職の削減が見られます。",
     "key_points": [
-      "システム・リソース管理スキルの重要性",
-      "データ駆動型スキル予測",
-      "プロアクティブな人材管理"
+      "マネージャーの役割",
+      "従業員定着",
+      "給与の重要性"
+    ],
+    "tags": [
+      "ワークフォース",
+      "タレントマネジメント",
+      "従業員エンゲージメント",
+      "調査"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "2025年のワークフォースとタレントマネジメントに関する具体的な調査結果を提供しているため。",
+    "confidence_score": 0.9
+  },
+  {
+    "title": "Global Talent Trends 2024-2025",
+    "url": "https://www.mercer.com/en-us/insights/people-strategy/future-of-work/global-talent-trends/",
+    "source": "Mercer",
+    "published_date": "不明",
+    "region": "米国",
+    "category": "report",
+    "related_companies": [
+      "Mercer"
+    ],
+    "summary_japanese": "Mercerのグローバルタレントトレンド2024-2025レポートは、テクノロジーとAIが労働力の不可欠な要素となる中で、仕事の世界が変革期にあることを示しています。人間中心の生産性向上、信頼と公平性への注力、デジタルファースト文化の醸成が2025年の主要な課題です。",
+    "key_points": [
+      "AIと労働力",
+      "人間中心の生産性",
+      "デジタルファースト文化"
     ],
     "tags": [
       "タレントトレンド",
-      "HRスキル",
-      "スキル予測",
-      "2025"
+      "グローバル",
+      "AI",
+      "ワークフォース"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のタレントトレンドにおけるHRスキルの重要性について具体的に述べているため。",
-    "confidence_score": 0.9
+    "relevance_reason": "2024-2025年のグローバルなタレントトレンドと、AIが労働力に与える影響について包括的に論じているため。",
+    "confidence_score": 0.85
+  },
+  {
+    "title": "2025 Talent Trends",
+    "url": "https://www.shrm.org/topics-tools/research/2025-talent-trends/hr-skills",
+    "source": "SHRM",
+    "published_date": "不明",
+    "region": "米国",
+    "category": "report",
+    "related_companies": [
+      "SHRM"
+    ],
+    "summary_japanese": "SHRMの2025年タレントトレンドレポートは、採用課題へのHRの役割を探り、既存従業員のスキルアップ・リスキリング、採用プロセスでのAI活用、徒弟制度やメンターシッププログラムの活用などの戦略を強調しています。",
+    "key_points": [
+      "採用課題",
+      "スキルアップ・リスキリング",
+      "AI採用"
+    ],
+    "tags": [
+      "タレントトレンド",
+      "HR",
+      "スキルアップ",
+      "AI"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "2025年のタレントマネジメントにおける採用課題と、それに対応するための具体的な戦略について言及しているため。",
+    "confidence_score": 0.85
   }
 ]
