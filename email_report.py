@@ -168,15 +168,7 @@ def send_email(summary, report_info, github_link):
     msg["Subject"] = f"{formatted_date} 週次レポート｜海外スキルベース調査レポート"
 
     # メール本文
-    body = f"""【技術調査レポート】他社動向の俯瞰
-
-調査期間：{formatted_date}
-調査件数：{report_info['article_count']}件
-読了時間：約3分
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-{summary}
+    body = f"""{summary}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 【詳細レポート】
