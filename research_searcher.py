@@ -131,7 +131,7 @@ URL: [URL]
             print(f"📡 エージェント実行中... (試行 {attempt + 1}/{MAX_RETRIES})")
             response = agent_executor.invoke(
                 {"messages": [HumanMessage(content=search_prompt)]},
-                config={"recursion_limit": 15}  # 再帰制限を設定してトークンを節約
+                config={"recursion_limit": 30}  # 再帰制限を設定してトークンを節約
             )
             
             messages = response.get("messages", [])
