@@ -1,130 +1,130 @@
 [
   {
-    "title": "Developing Management Skills in 2025: Key Traits to Adopt in Business",
-    "url": "https://business.columbia.edu/insights/columbia-business/management-skills-2025",
-    "source": "Columbia Business School",
-    "published_date": "不明",
-    "region": "米国",
-    "category": "feature",
+    "title": "[PDF] 2025 L&D EXECUTIVES BENCHMARKING - Data Brief: - SHRM",
+    "url": "https://www.shrm.org/content/dam/en/shrm/topics-tools/research/2025-executives-benchmarking-data-brief.pdf",
+    "source": "SHRM",
+    "published_date": "N/A",
+    "region": "欧米",
+    "category": "research_report",
     "related_companies": [],
-    "summary_japanese": "AIの台頭や職場文化の変化により、2025年の職場は急速に進化しており、リーダーは新たな課題に対応し、機会を活用するために経営スキルを磨く必要があります。コロンビアビジネススクールの研究者が、今年リーダーが習得すべき主要な特性を強調しています。",
+    "summary_japanese": "2025年には、CHROがリーダーシップとマネジメントスキルを最優先事項としており、企業はアップスキリングとリスキリングへの投資を増やしている。特に、リーダーやマネージャーがチームを効果的に指導するためのプログラムの必要性が強調されている。",
     "key_points": [
-      "AIスキル",
-      "職場文化",
-      "アジャイルなマネジメント"
+      "CHROの優先事項",
+      "アップスキリング・リスキリング投資の増加",
+      "リーダー・マネージャー育成の必要性"
     ],
     "tags": [
       "スキルマネジメント",
-      "リーダーシップ",
-      "AI",
-      "職場トレンド"
+      "人材開発",
+      "L&D",
+      "2025トレンド"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のスキルマネジメントの重要性と具体的な特性について論じているため。",
+    "relevance_reason": "2025年のスキルマネジメントの優先順位と投資動向を明確に示しているため。",
     "confidence_score": 0.9
   },
   {
-    "title": "HR Trends to Watch in 2025: Building the Human-Centric Workplace",
-    "url": "https://www.workday.com/en-us/perspectives/human-resources/2025/02/hr-trends-to-watch-in-2025-building-the-human-centric-workplace.html",
-    "source": "Workday",
-    "published_date": "2025-02-01",
-    "region": "米国",
-    "category": "feature",
+    "title": "The Rise of Skills-Driven Hiring: Navigate the 2025 Job Market",
+    "url": "https://www.compunnel.com/blogs/the-rise-of-skills-driven-hiring-how-to-navigate-the-2025-job-market/",
+    "source": "Compunnel",
+    "published_date": "N/A",
+    "region": "欧米",
+    "category": "blog_post",
     "related_companies": [
-      "Workday"
+      "Google",
+      "Apple",
+      "IBM"
     ],
-    "summary_japanese": "2025年のHRトレンドとして、人間中心の職場構築が注目されています。AIが定型業務を担う中で、感情的知性などの人間的スキルがリーダーにとって不可欠になると予測されています。",
+    "summary_japanese": "2025年までに、学位ではなくスキルに基づいた採用が主流になる。パンデミックにより、デジタルリテラシー、リモートコラボレーション、プロジェクトマネジメント、危機管理、適応性といった実践的な能力の重要性が浮き彫りになった。",
     "key_points": [
-      "人間中心の職場",
-      "感情的知性",
-      "AIとスキルの関係"
+      "スキルベース採用への移行",
+      "学位要件の撤廃",
+      "重要な実践的スキル"
     ],
     "tags": [
-      "HRトレンド",
-      "ワークフォース",
-      "AI",
-      "スキル"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のHRトレンドと、AI時代における人間的スキルの重要性について言及しているため。",
-    "confidence_score": 0.85
-  },
-  {
-    "title": "Korn Ferry's Workforce 2025 Survey: Power Shifts",
-    "url": "https://www.kornferry.com/insights/featured-topics/workforce-management/workforce-planning-insights",
-    "source": "Korn Ferry",
-    "published_date": "不明",
-    "region": "米国",
-    "category": "survey_report",
-    "related_companies": [
-      "Korn Ferry"
-    ],
-    "summary_japanese": "Korn Ferryの2025年ワークフォース調査によると、信頼できるマネージャーが従業員の定着とエンゲージメントに大きく貢献しています。給与は依然として転職の主要な動機ですが、多くの企業で中間管理職の削減が見られます。",
-    "key_points": [
-      "マネージャーの役割",
-      "従業員定着",
-      "給与の重要性"
-    ],
-    "tags": [
-      "ワークフォース",
-      "タレントマネジメント",
-      "従業員エンゲージメント",
-      "調査"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のワークフォースとタレントマネジメントに関する具体的な調査結果を提供しているため。",
-    "confidence_score": 0.9
-  },
-  {
-    "title": "Global Talent Trends 2024-2025",
-    "url": "https://www.mercer.com/en-us/insights/people-strategy/future-of-work/global-talent-trends/",
-    "source": "Mercer",
-    "published_date": "不明",
-    "region": "米国",
-    "category": "report",
-    "related_companies": [
-      "Mercer"
-    ],
-    "summary_japanese": "Mercerのグローバルタレントトレンド2024-2025レポートは、テクノロジーとAIが労働力の不可欠な要素となる中で、仕事の世界が変革期にあることを示しています。人間中心の生産性向上、信頼と公平性への注力、デジタルファースト文化の醸成が2025年の主要な課題です。",
-    "key_points": [
-      "AIと労働力",
-      "人間中心の生産性",
-      "デジタルファースト文化"
-    ],
-    "tags": [
-      "タレントトレンド",
-      "グローバル",
-      "AI",
+      "スキルベース採用",
+      "採用トレンド",
+      "2025ジョブマーケット",
       "ワークフォース"
     ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "2024-2025年のグローバルなタレントトレンドと、AIが労働力に与える影響について包括的に論じているため。",
-    "confidence_score": 0.85
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "2025年の採用市場におけるスキルマネジメントの大きな変化を詳細に説明しているため。",
+    "confidence_score": 0.8
   },
   {
-    "title": "2025 Talent Trends",
-    "url": "https://www.shrm.org/topics-tools/research/2025-talent-trends/hr-skills",
-    "source": "SHRM",
-    "published_date": "不明",
-    "region": "米国",
-    "category": "report",
-    "related_companies": [
-      "SHRM"
-    ],
-    "summary_japanese": "SHRMの2025年タレントトレンドレポートは、採用課題へのHRの役割を探り、既存従業員のスキルアップ・リスキリング、採用プロセスでのAI活用、徒弟制度やメンターシッププログラムの活用などの戦略を強調しています。",
+    "title": "10 Essential Skills Every HR Professional Needs in 2025",
+    "url": "https://www.icslearn.co.uk/blog/human-resources/bloghuman-resources10-essential-skills-every-hr-professional-needs/",
+    "source": "ICS Learn",
+    "published_date": "N/A",
+    "region": "欧米",
+    "category": "blog_post",
+    "related_companies": [],
+    "summary_japanese": "2025年にHRプロフェッショナルに不可欠なスキルとして、感情的知性（EQ）、文化的認識と感受性、紛争管理などが挙げられている。これらのスキルは、従業員のエンゲージメントを高め、協力的で生産的な職場環境を構築するために重要である。",
     "key_points": [
-      "採用課題",
-      "スキルアップ・リスキリング",
-      "AI採用"
+      "HRプロフェッショナル向けスキル",
+      "感情的知性",
+      "文化的認識",
+      "紛争管理"
     ],
     "tags": [
-      "タレントトレンド",
-      "HR",
-      "スキルアップ",
-      "AI"
+      "HRスキル",
+      "スキル開発",
+      "2025トレンド",
+      "従業員エンゲージメント"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "2025年のタレントマネジメントにおける採用課題と、それに対応するための具体的な戦略について言及しているため。",
-    "confidence_score": 0.85
+    "relevance_reason": "HR分野における具体的なスキル要件と、それが組織の成功にどう貢献するかを説明しているため。",
+    "confidence_score": 0.7
+  },
+  {
+    "title": "Geopolitics and Talent Management: Global Workforce Strategies ...",
+    "url": "https://www.sdcexec.com/professional-development/hiring/article/22949300/emapta-geopolitics-and-talent-management-global-workforce-strategies-must-evolve-amid-disruption",
+    "source": "SDCExec",
+    "published_date": "N/A",
+    "region": "欧米",
+    "category": "article",
+    "related_companies": [
+      "PwC"
+    ],
+    "summary_japanese": "2025年のグローバルなワークフォース戦略において、歴史的にコスト効率と人材の可用性が重視されてきたが、レジリエンスが新たな決定要因として浮上している。多くのリーダーは効率性に注力しすぎており、将来への備えやレジリエンスを優先していないため、組織は混乱に対して脆弱である。",
+    "key_points": [
+      "グローバルワークフォース戦略",
+      "レジリエンスの重要性",
+      "将来への備えの欠如"
+    ],
+    "tags": [
+      "タレントマネジメント",
+      "ワークフォース戦略",
+      "レジリエンス",
+      "2025トレンド"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "2025年のタレントマネジメントにおける新たな戦略的視点（レジリエンス）と課題を提示しているため。",
+    "confidence_score": 0.8
+  },
+  {
+    "title": "Hiring trends in 2025: the 4 big shifts shaping tech talent this year",
+    "url": "https://ravio.com/blog/hiring-trends",
+    "source": "ravio.com",
+    "published_date": "N/A",
+    "region": "欧米",
+    "category": "blog_post",
+    "related_companies": [],
+    "summary_japanese": "2025年の採用トレンドとして、AI人材が新たな競争の場となっており、AI/ML職の新規採用が前年比88%増加している。初期段階の企業では、よりリーンで意図的な企業構築が志向され、AI人材の報酬と役割の明確化が課題となっている。",
+    "key_points": [
+      "AI人材の需要増加",
+      "テック採用トレンド",
+      "報酬と役割の明確化",
+      "リーンな企業構築"
+    ],
+    "tags": [
+      "タレントマネジメント",
+      "採用トレンド",
+      "AI人材",
+      "テック業界"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "2025年の特定の分野（テック・AI）におけるタレントマネジメントの動向と課題を具体的に示しているため。",
+    "confidence_score": 0.7
   }
 ]
