@@ -35,6 +35,12 @@ gemini-deep-search/
 ├── create_test_data.py            # テストデータ作成スクリプト
 ├── research_searcher.py           # Phase1: 検索・データ収集
 ├── research_analyzer.py           # Phase2: 分析・レポート生成
+├── app.py                         # Streamlitダッシュボード（メイン）
+├── pages/                         # Streamlitマルチページ
+│   ├── 1_🏠_Home.py              # 概要ダッシュボード
+│   └── 2_🔍_Search.py            # 記事検索
+├── .streamlit/                    # Streamlit設定
+│   └── config.toml
 ├── .github/
 │   └── workflows/
 │       └── weekly_research_split.yml   # GitHub Actions設定（自動実行）
@@ -67,7 +73,17 @@ cd gemini-deep-search
 
 ```bash
 pip install --upgrade pip
-pip install langchain-google-genai langchain-tavily langgraph
+pip install -r requirements.txt
+```
+
+または個別にインストール：
+
+```bash
+# レポート生成用
+pip install langchain-google-genai langchain-tavily langgraph python-dotenv
+
+# ダッシュボード用
+pip install streamlit pandas plotly
 ```
 
 ### 3. APIキーを設定
@@ -267,7 +283,109 @@ python create_test_data.py
 - **トレンドの可視化**: 時系列グラフでキーワードや企業の出現頻度を表示
 - **急上昇トレンドの検出**: 前週比での増減を自動計算
 - **長期的なパターン分析**: 複数週にわたるトレンドの変化を追跡
-- **ダッシュボード**: Streamlit等でインタラクティブな分析ツールを構築（Phase 2で実装予定）
+- **ダッシュボード**: Streamlitでインタラクティブな分析ツールを提供（Phase 2で実装）
+
+---
+
+## 📊 ダッシュボード（Phase 2）
+
+### 概要
+
+Streamlitベースのインタラクティブなダッシュボードで、過去の週次レポートデータを可視化・分析できます。
+
+**実装済み機能**:
+- 🏠 **Home**: 概要ダッシュボード（KPI、記事数推移、カテゴリ分布）
+- 🔍 **Search**: 記事検索・フィルタリング・詳細閲覧
+
+**Phase 3以降で実装予定**:
+- 📈 **Trends**: トレンド分析（キーワード時系列、急上昇検出、共起ネットワーク）
+- 🏢 **Companies**: 企業動向分析
+
+### ダッシュボードの起動
+
+```bash
+# 依存パッケージのインストール
+pip install -r requirements.txt
+
+# ダッシュボードを起動
+streamlit run app.py
+```
+
+ブラウザで http://localhost:8501 が自動的に開きます。
+
+### 🏠 Home - 概要ダッシュボード
+
+**主要機能**:
+
+1. **KPIカード（4つ）**
+   - 総記事数（前週比）
+   - 今週の記事数
+   - 製造業関連記事の割合（前週比）
+   - 平均信頼度スコア（前週比）
+
+2. **記事数推移グラフ**
+   - 過去の週次レポートの記事数を時系列で表示
+   - インタラクティブなプロット（Plotly）
+
+3. **カテゴリ分布の推移**
+   - 積み上げ棒グラフでカテゴリ別の記事数を表示
+   - feature、research、case_study等の内訳を可視化
+
+4. **製造業関連記事の割合推移**
+   - 製造業関連記事の割合をエリアチャートで表示
+
+5. **最新週の注目記事 TOP5**
+   - 信頼度スコアでソートされた上位5件を表示
+   - 展開可能なカードで詳細を確認
+
+### 🔍 Search - 記事検索・詳細閲覧
+
+**検索・フィルター機能**:
+
+1. **キーワード検索**
+   - タイトル、要約、重要ポイントで全文検索
+
+2. **期間フィルター**
+   - レポート日の範囲で絞り込み
+
+3. **カテゴリフィルター**
+   - feature、research、case_study等で絞り込み
+   - 複数選択可能
+
+4. **企業フィルター**
+   - 関連企業で絞り込み
+
+5. **製造業関連フィルター**
+   - 製造業関連記事のみ表示
+
+6. **信頼度スコアフィルター**
+   - スライダーで最小信頼度を設定
+
+**表示・ソート機能**:
+
+- ソート: 信頼度スコア、公開日、レポート日（昇順・降順）
+- ページネーション: 10/25/50/100件表示
+- CSVエクスポート: フィルター後の記事をCSVダウンロード
+
+**記事詳細表示**:
+
+- 展開可能なカードで以下を表示:
+  - 要約（日本語）
+  - 重要ポイント
+  - 製造業との関連性
+  - メタ情報（情報源、公開日、地域、カテゴリ等）
+  - 関連企業
+  - タグ
+  - 記事URLリンク
+
+### デプロイ方法（Streamlit Cloud）
+
+1. GitHubリポジトリをStreamlit Cloudに接続
+2. メインファイル: `app.py`
+3. Python version: 3.11
+4. 自動デプロイ設定
+
+無料で公開ダッシュボードとして利用可能です。
 
 ---
 
