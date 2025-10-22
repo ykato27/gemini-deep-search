@@ -31,13 +31,13 @@ jobs:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
         run: |
-          python research_searcher.py
+          python src/research_searcher.py
 
       - name: Phase2 Analyze and Generate Report (research_analyzer.py)
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: |
-          python research_analyzer.py
+          python src/research_analyzer.py
 
       - name: Commit and push report
         run: |
