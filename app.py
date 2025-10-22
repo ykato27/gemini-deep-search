@@ -66,10 +66,8 @@ with st.sidebar:
 
     - **🏠 Home**: 概要ダッシュボード
     - **🔍 Search**: 記事検索・詳細閲覧
-
-    *(Phase 3以降で追加予定)*
     - **📈 Trends**: トレンド分析
-    - **🏢 Companies**: 企業動向
+    - **🏢 Companies**: 企業動向分析
     """)
 
 # メインコンテンツ
@@ -108,15 +106,15 @@ with col2:
             <li>✅ トレンドデータの集計</li>
             <li>✅ データ基盤の整備</li>
         </ul>
-        <p><strong>Phase 2 (実装中)</strong></p>
+        <p><strong>Phase 2 (完了)</strong></p>
         <ul>
-            <li>🔄 基本ダッシュボード</li>
-            <li>🔄 記事検索機能</li>
+            <li>✅ 基本ダッシュボード</li>
+            <li>✅ 記事検索機能</li>
         </ul>
-        <p><strong>Phase 3-5 (予定)</strong></p>
+        <p><strong>Phase 3 (完了)</strong></p>
         <ul>
-            <li>⏳ 高度なトレンド分析</li>
-            <li>⏳ 企業動向分析</li>
+            <li>✅ トレンド分析</li>
+            <li>✅ 企業動向分析</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
@@ -141,18 +139,18 @@ with col2:
     st.info("""
     **ステップ 2**
 
-    **🔍 Search** で
-    特定の記事を検索・
-    詳細を閲覧
+    **📈 Trends** で
+    キーワードの
+    時系列変化を分析
     """)
 
 with col3:
     st.info("""
     **ステップ 3**
 
-    (Phase 3以降)
-    **📈 Trends** で
-    時系列の変化を分析
+    **🏢 Companies** で
+    企業動向を
+    追跡・比較
     """)
 
 # データ生成方法
