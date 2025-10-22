@@ -43,7 +43,15 @@ def search_and_extract_data(target_year: int = None):
         sys.exit(1)
     print("✓ APIキーを確認しました")
 
-    # --- 2. LLMとツールの準備 ---
+    # --- 2. 検索対象年の設定と期間の計算 ---
+    today = datetime.now()
+    start_date = (today - timedelta(days=7)).strftime("%Y-%m-%d")
+    year = target_year or today.year
+    
+    print(f"📅 検索対象年: {year}")
+    print(f"🗓️ 検索開始日: {start_date} (過去1週間)")
+
+    # --- 3. LLMとツールの準備 ---
     model = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash",
         temperature=0,
@@ -53,20 +61,13 @@ def search_and_extract_data(target_year: int = None):
         max_results=5,  # 結果数を減らしてトークンを節約
         search_depth="advanced",  # basicに変更してトークンを節約
         include_raw_content=False,  # raw contentを無効化してトークンを節約
+        time_range=f"{start_date}:{end_date}"
     )
     tools = [search_tool]
     
-    # --- 3. エージェントの作成 ---
+    # --- 4. エージェントの作成 ---
     agent_executor = create_react_agent(model, tools)
     print("✓ ReActエージェントを設定しました")
-
-    # --- 4. 検索対象年の設定と期間の計算 ---
-    today = datetime.now()
-    start_date = (today - timedelta(days=7)).strftime("%Y-%m-%d")
-    year = target_year or today.year
-    
-    print(f"📅 検索対象年: {year}")
-    print(f"🗓️ 検索開始日: {start_date} (過去1週間)")
 
     # --- 5. Phase 1: 非構造化テキスト抽出プロンプト（簡潔版） ---
     search_prompt = f"""
