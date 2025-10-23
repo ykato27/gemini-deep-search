@@ -81,9 +81,9 @@ def search_and_extract_data(target_year: int = None):
 
 # 検索方法
 1. 以下のキーワードで**2～3回**だけ検索してください：
-   - "skills management {year} past week"
-   - "talent management workforce {year} recent"
-   
+   - "skills management latest trends"
+   - "talent management workforce news"
+
 2. 検索結果から**最も関連性の高い3～5記事**を選んでください
 
 3. **web_fetchツールは使用せず**、検索結果のスニペット情報のみを使用してください（トークン節約のため）
@@ -96,7 +96,7 @@ def search_and_extract_data(target_year: int = None):
 タイトル: [タイトル]
 URL: [URL]
 情報源: [メディア名]
-公開日: [YYYY-MM-DD]
+公開日: [YYYY-MM-DD形式で記載。不明な場合は「不明」]
 地域: [国/地域]
 カテゴリー: [feature/case_study/partnership/etc]
 関連企業: [企業名、なければ「なし」]
@@ -108,7 +108,9 @@ URL: [URL]
 信頼度: [0.0～1.0]
 ---
 
-# 重要
+# 重要な制約
+- **公開日が{start_date}以降（過去7日以内）の記事のみを選択してください**
+- 古い記事（例：「2025年の予測」を扱った数ヶ月前の記事）は除外してください
 - 検索は**最小限**（2～3回）に抑えてください
 - web_fetchは**使用しない**でください
 - 記事数は**3～5件**で十分です
@@ -267,10 +269,44 @@ URL: [URL]
             
             # JSONパースを試行
             parsed_data = json.loads(json_output)
-            
+
             if isinstance(parsed_data, list) and len(parsed_data) > 0:
-                print(f"✅ JSONデータを正常に変換しました。記事数: {len(parsed_data)}件")
-                break
+                # 日付フィルタリング: start_date以降の記事のみを保持
+                start_datetime = datetime.strptime(start_date, "%Y-%m-%d")
+
+                filtered_data = []
+                for article in parsed_data:
+                    pub_date_str = article.get("published_date")
+
+                    # 日付が不明な場合は保持（LLMが最新と判断したため）
+                    if not pub_date_str or pub_date_str == "不明" or pub_date_str is None:
+                        filtered_data.append(article)
+                        continue
+
+                    try:
+                        # 日付をパース
+                        pub_datetime = datetime.strptime(pub_date_str, "%Y-%m-%d")
+
+                        # start_date以降の記事のみを保持
+                        if pub_datetime >= start_datetime:
+                            filtered_data.append(article)
+                        else:
+                            print(f"⚠️ 古い記事を除外: {article.get('title', 'タイトル不明')} (公開日: {pub_date_str})")
+                    except ValueError:
+                        # 日付パースに失敗した場合も保持
+                        print(f"⚠️ 日付パースに失敗（保持）: {pub_date_str}")
+                        filtered_data.append(article)
+
+                parsed_data = filtered_data
+
+                if len(parsed_data) > 0:
+                    print(f"✅ JSONデータを正常に変換しました。記事数: {len(parsed_data)}件（フィルタリング後）")
+                    break
+                else:
+                    print("⚠️ フィルタリング後の記事が0件です。再試行します。")
+                    if attempt == MAX_RETRIES - 1:
+                        raise ValueError("有効な記事が見つかりませんでした。")
+                    continue
             else:
                 raise ValueError("JSONの形式が期待通り（非空の配列）ではありません。")
 
