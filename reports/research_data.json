@@ -1,130 +1,133 @@
 [
   {
-    "title": "AI confidence soaring as workers seek clarity and meaning, survey shows - HR Executive",
-    "url": "https://hrexecutive.com/survey-shows-ai-confidence-soaring-as-workers-seek-clarity-and-meaning/",
-    "source": "HR Executive",
-    "published_date": "2025-10-21",
-    "region": "不明 (グローバル調査)",
-    "category": "news",
-    "related_companies": [
-      "Adecco Group"
-    ],
-    "summary_japanese": "Adecco Groupのグローバル調査によると、2025年にはAIが職場における主要な影響力として経済的不確実性や柔軟な働き方を上回ると、従業員のAIに対する信頼が高まっています。また、従業員が自身の役割と会社の戦略との関連性を理解している場合、エンゲージメントと定着率が大幅に向上することが示されています。",
-    "key_points": [
-      "AIが職場の主要な影響力に",
-      "従業員のAIへの信頼向上",
-      "目的意識が従業員の定着に重要"
-    ],
-    "tags": [
-      "AI",
-      "従業員エンゲージメント",
-      "タレントマネジメント",
-      "ワークフォース"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "AIがタレントマネジメントとワークフォースに与える影響に関する最新の調査結果を提供しているため。",
-    "confidence_score": 0.9
-  },
-  {
-    "title": "Retention is a culture problem, not a productivity problem - HR Executive",
-    "url": "https://hrexecutive.com/retention-is-a-culture-problem-not-a-productivity-problem/",
-    "source": "HR Executive",
-    "published_date": "2025-10-21",
-    "region": "不明",
+    "title": "Navigating the Future: Key Talent Management Trends for 2025",
+    "url": "https://www.phenom.com/blog/talent-management-trends",
+    "source": "Phenom",
+    "published_date": "",
+    "region": "欧米",
     "category": "feature",
     "related_companies": [],
-    "summary_japanese": "この記事は、従業員の定着が生産性の問題ではなく、企業文化の問題であるという視点を提供しています。タレントマネジメントの観点から、従業員のエンゲージメントと経験が定着に大きく影響することを示唆しています。",
+    "summary_japanese": "2025年のタレントマネジメントの主要トレンドについて解説しており、特にスキルを重視した採用と人材育成戦略への移行、ソフトスキルの重要性の高まり、そしてパフォーマンス評価におけるスキルの役割に焦点を当てている。GenAIのような技術進歩に対応するための適応性やリーダーシップなどの人間的スキルが不可欠であると強調している。",
     "key_points": [
-      "定着は文化の問題",
-      "生産性ではない",
-      "従業員エンゲージメントの重要性"
+      "スキル重視の戦略への移行",
+      "ソフトスキルの重要性",
+      "パフォーマンス評価におけるスキルの役割"
     ],
     "tags": [
-      "従業員定着",
-      "企業文化",
       "タレントマネジメント",
-      "HR戦略"
+      "スキル",
+      "2025トレンド",
+      "ソフトスキル",
+      "GenAI"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "タレントマネジメントにおける従業員定着の根本的な原因と解決策について論じているため。",
+    "relevance_reason": "2025年のタレントマネジメントにおけるスキルの重要性を包括的に扱っているため。",
     "confidence_score": 0.8
   },
   {
-    "title": "Catch up on demand and unlock the secrets to smarter hiring and global growth - HR Magazine",
-    "url": "https://www.hrmagazine.co.uk/content/insights/catch-up-on-demand-and-unlock-the-secrets-to-smarter-hiring-and-global-growth",
-    "source": "HR Magazine",
-    "published_date": "2025-10-16",
-    "region": "欧米 (G-PとPaychexの提携)",
-    "category": "partnership",
-    "related_companies": [
-      "G-P",
-      "Paychex"
-    ],
-    "summary_japanese": "G-PとPaychexの提携によるウェビナーでは、国境を越えた採用とグローバルな人材管理を簡素化する方法が紹介されています。企業が国際的にチームを拡大し、HR業務を効率化するための実践的な洞察を提供します。",
+    "title": "2025 Talent Trends - SHRM",
+    "url": "https://www.shrm.org/topics-tools/research/2025-talent-trends/hr-skills",
+    "source": "SHRM (Society for Human Resource Management)",
+    "published_date": "",
+    "region": "欧米",
+    "category": "research_report_summary",
+    "related_companies": [],
+    "summary_japanese": "2025年のタレントトレンドに関するSHRMのレポート概要。HRプロフェッショナルがデータ駆動型のスキル予測システムを確立し、継続的なスキル予測を行う必要性を強調している。デジタル変革、AI導入、サイバーセキュリティなどの要因によって変化するスキルランドスケープに対応するための適応とアップスキリングの機会創出が重要であると述べている。",
     "key_points": [
-      "グローバル採用の簡素化",
-      "HR業務の効率化",
-      "国際的なチーム拡大"
+      "データ駆動型スキル予測",
+      "継続的なスキル予測",
+      "スキルランドスケープの変化への対応"
     ],
     "tags": [
-      "グローバル採用",
-      "タレントマネジメント",
-      "HRテクノロジー",
-      "国際展開"
-    ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "グローバルなタレントマネジメントと採用戦略に関する具体的なソリューションとパートナーシップについて述べているため。",
-    "confidence_score": 0.85
-  },
-  {
-    "title": "Recruiters under pressure to build AI-ready workforce amid skills gap - HRD America",
-    "url": "https://www.hcamag.com/asia/news/general/recruiters-under-pressure-to-build-ai-ready-workforce-amid-skills-gap/553819",
-    "source": "HRD America",
-    "published_date": "2025-10-22",
-    "region": "米国、英国",
-    "category": "news",
-    "related_companies": [
-      "LinkedIn",
-      "PwC"
-    ],
-    "summary_japanese": "LinkedInの調査によると、CEOの86%が将来の労働力構築をリクルーターに求めており、AIスキルギャップが深刻化しています。AIを使いこなす従業員とそうでない従業員の間でパフォーマンスギャップが生じており、AIスキルを持つ専門家には高い賃金プレミアムが支払われています。",
-    "key_points": [
-      "AI対応の労働力構築の圧力",
-      "AIスキルギャップの深刻化",
-      "AIスキルを持つ人材への高賃金プレミアム"
-    ],
-    "tags": [
+      "タレントトレンド",
+      "HR",
+      "スキル予測",
       "AI",
-      "スキルギャップ",
-      "採用",
-      "ワークフォースプランニング"
+      "デジタル変革"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "AI時代におけるスキルマネジメントとタレントマネジメントの課題、特にAIスキルギャップと採用戦略に焦点を当てているため。",
+    "relevance_reason": "HRの視点から2025年のタレントトレンドとスキル予測の重要性を詳細に論じているため。",
     "confidence_score": 0.9
   },
   {
-    "title": "Strategic Insights: Hr Analytics Workforce Planning Software - openPR.com",
-    "url": "https://www.openpr.com/news/4230259/strategic-insights-hr-analytics-workforce-planning-software",
-    "source": "openPR.com",
-    "published_date": "2025-10-18",
-    "region": "北米、アジア太平洋",
-    "category": "feature",
-    "related_companies": [],
-    "summary_japanese": "HRアナリティクスとワークフォースプランニングソフトウェア市場は、データ駆動型意思決定ツールの採用増加により2031年までに大幅な成長が見込まれています。AI、機械学習、クラウドベースのアナリティクスなどの技術革新が、リアルタイムの洞察と予測モデリングを可能にし、HRプロフェッショナルが情報に基づいた意思決定を行うのを支援しています。",
+    "title": "Workplace Learning Report 2025 - LinkedIn Learning",
+    "url": "https://learning.linkedin.com/resources/workplace-learning-report",
+    "source": "LinkedIn Learning",
+    "published_date": "",
+    "region": "欧米",
+    "category": "report_summary",
+    "related_companies": [
+      "LinkedIn"
+    ],
+    "summary_japanese": "2025年の職場学習レポートの概要。AIがオンデマンドでパーソナライズされた学習技術を提供し、組織がスキルギャップに対応するのを助けることを強調している。アジャイルなスキルエコシステムの構築の重要性、スキルギャップデータの追跡、スキルベースのキャリアパスの作成、スキル評価の活用が挙げられている。",
     "key_points": [
-      "HRアナリティクス市場の成長",
-      "データ駆動型意思決定の重要性",
-      "AIとMLによる機能強化"
+      "AIによる学習支援",
+      "アジャイルなスキルエコシステム",
+      "スキルギャップデータ追跡"
     ],
     "tags": [
-      "HRアナリティクス",
-      "ワークフォースプランニング",
-      "HRテクノロジー",
-      "AI"
+      "職場学習",
+      "AI",
+      "スキルエコシステム",
+      "スキルギャップ",
+      "キャリアパス"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "スキルマネジメントとタレントマネジメントを支えるHRテクノロジーの最新動向と市場予測について述べているため。",
-    "confidence_score": 0.75
+    "relevance_reason": "AIを活用したスキル開発と学習の最新トレンドに焦点を当てているため。",
+    "confidence_score": 0.9
+  },
+  {
+    "title": "Global Talent Trends 2024-2025",
+    "url": "https://www.mercer.com/insights/people-strategy/future-of-work/global-talent-trends/",
+    "source": "Mercer",
+    "published_date": "",
+    "region": "グローバル (欧米含む)",
+    "category": "research_report_summary",
+    "related_companies": [
+      "Mercer"
+    ],
+    "summary_japanese": "Mercerの2024-2025年グローバルタレントトレンド調査の概要。1,800人のHRリーダーからの洞察に基づき、2025年のHRの主要優先事項を地域別に示している。テクノロジーの加速と優れたワークエクスペリエンスの提供のバランスを取ることの重要性を強調している。",
+    "key_points": [
+      "グローバルタレントトレンド",
+      "HRの優先事項",
+      "テクノロジーとワークエクスペリエンスのバランス"
+    ],
+    "tags": [
+      "グローバル",
+      "タレントトレンド",
+      "HR戦略",
+      "ワークエクスペリエンス",
+      "2025"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "グローバルな視点から2025年のタレントトレンドとHRの課題を提示しているため。",
+    "confidence_score": 0.9
+  },
+  {
+    "title": "15 Top Talent Management Trends for 2025",
+    "url": "https://www.netsuite.com/portal/resource/articles/human-resources/talent-management-trends.shtml",
+    "source": "NetSuite",
+    "published_date": "",
+    "region": "欧米",
+    "category": "feature",
+    "related_companies": [
+      "NetSuite"
+    ],
+    "summary_japanese": "2025年のタレントマネジメントにおける15の主要トレンドを紹介。高パフォーマンスの従業員を見つけ、育成し、現在のニーズと将来のニーズを満たすためのタレントマネジメントポリシーの重要性を強調している。新しいコラボレーションツールや戦術が、リモートワークを含む多様な働き方に対応するために役立つと述べている。",
+    "key_points": [
+      "タレントマネジメントポリシー",
+      "コラボレーションツール",
+      "リモートワーク対応"
+    ],
+    "tags": [
+      "タレントマネジメント",
+      "2025トレンド",
+      "HR",
+      "リモートワーク",
+      "コラボレーション"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "2025年のタレントマネジメントの幅広いトレンドと実践的な側面をカバーしているため。",
+    "confidence_score": 0.7
   }
 ]
