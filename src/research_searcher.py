@@ -24,6 +24,47 @@ from langgraph.prebuilt import create_react_agent
 # JSONファイルパス (分析フェーズと共有)
 RESEARCH_DATA_PATH = "reports/research_data.json"
 
+
+def parse_publication_date(date_str: str):
+    if not date_str:
+        return None
+
+    normalized = date_str.strip()
+    lowered = normalized.lower()
+    if lowered in {"", "n/a", "na", "unknown"}:
+        return None
+
+    if normalized in {"不明", "未設定", "不詳", "―"}:
+        return None
+
+    if '\ufffd' in normalized:
+        return None
+
+    date_formats = [
+        "%Y-%m-%d",
+        "%Y/%m/%d",
+        "%Y.%m.%d",
+        "%Y-%m",
+        "%Y/%m",
+        "%Y.%m",
+        "%Y",
+    ]
+
+    for fmt in date_formats:
+        try:
+            parsed = datetime.strptime(normalized, fmt)
+            if fmt in {"%Y-%m", "%Y/%m", "%Y.%m"}:
+                return parsed.replace(day=1)
+            if fmt == "%Y":
+                return parsed.replace(month=1, day=1)
+            return parsed
+        except ValueError:
+            continue
+
+    return None
+
+
+
 def search_and_extract_data(target_year: int = None):
     """
     週次調査データをWeb検索し、構造化されたJSONとして保存する。
@@ -272,31 +313,27 @@ URL: [URL]
 
             if isinstance(parsed_data, list) and len(parsed_data) > 0:
                 # 日付フィルタリング: start_date以降の記事のみを保持
-                start_datetime = datetime.strptime(start_date, "%Y-%m-%d")
+                start_date_limit = datetime.strptime(start_date, "%Y-%m-%d").date()
+                end_date_limit = datetime.strptime(end_date, "%Y-%m-%d").date()
 
                 filtered_data = []
                 for article in parsed_data:
                     pub_date_str = article.get("published_date")
 
-                    # 日付が不明な場合は保持（LLMが最新と判断したため）
-                    if not pub_date_str or pub_date_str == "不明" or pub_date_str is None:
-                        filtered_data.append(article)
+                    # Filter articles to the requested 7-day window
+                    parsed_datetime = parse_publication_date(pub_date_str)
+
+                    if not parsed_datetime:
+                        print(f"[WARN] Skipping article (unparsed date): {article.get('title', 'Unknown title')} (published_date={pub_date_str})")
                         continue
 
-                    try:
-                        # 日付をパース
-                        pub_datetime = datetime.strptime(pub_date_str, "%Y-%m-%d")
+                    published_date = parsed_datetime.date()
 
-                        # start_date以降の記事のみを保持
-                        if pub_datetime >= start_datetime:
-                            filtered_data.append(article)
-                        else:
-                            print(f"⚠️ 古い記事を除外: {article.get('title', 'タイトル不明')} (公開日: {pub_date_str})")
-                    except ValueError:
-                        # 日付パースに失敗した場合も保持
-                        print(f"⚠️ 日付パースに失敗（保持）: {pub_date_str}")
-                        filtered_data.append(article)
+                    if published_date < start_date_limit or published_date > end_date_limit:
+                        print(f"[WARN] Skipping article outside window: {article.get('title', 'Unknown title')} (published_date={pub_date_str})")
+                        continue
 
+                    filtered_data.append(article)
                 parsed_data = filtered_data
 
                 if len(parsed_data) > 0:
