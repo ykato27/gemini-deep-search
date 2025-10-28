@@ -41,9 +41,34 @@ search:
   max_articles: 5             # 最大記事数
 
   # 検索キーワード（Phase 1で使用）
+  # 製造業特化のスキルマネジメント・タレントマネジメントに最適化
   keywords:
-    - "skills management latest trends"
-    - "talent management workforce news"
+    # 基本キーワード（製造業特化）
+    - "skills matrix software manufacturing"
+    - "competency management platform frontline workforce"
+    - "skills gap analysis manufacturing dashboard"
+
+    # プラットフォーム・ツール関連
+    - "AG5 Kahuna skills management manufacturing"
+    - "Skills Base skills intelligence internal mobility"
+    - "iMocha skills taxonomy internal talent marketplace"
+
+    # Industry 4.0 / スマートマニュファクチャリング
+    - "workforce reskilling Industry 4.0 manufacturing"
+    - "skills-based staffing industrial operations smart manufacturing"
+    - "operational skill management scheduling optimization"
+
+    # 内部タレントマーケットプレイス
+    - "internal talent marketplace adoption 2025 enterprise"
+    - "skills-based internal mobility gig marketplace"
+
+    # コンピテンシー管理・安全性
+    - "competency tracking plant operators manufacturing"
+    - "skills management workforce upskilling safety compliance"
+
+    # スキルタクソノミー・ギャップ分析
+    - "dynamic skills taxonomy workforce reskilling"
+    - "skill gap frontline technicians manufacturing"
 
 # --------------------------------------------------------------------
 # エージェント設定
