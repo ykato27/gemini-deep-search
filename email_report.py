@@ -186,6 +186,10 @@ def send_email(summary, report_info, github_link):
         print(f"RECIPIENT_EMAIL: {'設定済み' if recipient else '未設定'}")
         sys.exit(1)
 
+    # カンマ区切りで複数の受信者に対応
+    recipients = [email.strip() for email in recipient.split(",")]
+    print(f"📮 送信先: {len(recipients)}名")
+
     # 日付をフォーマット（20251021 → 2025/10/21）
     date_str = report_info["date"]
     formatted_date = f"{date_str[:4]}/{date_str[4:6]}/{date_str[6:8]}"
@@ -193,7 +197,7 @@ def send_email(summary, report_info, github_link):
     # メール作成
     msg = MIMEMultipart()
     msg["From"] = gmail_user
-    msg["To"] = recipient
+    msg["To"] = ", ".join(recipients)  # 複数の受信者をカンマ区切りで設定
     msg["Subject"] = f"{formatted_date} 週次レポート｜海外スキルベース調査レポート"
 
     # メール本文（HTML形式）
@@ -234,7 +238,7 @@ def send_email(summary, report_info, github_link):
             server.send_message(msg)
 
         print("✓ メール送信完了")
-        print(f"   送信先: {recipient}")
+        print(f"   送信先: {', '.join(recipients)}")
         print(f"   件名: {msg['Subject']}")
 
     except Exception as e:

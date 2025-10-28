@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 
 # Suppress LangGraph deprecation warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning, module="langgraph")
+warnings.filterwarnings("ignore", message=".*create_react_agent.*")
 
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -324,7 +325,9 @@ URL: [URL]
                     parsed_datetime = parse_publication_date(pub_date_str)
 
                     if not parsed_datetime:
-                        print(f"[WARN] Skipping article (unparsed date): {article.get('title', 'Unknown title')} (published_date={pub_date_str})")
+                        # 日付が不明な場合でも記事を保持（Tavily検索が既に期間限定されているため）
+                        print(f"[INFO] Keeping article with unparsed date: {article.get('title', 'Unknown title')} (published_date={pub_date_str})")
+                        filtered_data.append(article)
                         continue
 
                     published_date = parsed_datetime.date()
