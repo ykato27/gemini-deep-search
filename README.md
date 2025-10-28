@@ -18,6 +18,7 @@ Google Gemini（Generative AI）＋ Tavily（ウェブ検索API）＋ LangGraph�
 ### ✨ 最新の改善点（2025-10-28更新）
 
 - ✅ **設定ファイル対応**: `config.yaml` でシステムパラメータを一元管理（ハードコーディング解消）
+- ✅ **製造業特化キーワード最適化**: 15個の厳選キーワード（AG5、Kahuna、Industry 4.0、スキルマトリックス等）
 - ✅ **複数受信者対応**: メール送信先をカンマ区切りで複数指定可能
 - ✅ **日付フィルタリング**: Tavily検索で過去N日間のデータのみを取得（設定可能）
 - ✅ **検索キーワードのカスタマイズ**: `config.yaml` でキーワードを自由に追加・変更可能
@@ -142,7 +143,16 @@ agent:
 設定を変更したい場合は、`config.yaml` を直接編集してください。例：
 - 検索期間を14日間に変更: `search.days_back: 14`
 - より多くの記事を収集: `tavily.max_results: 10`
-- 検索キーワードを追加: `search.keywords` にキーワードを追加
+- 検索キーワードをカスタマイズ: `search.keywords` セクションで自由に追加・変更可能
+
+**最適化された検索キーワード**（製造業特化）:
+デフォルトで以下のカテゴリのキーワードが設定されています：
+- **基本キーワード**: skills matrix software manufacturing、competency management等
+- **プラットフォーム・ツール**: AG5、Kahuna、Skills Base、iMocha等の具体的な製品名
+- **Industry 4.0**: workforce reskilling、smart manufacturing、スキルベース人材配置
+- **内部タレントマーケット**: internal talent marketplace、skills-based internal mobility
+- **コンピテンシー管理**: 安全性コンプライアンス、プラント運用者のトラッキング
+- **スキルタクソノミー**: dynamic skills taxonomy、skill gap分析
 
 ### 4. APIキーを設定
 
@@ -515,12 +525,36 @@ streamlit run app.py
    - API呼び出し: 約50-60回/250回制限
 6. **Deep Research風レポートMarkdown生成・保存**（15-30件の記事分析）
 
-### 🔍 検索キーワードカテゴリ
+### 🔍 検索キーワードカテゴリ（最適化済み）
 
-1. **基本検索**: skill management, talent management, competency mapping, workforce development等
-2. **技術・プラットフォーム**: LXP, digital badges, AI-powered learning, skills graph等
-3. **製造業特化**: manufacturing workforce, factory training, smart factory workforce等
-4. **業界トレンド**: HRTech innovation, workforce transformation, employee retention等
+検索キーワードは `config.yaml` で管理され、以下のカテゴリで構成されています：
+
+1. **基本キーワード（製造業特化）**
+   - skills matrix software manufacturing
+   - competency management platform frontline workforce
+   - skills gap analysis manufacturing dashboard
+
+2. **プラットフォーム・ツール関連**
+   - AG5 Kahuna skills management manufacturing
+   - Skills Base skills intelligence internal mobility
+   - iMocha skills taxonomy internal talent marketplace
+
+3. **Industry 4.0 / スマートマニュファクチャリング**
+   - workforce reskilling Industry 4.0 manufacturing
+   - skills-based staffing industrial operations smart manufacturing
+   - operational skill management scheduling optimization
+
+4. **内部タレントマーケットプレイス**
+   - internal talent marketplace adoption 2025 enterprise
+   - skills-based internal mobility gig marketplace
+
+5. **コンピテンシー管理・安全性**
+   - competency tracking plant operators manufacturing
+   - skills management workforce upskilling safety compliance
+
+6. **スキルタクソノミー・ギャップ分析**
+   - dynamic skills taxonomy workforce reskilling
+   - skill gap frontline technicians manufacturing
 
 ---
 
