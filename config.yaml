@@ -17,12 +17,12 @@ llm:
   # Phase 2: 分析レポート生成で使用するモデル
   analyzer:
     model: "gemini-2.5-flash"
-    temperature: 0.1
+    temperature: 0
 
   # メール要約生成で使用するモデル
   email:
     model: "gemini-2.5-flash"
-    temperature: 0.3
+    temperature: 0.1
 
 # --------------------------------------------------------------------
 # Tavily検索設定
@@ -37,8 +37,8 @@ tavily:
 # --------------------------------------------------------------------
 search:
   days_back: 7                # 過去何日分の記事を検索するか
-  min_articles: 3             # 最小記事数
-  max_articles: 5             # 最大記事数
+  min_articles: 5             # 最小記事数
+  max_articles: 7             # 最大記事数
 
   # 検索キーワード（Phase 1で使用）
   # 製造業特化のスキルマネジメント・タレントマネジメントに最適化
@@ -118,7 +118,7 @@ filtering:
   keep_articles_with_unknown_date: true
 
   # 最小信頼度スコア（これ未満の記事を除外）
-  min_confidence_score: 0.0
+  min_confidence_score: 0.4
 
 # --------------------------------------------------------------------
 # デバッグ設定
