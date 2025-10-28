@@ -11,8 +11,9 @@ import json
 import traceback
 import warnings
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 # Suppress LangGraph deprecation warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning, module="langgraph")
@@ -133,6 +134,100 @@ def parse_publication_date(date_str: str):
     return None
 
 
+def _coerce_positive_int(value: Any) -> Optional[int]:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        candidate = int(value)
+        if candidate > 0:
+            return candidate
+    if isinstance(value, str):
+        try:
+            candidate = int(value.strip())
+        except ValueError:
+            return None
+        return candidate if candidate > 0 else None
+    return None
+
+
+def _filter_articles_by_window(
+    parsed_data: Sequence[Dict[str, Any]],
+    *,
+    start_date_limit: date,
+    end_date_limit: date,
+    max_articles: int,
+    keep_unknown_date: bool,
+    fallback_days: Optional[int],
+    is_final_attempt: bool,
+    base_window_days: int,
+) -> Tuple[List[Dict[str, Any]], Optional[int]]:
+    filtered_articles: List[Dict[str, Any]] = []
+    unknown_date_articles: List[Dict[str, Any]] = []
+    fallback_candidates: List[Tuple[datetime, Dict[str, Any]]] = []
+
+    for article in parsed_data:
+        pub_date_str = article.get("published_date")
+        parsed_datetime = parse_publication_date(pub_date_str)
+
+        if not parsed_datetime:
+            message = (
+                f"[WARN] Skipping article with unparsed date: {article.get('title', 'Unknown title')}"
+                f" (published_date={pub_date_str})"
+            )
+            if keep_unknown_date:
+                print(message + " → 記事を保持します")
+                unknown_date_articles.append(article)
+            else:
+                print(message)
+            continue
+
+        published_date = parsed_datetime.date()
+        if start_date_limit <= published_date <= end_date_limit:
+            filtered_articles.append(article)
+        else:
+            print(
+                f"[WARN] Skipping article outside window: {article.get('title', 'Unknown title')}"
+                f" (published_date={pub_date_str})"
+            )
+            fallback_candidates.append((parsed_datetime, article))
+
+    selected_articles: List[Dict[str, Any]] = list(filtered_articles)
+    applied_fallback_days: Optional[int] = None
+
+    effective_fallback_days = _coerce_positive_int(fallback_days)
+    if effective_fallback_days is not None:
+        effective_fallback_days = max(effective_fallback_days, base_window_days)
+
+    if not filtered_articles and is_final_attempt and effective_fallback_days:
+        fallback_start_limit = end_date_limit - timedelta(days=effective_fallback_days - 1)
+
+        eligible_candidates = [
+            (dt, art)
+            for dt, art in fallback_candidates
+            if fallback_start_limit <= dt.date() <= end_date_limit
+        ]
+        eligible_candidates.sort(key=lambda item: item[0], reverse=True)
+        selected_articles = [article for _, article in eligible_candidates[:max_articles]]
+        if selected_articles:
+            applied_fallback_days = effective_fallback_days
+
+    if keep_unknown_date and unknown_date_articles:
+        remaining_slots = max(0, max_articles - len(selected_articles))
+        if remaining_slots > 0:
+            selected_articles.extend(unknown_date_articles[:remaining_slots])
+
+    if (
+        not filtered_articles
+        and applied_fallback_days is None
+        and is_final_attempt
+        and effective_fallback_days
+        and selected_articles
+    ):
+        applied_fallback_days = effective_fallback_days
+
+    return selected_articles[:max_articles], applied_fallback_days
+
+
 
 def search_and_extract_data(target_year: int = None):
     """
@@ -195,6 +290,8 @@ def search_and_extract_data(target_year: int = None):
 
     keep_unknown_date = config.get("filtering.keep_articles_with_unknown_date", False)
     fallback_days_back = config.get("search.fallback_days_back")
+    if fallback_days_back is None:
+        fallback_days_back = config.get("filtering.fallback_days_back")
 
     search_prompt = f"""
 あなたは優秀なリサーチアナリストです。以下のタスクを**効率的に**実行してください。
@@ -407,46 +504,24 @@ URL: [URL]
                 start_date_limit = datetime.strptime(start_date, "%Y-%m-%d").date()
                 end_date_limit = datetime.strptime(end_date, "%Y-%m-%d").date()
 
-                filtered_data = []
-                unknown_date_articles = []
-                fallback_candidates = []
+                selected_articles, applied_fallback_days = _filter_articles_by_window(
+                    parsed_data,
+                    start_date_limit=start_date_limit,
+                    end_date_limit=end_date_limit,
+                    max_articles=max_articles,
+                    keep_unknown_date=keep_unknown_date,
+                    fallback_days=fallback_days_back,
+                    is_final_attempt=attempt == MAX_RETRIES - 1,
+                    base_window_days=days_back,
+                )
 
-                for article in parsed_data:
-                    pub_date_str = article.get("published_date")
-
-                    # Filter articles to the requested 7-day window
-                    parsed_datetime = parse_publication_date(pub_date_str)
-
-                    if not parsed_datetime:
-                        message = (
-                            f"[WARN] Skipping article with unparsed date: {article.get('title', 'Unknown title')}"
-                            f" (published_date={pub_date_str})"
-                        )
-                        if keep_unknown_date:
-                            print(message + " → 記事を保持します")
-                            unknown_date_articles.append(article)
-                        else:
-                            print(message)
-                        continue
-
-                    published_date = parsed_datetime.date()
-
-                    if start_date_limit <= published_date <= end_date_limit:
-                        filtered_data.append(article)
-                    else:
+                if selected_articles:
+                    parsed_data = selected_articles
+                    if applied_fallback_days:
                         print(
-                            f"[WARN] Skipping article outside window: {article.get('title', 'Unknown title')}"
-                            f" (published_date={pub_date_str})"
+                            f"⚠️ 過去{days_back}日以内の記事が見つかりませんでした。"
+                            f" フォールバックとして過去{applied_fallback_days}日以内の記事を使用します。"
                         )
-                        fallback_candidates.append((parsed_datetime, article))
-
-                if filtered_data or (keep_unknown_date and unknown_date_articles):
-                    if keep_unknown_date and unknown_date_articles:
-                        remaining_slots = max(0, max_articles - len(filtered_data))
-                        if remaining_slots > 0:
-                            filtered_data.extend(unknown_date_articles[:remaining_slots])
-
-                    parsed_data = filtered_data[:max_articles]
                     print(
                         f"✅ JSONデータを正常に変換しました。記事数: {len(parsed_data)}件（フィルタリング後）"
                     )
@@ -455,41 +530,6 @@ URL: [URL]
                 print("⚠️ フィルタリング後の記事が0件です。再試行します。")
 
                 if attempt == MAX_RETRIES - 1:
-                    fallback_applied = False
-
-                    if fallback_days_back and isinstance(fallback_days_back, int) and fallback_days_back > 0:
-                        fallback_span = max(fallback_days_back, config.get("search.days_back", 7))
-                        fallback_start_limit = end_date_limit - timedelta(days=fallback_span - 1)
-
-                        fallback_articles = [
-                            (dt, art)
-                            for dt, art in fallback_candidates
-                            if fallback_start_limit <= dt.date() <= end_date_limit
-                        ]
-
-                        fallback_articles.sort(key=lambda item: item[0], reverse=True)
-                        fallback_selected = [art for _, art in fallback_articles[:max_articles]]
-
-                        if fallback_selected or (keep_unknown_date and unknown_date_articles):
-                            parsed_data = fallback_selected
-                            if keep_unknown_date and unknown_date_articles:
-                                remaining_slots = max(0, max_articles - len(parsed_data))
-                                if remaining_slots > 0:
-                                    parsed_data.extend(unknown_date_articles[:remaining_slots])
-
-                            parsed_data = parsed_data[:max_articles]
-
-                            fallback_applied = len(parsed_data) > 0
-
-                            if fallback_applied:
-                                print(
-                                    f"⚠️ 過去{config.get('search.days_back', 7)}日以内の記事が見つかりませんでした。"
-                                    f" フォールバックとして過去{fallback_span}日以内の記事を使用します。"
-                                )
-
-                    if fallback_applied:
-                        break
-
                     raise ValueError("有効な記事が見つかりませんでした。")
 
                 continue
