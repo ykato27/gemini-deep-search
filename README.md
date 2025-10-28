@@ -142,7 +142,9 @@ reports/
    **メール送信用（オプション）**:
    * `GMAIL_USER` - 送信元Gmailアドレス（例: your-email@gmail.com）
    * `GMAIL_APP_PASSWORD` - Googleアプリパスワード（[取得方法](#gmail-app-password%E3%81%AE%E5%8F%96%E5%BE%97%E6%96%B9%E6%B3%95)）
-   * `RECIPIENT_EMAIL` - 送信先メールアドレス
+   * `RECIPIENT_EMAIL` - 送信先メールアドレス（複数指定可能：カンマ区切り）
+     - 単一: `recipient@example.com`
+     - 複数: `recipient1@example.com,recipient2@example.com,recipient3@example.com`
 
 3. 次回スケジュール（毎週日曜）に自動実行され、
    `/reports/` に新しいMarkdownレポートが自動コミット＆メール送信されます。
@@ -187,6 +189,9 @@ export GOOGLE_API_KEY="your_gemini_api_key"
 export GMAIL_USER="your-email@gmail.com"
 export GMAIL_APP_PASSWORD="your_app_password"
 export RECIPIENT_EMAIL="recipient@example.com"
+
+# 複数の送信先を設定する場合（カンマ区切り）
+export RECIPIENT_EMAIL="recipient1@example.com,recipient2@example.com,recipient3@example.com"
 
 # メール送信スクリプトを実行
 python email_report.py
