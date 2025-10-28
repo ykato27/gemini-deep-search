@@ -1,29 +1,100 @@
 [
   {
-    "title": "AI Won't Wait: Put Skills-First Or Get Left Behind - Forbes",
-    "url": "https://www.forbes.com/sites/gradsoflife/2025/10/27/ai-wont-wait-put-skills-first-or-get-left-behind/",
-    "source": "Forbes",
-    "published_date": "2025-10-27",
-    "region": "米国",
+    "title": "Skills Matrix for the Manufacturing Industry | Benefits & Steps",
+    "url": "https://cloudassess.com/blog/skill-matrix-manufacturing/",
+    "source": "CloudAssess Blog",
+    "published_date": "不明",
+    "region": "欧米",
     "category": "feature",
-    "related_companies": [
-      "GradsofLife"
-    ],
-    "summary_japanese": "AIの急速な進化に伴い、企業はスキルを重視した戦略を採用しないと競争力を失う。スキルファーストのアプローチは、適切な人材を迅速に見つけ、役割を再構築し、AIを効果的に導入し、従業員のスキルアップを戦略的に行うために不可欠である。",
+    "related_companies": [],
+    "summary_japanese": "製造業におけるスキルマトリックスの戦略的価値について解説しており、安全性、コンプライアンス、効率性、従業員の適応性を高めるツールとして強調しています。リアルタイムでのスキルマッピング、ダッシュボードによる可視化、LMSとの連携の重要性を述べています。",
     "key_points": [
-      "AIとスキルファースト戦略の重要性",
-      "迅速なカリキュラム更新の必要性",
-      "組織の将来性を確保するためのスキル重視アプローチ"
+      "スキルマトリックスは戦略的資産",
+      "リアルタイムでの能力把握",
+      "運用リスクの低減"
+    ],
+    "tags": [
+      "skills matrix",
+      "manufacturing",
+      "workforce adaptability",
+      "compliance"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業に特化したスキルマトリックスの導入とメリットを詳細に説明しているため。",
+    "confidence_score": 0.8
+  },
+  {
+    "title": "Manufacturing Skills Management Software | Kahuna",
+    "url": "https://kahunaworkforce.com/manufacturing/",
+    "source": "Kahuna Workforce",
+    "published_date": "不明",
+    "region": "欧米",
+    "category": "product_overview",
+    "related_companies": [
+      "Kahuna"
+    ],
+    "summary_japanese": "Kahunaのスキルマネジメントソフトウェアが、製造業におけるスキルとトレーニング要件を効率化し、標準化する方法を紹介しています。スキルギャップの特定と解消、アジャイルな従業員育成、安全とコンプライアンスの確保に貢献すると説明しています。",
+    "key_points": [
+      "スキルギャップの特定と解消",
+      "アジャイルな従業員育成",
+      "安全とコンプライアンス"
+    ],
+    "tags": [
+      "skills management",
+      "manufacturing",
+      "Kahuna",
+      "competency management"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業に特化したスキルマネジメントソフトウェアの機能とメリットを具体的に示しているため。",
+    "confidence_score": 0.9
+  },
+  {
+    "title": "Forging Tomorrow: 5 trends to empower the workforce to thrive in ...",
+    "url": "https://www.engineering.com/forging-tomorrow-5-trends-to-empower-the-workforce-to-thrive-in-Industry-4-0/",
+    "source": "engineering.com",
+    "published_date": "不明",
+    "region": "欧米",
+    "category": "feature",
+    "related_companies": [],
+    "summary_japanese": "インダストリー4.0時代に製造業の従業員が成功するための5つの主要なトレンドを紹介しています。アップスキリングとリスキリングプログラムの重要性、多様な人材プールの構築、テクノロジーの活用などが挙げられています。",
+    "key_points": [
+      "インダストリー4.0のトレンド",
+      "従業員のレジリエンス",
+      "アップスキリングとリスキリング"
+    ],
+    "tags": [
+      "Industry 4.0",
+      "manufacturing",
+      "workforce resilience",
+      "upskilling"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業におけるインダストリー4.0の進展と、それに伴う人材育成のトレンドを具体的に示しているため。",
+    "confidence_score": 0.9
+  },
+  {
+    "title": "AI Workforce: Transforming Manufacturing 4.0 - Training Industry",
+    "url": "https://trainingindustry.com/articles/workforce-development/manufacturing-4-0-bridging-the-skills-gap-in-the-era-of-smart-factories/",
+    "source": "Training Industry",
+    "published_date": "不明",
+    "region": "欧米",
+    "category": "feature",
+    "related_companies": [],
+    "summary_japanese": "製造業4.0におけるAIを活用した人材育成の変革について論じています。AIがスキルギャップを埋め、継続的な学習とイノベーションの文化を育む強力なツールであると強調し、スマートファクトリーでの成功に不可欠であると述べています。",
+    "key_points": [
+      "AIを活用した人材育成",
+      "製造業4.0",
+      "スキルギャップの解消"
     ],
     "tags": [
       "AI",
-      "スキルマネジメント",
-      "タレントマネジメント",
-      "ワークフォース",
-      "デジタル変革"
+      "Manufacturing 4.0",
+      "workforce development",
+      "skills gap"
     ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "過去1週間（2025-10-27公開）のスキルマネジメントに関する最新記事であり、AIとの関連性も高い。",
-    "confidence_score": 0.9
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業4.0におけるAIと人材育成の関連性、特にスキルギャップ解消への貢献に焦点を当てているため。",
+    "confidence_score": 0.8
   }
 ]
