@@ -10,7 +10,9 @@ import time
 import json
 import traceback
 import warnings
-from datetime import datetime, timedelta
+import re
+from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 
 # Suppress LangGraph deprecation warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning, module="langgraph")
@@ -41,19 +43,63 @@ def parse_publication_date(date_str: str):
     if '\ufffd' in normalized:
         return None
 
+    # Handle relative expressions such as "3 days ago" or "last week"
+    relative_match = re.match(r"^(\d{1,2})\s+(day|days|hour|hours|week|weeks)\s+ago$", lowered)
+    if relative_match:
+        value, unit = relative_match.groups()
+        amount = int(value)
+        now = datetime.now()
+        if unit.startswith("day"):
+            return now - timedelta(days=amount)
+        if unit.startswith("hour"):
+            return now - timedelta(hours=amount)
+        if unit.startswith("week"):
+            return now - timedelta(weeks=amount)
+
+    if lowered in {"yesterday", "昨日"}:
+        return datetime.now() - timedelta(days=1)
+    if lowered in {"today", "本日", "きょう", "今日"}:
+        return datetime.now()
+
+    # Handle Japanese date expressions such as "2024年5月20日"
+    jp_date_match = re.match(r"^(\d{4})年(\d{1,2})月(\d{1,2})日$", normalized)
+    if jp_date_match:
+        year, month, day = map(int, jp_date_match.groups())
+        return datetime(year, month, day)
+
+    # Handle compact numeric formats such as 20240520
+    if re.fullmatch(r"\d{8}", normalized):
+        try:
+            return datetime.strptime(normalized, "%Y%m%d")
+        except ValueError:
+            pass
+
     date_formats = [
         "%Y-%m-%d",
         "%Y/%m/%d",
         "%Y.%m.%d",
+        "%d %B %Y",
+        "%d %b %Y",
+        "%B %d, %Y",
+        "%b %d, %Y",
+        "%B %d %Y",
+        "%b %d %Y",
+        "%m/%d/%Y",
+        "%m-%d-%Y",
+        "%d/%m/%Y",
+        "%d-%m-%Y",
         "%Y-%m",
         "%Y/%m",
         "%Y.%m",
         "%Y",
     ]
 
+    # Remove ordinal suffixes from English dates (e.g., "May 5th, 2024")
+    normalized_no_suffix = re.sub(r"(\d+)(st|nd|rd|th)", r"\1", normalized, flags=re.IGNORECASE)
+
     for fmt in date_formats:
         try:
-            parsed = datetime.strptime(normalized, fmt)
+            parsed = datetime.strptime(normalized_no_suffix, fmt)
             if fmt in {"%Y-%m", "%Y/%m", "%Y.%m"}:
                 return parsed.replace(day=1)
             if fmt == "%Y":
@@ -61,6 +107,28 @@ def parse_publication_date(date_str: str):
             return parsed
         except ValueError:
             continue
+
+    # Try ISO 8601 style formats (with or without timezone)
+    iso_candidate = normalized
+    if iso_candidate.endswith("Z"):
+        iso_candidate = iso_candidate[:-1] + "+00:00"
+
+    try:
+        parsed = datetime.fromisoformat(iso_candidate)
+        if parsed.tzinfo is not None:
+            parsed = parsed.astimezone(timezone.utc)
+        return parsed
+    except ValueError:
+        pass
+
+    # Fallback to RFC 2822 and other email style date strings
+    try:
+        parsed = parsedate_to_datetime(normalized_no_suffix)
+        if parsed.tzinfo is not None:
+            parsed = parsed.astimezone(timezone.utc)
+        return parsed
+    except (TypeError, ValueError, OverflowError):
+        pass
 
     return None
 
@@ -124,6 +192,9 @@ def search_and_extract_data(target_year: int = None):
         "talent management workforce news"
     ])
     keywords_str = "\n   - ".join([f'"{kw}"' for kw in keywords])
+
+    keep_unknown_date = config.get("filtering.keep_articles_with_unknown_date", False)
+    fallback_days_back = config.get("search.fallback_days_back")
 
     search_prompt = f"""
 あなたは優秀なリサーチアナリストです。以下のタスクを**効率的に**実行してください。
@@ -337,6 +408,9 @@ URL: [URL]
                 end_date_limit = datetime.strptime(end_date, "%Y-%m-%d").date()
 
                 filtered_data = []
+                unknown_date_articles = []
+                fallback_candidates = []
+
                 for article in parsed_data:
                     pub_date_str = article.get("published_date")
 
@@ -344,28 +418,81 @@ URL: [URL]
                     parsed_datetime = parse_publication_date(pub_date_str)
 
                     if not parsed_datetime:
-                        # 日付が不明な場合でも記事を保持（Tavily検索が既に期間限定されているため）
-                        print(f"[INFO] Keeping article with unparsed date: {article.get('title', 'Unknown title')} (published_date={pub_date_str})")
-                        filtered_data.append(article)
+                        message = (
+                            f"[WARN] Skipping article with unparsed date: {article.get('title', 'Unknown title')}"
+                            f" (published_date={pub_date_str})"
+                        )
+                        if keep_unknown_date:
+                            print(message + " → 記事を保持します")
+                            unknown_date_articles.append(article)
+                        else:
+                            print(message)
                         continue
 
                     published_date = parsed_datetime.date()
 
-                    if published_date < start_date_limit or published_date > end_date_limit:
-                        print(f"[WARN] Skipping article outside window: {article.get('title', 'Unknown title')} (published_date={pub_date_str})")
-                        continue
+                    if start_date_limit <= published_date <= end_date_limit:
+                        filtered_data.append(article)
+                    else:
+                        print(
+                            f"[WARN] Skipping article outside window: {article.get('title', 'Unknown title')}"
+                            f" (published_date={pub_date_str})"
+                        )
+                        fallback_candidates.append((parsed_datetime, article))
 
-                    filtered_data.append(article)
-                parsed_data = filtered_data
+                if filtered_data or (keep_unknown_date and unknown_date_articles):
+                    if keep_unknown_date and unknown_date_articles:
+                        remaining_slots = max(0, max_articles - len(filtered_data))
+                        if remaining_slots > 0:
+                            filtered_data.extend(unknown_date_articles[:remaining_slots])
 
-                if len(parsed_data) > 0:
-                    print(f"✅ JSONデータを正常に変換しました。記事数: {len(parsed_data)}件（フィルタリング後）")
+                    parsed_data = filtered_data[:max_articles]
+                    print(
+                        f"✅ JSONデータを正常に変換しました。記事数: {len(parsed_data)}件（フィルタリング後）"
+                    )
                     break
-                else:
-                    print("⚠️ フィルタリング後の記事が0件です。再試行します。")
-                    if attempt == MAX_RETRIES - 1:
-                        raise ValueError("有効な記事が見つかりませんでした。")
-                    continue
+
+                print("⚠️ フィルタリング後の記事が0件です。再試行します。")
+
+                if attempt == MAX_RETRIES - 1:
+                    fallback_applied = False
+
+                    if fallback_days_back and isinstance(fallback_days_back, int) and fallback_days_back > 0:
+                        fallback_span = max(fallback_days_back, config.get("search.days_back", 7))
+                        fallback_start_limit = end_date_limit - timedelta(days=fallback_span - 1)
+
+                        fallback_articles = [
+                            (dt, art)
+                            for dt, art in fallback_candidates
+                            if fallback_start_limit <= dt.date() <= end_date_limit
+                        ]
+
+                        fallback_articles.sort(key=lambda item: item[0], reverse=True)
+                        fallback_selected = [art for _, art in fallback_articles[:max_articles]]
+
+                        if fallback_selected or (keep_unknown_date and unknown_date_articles):
+                            parsed_data = fallback_selected
+                            if keep_unknown_date and unknown_date_articles:
+                                remaining_slots = max(0, max_articles - len(parsed_data))
+                                if remaining_slots > 0:
+                                    parsed_data.extend(unknown_date_articles[:remaining_slots])
+
+                            parsed_data = parsed_data[:max_articles]
+
+                            fallback_applied = len(parsed_data) > 0
+
+                            if fallback_applied:
+                                print(
+                                    f"⚠️ 過去{config.get('search.days_back', 7)}日以内の記事が見つかりませんでした。"
+                                    f" フォールバックとして過去{fallback_span}日以内の記事を使用します。"
+                                )
+
+                    if fallback_applied:
+                        break
+
+                    raise ValueError("有効な記事が見つかりませんでした。")
+
+                continue
             else:
                 raise ValueError("JSONの形式が期待通り（非空の配列）ではありません。")
 
