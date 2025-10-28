@@ -15,11 +15,13 @@ Google Gemini（Generative AI）＋ Tavily（ウェブ検索API）＋ LangGraph�
 4. **Deep Research風の高品質レポート（Markdown）を自動生成**
 5. GitHub Actionsによる**毎週自動実行＆レポートの自動コミット**
 
-### ✨ 最新の改善点（2025-10-21更新）
+### ✨ 最新の改善点（2025-10-28更新）
 
-- ✅ **日付フィルタリング**: Tavily検索に `time_range="week"` を追加し、確実に過去7日間のデータのみを取得
-- ✅ **検索範囲の拡大**: 25件/検索 × 20-25回の多様な検索で包括的な情報収集
-- ✅ **多様なキーワード**: 基本/技術/製造業/業界トレンドの4カテゴリで体系的に検索
+- ✅ **設定ファイル対応**: `config.yaml` でシステムパラメータを一元管理（ハードコーディング解消）
+- ✅ **複数受信者対応**: メール送信先をカンマ区切りで複数指定可能
+- ✅ **日付フィルタリング**: Tavily検索で過去N日間のデータのみを取得（設定可能）
+- ✅ **検索キーワードのカスタマイズ**: `config.yaml` でキーワードを自由に追加・変更可能
+- ✅ **柔軟なモデル設定**: 検索/分析/メール用にLLMモデルとtemperatureを個別設定可能
 - ✅ **戦略的レポート**: エグゼクティブサマリー、トレンド分析、製造業向け行動提言を含む高品質レポート
 - ✅ **API制限対応**: Gemini 2.5 Flash (10 RPM, 250 RPD) の制限内で安全に動作
 
@@ -29,12 +31,15 @@ Google Gemini（Generative AI）＋ Tavily（ウェブ検索API）＋ LangGraph�
 
 ```
 gemini-deep-search/
+├── config.yaml                    # システム設定ファイル（★NEW）
 ├── weekly_research.py            # メインスクリプト（週次レポート生成）
 ├── email_report.py                # メール送信スクリプト
 ├── analyze_trends.py              # トレンド分析スクリプト
 ├── create_test_data.py            # テストデータ作成スクリプト
-├── research_searcher.py           # Phase1: 検索・データ収集
-├── research_analyzer.py           # Phase2: 分析・レポート生成
+├── src/                           # ソースコード
+│   ├── config_loader.py           # 設定ファイル読み込みユーティリティ（★NEW）
+│   ├── research_searcher.py       # Phase1: 検索・データ収集
+│   └── research_analyzer.py       # Phase2: 分析・レポート生成
 ├── app.py                         # Streamlitダッシュボード（メイン）
 ├── pages/                         # Streamlitマルチページ
 │   ├── 1_🏠_Home.py              # 概要ダッシュボード
@@ -82,13 +87,64 @@ pip install -r requirements.txt
 
 ```bash
 # レポート生成用
-pip install langchain-google-genai langchain-tavily langgraph python-dotenv
+pip install langchain-google-genai langchain-tavily langgraph python-dotenv PyYAML
 
 # ダッシュボード用
 pip install streamlit pandas plotly
 ```
 
-### 3. APIキーを設定
+### 3. システム設定（config.yaml）
+
+プロジェクトルートに `config.yaml` があります。このファイルで、以下のパラメータを一元管理できます：
+
+**主な設定項目**:
+- **LLMモデル設定**: モデル名、temperature（検索/分析/メール用に個別設定）
+- **Tavily検索設定**: max_results、search_depth、include_raw_content
+- **検索パラメータ**: 検索期間（days_back）、記事数、キーワード
+- **エージェント設定**: リトライ回数、待機時間、再帰制限
+- **データ保存先**: JSONファイルパス、レポート保存ディレクトリ
+- **メール設定**: SMTPサーバー、件名テンプレート、GitHubリポジトリURL
+- **レポート設定**: タイトルテンプレート、ファイル名形式
+
+**デフォルト設定**（`config.yaml`）:
+```yaml
+llm:
+  searcher:
+    model: "gemini-2.5-flash"
+    temperature: 0
+  analyzer:
+    model: "gemini-2.5-flash"
+    temperature: 0.1
+  email:
+    model: "gemini-2.5-flash"
+    temperature: 0.3
+
+tavily:
+  max_results: 5
+  search_depth: "advanced"
+  include_raw_content: false
+
+search:
+  days_back: 7
+  min_articles: 3
+  max_articles: 5
+  keywords:
+    - "skills management latest trends"
+    - "talent management workforce news"
+
+agent:
+  max_retries: 3
+  initial_delay: 60
+  recursion_limit: 30
+```
+
+**カスタマイズ方法**:
+設定を変更したい場合は、`config.yaml` を直接編集してください。例：
+- 検索期間を14日間に変更: `search.days_back: 14`
+- より多くの記事を収集: `tavily.max_results: 10`
+- 検索キーワードを追加: `search.keywords` にキーワードを追加
+
+### 4. APIキーを設定
 
 環境変数に以下を設定してください。
 

@@ -12,8 +12,8 @@ from datetime import datetime
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-# JSONファイルパス (検索フェーズと共有)
-RESEARCH_DATA_PATH = "reports/research_data.json"
+# 設定ファイル読み込み
+from config_loader import get_config
 
 def generate_analysis_report(target_year: int = None):
     """収集したデータから週次レポートを生成する"""
@@ -21,19 +21,23 @@ def generate_analysis_report(target_year: int = None):
     print("🧠 Phase 2: 分析レポート構造化を開始")
     print("=" * 60)
 
+    # --- 0. 設定ファイル読み込み ---
+    config = get_config()
+
     # --- 1. 環境変数の確認 ---
     google_api_key = os.environ.get("GOOGLE_API_KEY")
     if not google_api_key:
         print("❌ エラー: GOOGLE_API_KEYが設定されていません")
         sys.exit(1)
-    
+
     # --- 2. JSONデータの読み込み ---
-    if not os.path.exists(RESEARCH_DATA_PATH):
-        print(f"❌ エラー: 検索データファイルが見つかりません: {RESEARCH_DATA_PATH}")
+    research_data_path = config.get("data.research_data_path", "reports/research_data.json")
+    if not os.path.exists(research_data_path):
+        print(f"❌ エラー: 検索データファイルが見つかりません: {research_data_path}")
         print("Phase 1 (research_searcher.py)が正常に実行され、ファイルが作成されているか確認してください。")
         sys.exit(1)
 
-    with open(RESEARCH_DATA_PATH, "r", encoding="utf-8") as f:
+    with open(research_data_path, "r", encoding="utf-8") as f:
         raw_data = json.load(f)
 
     if not raw_data:
@@ -42,13 +46,13 @@ def generate_analysis_report(target_year: int = None):
 
     # JSONデータをプロンプトに組み込むために文字列化
     data_string = json.dumps(raw_data, indent=2, ensure_ascii=False)
-    
+
     print(f"✓ {len(raw_data)}件のデータが読み込まれました。")
 
     # --- 3. LLMの準備 ---
     model = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        temperature=0.1, # 分析には少し創造性を許容
+        model=config.get("llm.analyzer.model", "gemini-2.5-flash"),
+        temperature=config.get("llm.analyzer.temperature", 0.1),
     )
     print("✓ LLMを設定しました")
 
@@ -269,18 +273,27 @@ def generate_analysis_report(target_year: int = None):
         sys.exit(1)
 
     # --- 6. レポートの保存 ---
-    os.makedirs("reports", exist_ok=True)
+    reports_dir = config.get("data.reports_dir", "reports")
+    os.makedirs(reports_dir, exist_ok=True)
     date_str = today.strftime("%Y%m%d")
-    file_name = f"reports/週次レポート_{year}_{date_str}.md"
+
+    # ファイル名テンプレートから生成
+    filename_template = config.get("report.filename_template", "週次レポート_{year}_{date}.md")
+    file_name = os.path.join(reports_dir, filename_template.format(year=year, date=date_str))
+
+    # レポートタイトル
+    title_template = config.get("report.title_template", "週次レポート: スキルマネジメント・タレントマネジメント動向 ({year}年版)")
+    report_title = title_template.format(year=year)
+    author = config.get("report.author", "主席コンサルタントによる分析")
 
     try:
         with open(file_name, "w", encoding="utf-8") as f:
             # バッジとメタデータを含むリッチなヘッダーを作成
             header = (
-                f"# 📊 週次レポート: スキルマネジメント・タレントマネジメント動向 ({year}年版)\n\n"
+                f"# 📊 {report_title}\n\n"
                 f"![調査件数](https://img.shields.io/badge/調査件数-{len(raw_data)}件-blue) "
                 f"![生成日](https://img.shields.io/badge/生成日-{today.strftime('%Y.%m.%d')}-green) "
-                f"![分析者](https://img.shields.io/badge/分析者-主席コンサルタント-orange)\n\n"
+                f"![分析者](https://img.shields.io/badge/分析者-{author.replace(' ', '_')}-orange)\n\n"
                 f"**📅 生成日時**: {today.strftime('%Y年%m月%d日 %H:%M:%S')}  \n"
                 f"**📈 調査対象**: 海外HR・タレントマネジメントトレンド  \n"
                 f"**🎯 対象読者**: 製造業 経営層・人事部門\n\n"

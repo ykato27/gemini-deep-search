@@ -22,8 +22,8 @@ from langchain_tavily import TavilySearch
 # Note: create_react_agent shows deprecation warning but still works in current version
 from langgraph.prebuilt import create_react_agent
 
-# JSONファイルパス (分析フェーズと共有)
-RESEARCH_DATA_PATH = "reports/research_data.json"
+# 設定ファイル読み込み
+from config_loader import get_config
 
 
 def parse_publication_date(date_str: str):
@@ -76,6 +76,9 @@ def search_and_extract_data(target_year: int = None):
     print("🚀 Phase 1: 事例検索とデータ抽出を開始")
     print("=" * 60)
 
+    # --- 0. 設定ファイル読み込み ---
+    config = get_config()
+
     # --- 1. 環境変数の確認 ---
     google_api_key = os.environ.get("GOOGLE_API_KEY")
     tavily_api_key = os.environ.get("TAVILY_API_KEY")
@@ -87,46 +90,52 @@ def search_and_extract_data(target_year: int = None):
 
     # --- 2. 検索対象年の設定と期間の計算 ---
     today = datetime.now()
-    start_date = (today - timedelta(days=7)).strftime("%Y-%m-%d")
+    days_back = config.get("search.days_back", 7)
+    start_date = (today - timedelta(days=days_back)).strftime("%Y-%m-%d")
     end_date = today.strftime("%Y-%m-%d")
     year = target_year or today.year
-    
+
     print(f"📅 検索対象年: {year}")
-    print(f"🗓️ 検索開始日: {start_date} (過去1週間)")
+    print(f"🗓️ 検索開始日: {start_date} (過去{days_back}日間)")
 
     # --- 3. LLMとツールの準備 ---
     model = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        temperature=0,
+        model=config.get("llm.searcher.model", "gemini-2.5-flash"),
+        temperature=config.get("llm.searcher.temperature", 0),
     )
 
     search_tool = TavilySearch(
-        max_results=5,  # 結果数を減らしてトークンを節約
-        search_depth="advanced",  # basicに変更してトークンを節約
-        include_raw_content=False,  # raw contentを無効化してトークンを節約
-        # time_range="week"
+        max_results=config.get("tavily.max_results", 5),
+        search_depth=config.get("tavily.search_depth", "advanced"),
+        include_raw_content=config.get("tavily.include_raw_content", False),
         start_date=start_date,
-        # end_date=end_date,   
     )
     tools = [search_tool]
-    
+
     # --- 4. エージェントの作成 ---
     agent_executor = create_react_agent(model, tools)
     print("✓ ReActエージェントを設定しました")
 
     # --- 5. Phase 1: 非構造化テキスト抽出プロンプト（簡潔版） ---
+    min_articles = config.get("search.min_articles", 3)
+    max_articles = config.get("search.max_articles", 5)
+    keywords = config.get("search.keywords", [
+        "skills management latest trends",
+        "talent management workforce news"
+    ])
+    keywords_str = "\n   - ".join([f'"{kw}"' for kw in keywords])
+
     search_prompt = f"""
 あなたは優秀なリサーチアナリストです。以下のタスクを**効率的に**実行してください。
 
 # タスク
-過去1週間（{start_date}以降）のスキルマネジメント・タレントマネジメント関連の欧米記事を**3～5件**収集し、簡潔に情報を抽出してください。
+過去{days_back}日間（{start_date}以降）のスキルマネジメント・タレントマネジメント関連の欧米記事を**{min_articles}～{max_articles}件**収集し、簡潔に情報を抽出してください。
 
 # 検索方法
 1. 以下のキーワードで**2～3回**だけ検索してください：
-   - "skills management latest trends"
-   - "talent management workforce news"
+   - {keywords_str}
 
-2. 検索結果から**最も関連性の高い3～5記事**を選んでください
+2. 検索結果から**最も関連性の高い{min_articles}～{max_articles}記事**を選んでください
 
 3. **web_fetchツールは使用せず**、検索結果のスニペット情報のみを使用してください（トークン節約のため）
 
@@ -151,19 +160,20 @@ URL: [URL]
 ---
 
 # 重要な制約
-- **公開日が{start_date}以降（過去7日以内）の記事のみを選択してください**
+- **公開日が{start_date}以降（過去{days_back}日以内）の記事のみを選択してください**
 - 古い記事（例：「2025年の予測」を扱った数ヶ月前の記事）は除外してください
 - 検索は**最小限**（2～3回）に抑えてください
 - web_fetchは**使用しない**でください
-- 記事数は**3～5件**で十分です
+- 記事数は**{min_articles}～{max_articles}件**で十分です
 - 簡潔に情報をまとめてください
 """
-    
+
     print("🔍 最新動向調査を開始します（トークン節約モード）...")
 
     # --- 6. Phase 1: エージェントの実行（テキスト抽出） ---
-    MAX_RETRIES = 3  # 再試行回数を減らす
-    INITIAL_DELAY = 60  # 初期待機時間を60秒に延長
+    MAX_RETRIES = config.get("agent.max_retries", 3)
+    INITIAL_DELAY = config.get("agent.initial_delay", 60)
+    recursion_limit = config.get("agent.recursion_limit", 30)
     raw_text_output = None
 
     for attempt in range(MAX_RETRIES):
@@ -177,7 +187,7 @@ URL: [URL]
             print(f"📡 エージェント実行中... (試行 {attempt + 1}/{MAX_RETRIES})")
             response = agent_executor.invoke(
                 {"messages": [HumanMessage(content=search_prompt)]},
-                config={"recursion_limit": 30}  # 再帰制限を設定してトークンを節約
+                config={"recursion_limit": recursion_limit}
             )
             
             messages = response.get("messages", [])
@@ -195,9 +205,11 @@ URL: [URL]
                     # 従来の文字列形式
                     raw_text_output = content
 
-                # デバッグ: 実際の出力内容を表示（最初の500文字）
-                print(f"\n📊 デバッグ: 出力文字数 = {len(raw_text_output)}")
-                print(f"📊 デバッグ: 出力プレビュー（最初の500文字）:\n{raw_text_output[:500]}\n")
+                # デバッグ: 実際の出力内容を表示
+                preview_length = config.get("debug.preview_length", 500)
+                if config.get("debug.enabled", False):
+                    print(f"\n📊 デバッグ: 出力文字数 = {len(raw_text_output)}")
+                    print(f"📊 デバッグ: 出力プレビュー（最初の{preview_length}文字）:\n{raw_text_output[:preview_length]}\n")
 
                 # テキスト出力の簡易検証
                 if len(raw_text_output) > 200 and ("記事" in raw_text_output or "タイトル" in raw_text_output):
@@ -374,19 +386,21 @@ URL: [URL]
             continue
 
     # --- 8. JSONデータの保存 ---
-    os.makedirs("reports", exist_ok=True)
-    
+    research_data_path = config.get("data.research_data_path", "reports/research_data.json")
+    reports_dir = os.path.dirname(research_data_path) or "reports"
+    os.makedirs(reports_dir, exist_ok=True)
+
     try:
-        with open(RESEARCH_DATA_PATH, "w", encoding="utf-8") as f:
+        with open(research_data_path, "w", encoding="utf-8") as f:
             json.dump(parsed_data, f, indent=2, ensure_ascii=False)
 
         print("\n" + "=" * 60)
         print("✅ データ収集完了")
-        print(f"💾 保存先: {RESEARCH_DATA_PATH}")
+        print(f"💾 保存先: {research_data_path}")
         print(f"📊 記事数: {len(parsed_data)}件")
         print("=" * 60 + "\n")
-        
-        return RESEARCH_DATA_PATH
+
+        return research_data_path
 
     except Exception as e:
         print(f"\n❌ JSONファイルの保存中にエラーが発生しました: {str(e)}")
