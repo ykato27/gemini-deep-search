@@ -10,7 +10,9 @@ import time
 import json
 import traceback
 import warnings
-from datetime import datetime, timedelta
+import re
+from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 
 # Suppress LangGraph deprecation warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning, module="langgraph")
@@ -41,19 +43,63 @@ def parse_publication_date(date_str: str):
     if '\ufffd' in normalized:
         return None
 
+    # Handle relative expressions such as "3 days ago" or "last week"
+    relative_match = re.match(r"^(\d{1,2})\s+(day|days|hour|hours|week|weeks)\s+ago$", lowered)
+    if relative_match:
+        value, unit = relative_match.groups()
+        amount = int(value)
+        now = datetime.now()
+        if unit.startswith("day"):
+            return now - timedelta(days=amount)
+        if unit.startswith("hour"):
+            return now - timedelta(hours=amount)
+        if unit.startswith("week"):
+            return now - timedelta(weeks=amount)
+
+    if lowered in {"yesterday", "昨日"}:
+        return datetime.now() - timedelta(days=1)
+    if lowered in {"today", "本日", "きょう", "今日"}:
+        return datetime.now()
+
+    # Handle Japanese date expressions such as "2024年5月20日"
+    jp_date_match = re.match(r"^(\d{4})年(\d{1,2})月(\d{1,2})日$", normalized)
+    if jp_date_match:
+        year, month, day = map(int, jp_date_match.groups())
+        return datetime(year, month, day)
+
+    # Handle compact numeric formats such as 20240520
+    if re.fullmatch(r"\d{8}", normalized):
+        try:
+            return datetime.strptime(normalized, "%Y%m%d")
+        except ValueError:
+            pass
+
     date_formats = [
         "%Y-%m-%d",
         "%Y/%m/%d",
         "%Y.%m.%d",
+        "%d %B %Y",
+        "%d %b %Y",
+        "%B %d, %Y",
+        "%b %d, %Y",
+        "%B %d %Y",
+        "%b %d %Y",
+        "%m/%d/%Y",
+        "%m-%d-%Y",
+        "%d/%m/%Y",
+        "%d-%m-%Y",
         "%Y-%m",
         "%Y/%m",
         "%Y.%m",
         "%Y",
     ]
 
+    # Remove ordinal suffixes from English dates (e.g., "May 5th, 2024")
+    normalized_no_suffix = re.sub(r"(\d+)(st|nd|rd|th)", r"\1", normalized, flags=re.IGNORECASE)
+
     for fmt in date_formats:
         try:
-            parsed = datetime.strptime(normalized, fmt)
+            parsed = datetime.strptime(normalized_no_suffix, fmt)
             if fmt in {"%Y-%m", "%Y/%m", "%Y.%m"}:
                 return parsed.replace(day=1)
             if fmt == "%Y":
@@ -61,6 +107,28 @@ def parse_publication_date(date_str: str):
             return parsed
         except ValueError:
             continue
+
+    # Try ISO 8601 style formats (with or without timezone)
+    iso_candidate = normalized
+    if iso_candidate.endswith("Z"):
+        iso_candidate = iso_candidate[:-1] + "+00:00"
+
+    try:
+        parsed = datetime.fromisoformat(iso_candidate)
+        if parsed.tzinfo is not None:
+            parsed = parsed.astimezone(timezone.utc)
+        return parsed
+    except ValueError:
+        pass
+
+    # Fallback to RFC 2822 and other email style date strings
+    try:
+        parsed = parsedate_to_datetime(normalized_no_suffix)
+        if parsed.tzinfo is not None:
+            parsed = parsed.astimezone(timezone.utc)
+        return parsed
+    except (TypeError, ValueError, OverflowError):
+        pass
 
     return None
 
@@ -344,9 +412,10 @@ URL: [URL]
                     parsed_datetime = parse_publication_date(pub_date_str)
 
                     if not parsed_datetime:
-                        # 日付が不明な場合でも記事を保持（Tavily検索が既に期間限定されているため）
-                        print(f"[INFO] Keeping article with unparsed date: {article.get('title', 'Unknown title')} (published_date={pub_date_str})")
-                        filtered_data.append(article)
+                        print(
+                            f"[WARN] Skipping article with unparsed date: {article.get('title', 'Unknown title')}"
+                            f" (published_date={pub_date_str})"
+                        )
                         continue
 
                     published_date = parsed_datetime.date()
