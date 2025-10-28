@@ -14,12 +14,18 @@ from pathlib import Path
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 
+# プロジェクトルートをパスに追加（設定ファイル読み込みのため）
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+from config_loader import get_config
+
 
 def find_latest_report():
     """最新のレポートファイルを検索"""
-    reports_dir = Path("reports")
+    config = get_config()
+    reports_dir = Path(config.get("data.reports_dir", "reports"))
+
     if not reports_dir.exists():
-        print("❌ エラー: reports/ ディレクトリが存在しません")
+        print(f"❌ エラー: {reports_dir}/ ディレクトリが存在しません")
         sys.exit(1)
 
     # 週次レポートファイルを検索
@@ -62,14 +68,16 @@ def generate_email_summary(report_content, article_count):
     """Gemini APIでメール用の要約を生成（指定フォーマット）"""
     print("📝 Gemini APIでメール用の要約を生成中...")
 
+    config = get_config()
+
     google_api_key = os.environ.get("GOOGLE_API_KEY")
     if not google_api_key:
         print("❌ エラー: GOOGLE_API_KEYが設定されていません")
         sys.exit(1)
 
     model = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        temperature=0.3,
+        model=config.get("llm.email.model", "gemini-2.5-flash"),
+        temperature=config.get("llm.email.temperature", 0.3),
     )
 
     prompt = f"""
@@ -165,14 +173,18 @@ URLは必ず<a href="...">タグでハイパーリンクにしてください。
 
 def generate_github_link(filename):
     """GitHubのファイルリンクを生成"""
-    repo_url = "https://github.com/ykato27/gemini-deep-search"
-    file_path = f"reports/{filename}"
+    config = get_config()
+    repo_url = config.get("email.github_repo_url", "https://github.com/ykato27/gemini-deep-search")
+    reports_dir = config.get("data.reports_dir", "reports")
+    file_path = f"{reports_dir}/{filename}"
     return f"{repo_url}/blob/main/{file_path}"
 
 
 def send_email(summary, report_info, github_link):
     """Gmail経由でメールを送信"""
     print("📧 メール送信準備中...")
+
+    config = get_config()
 
     # 環境変数から設定を取得
     gmail_user = os.environ.get("GMAIL_USER")
@@ -198,7 +210,10 @@ def send_email(summary, report_info, github_link):
     msg = MIMEMultipart()
     msg["From"] = gmail_user
     msg["To"] = ", ".join(recipients)  # 複数の受信者をカンマ区切りで設定
-    msg["Subject"] = f"{formatted_date} 週次レポート｜海外スキルベース調査レポート"
+
+    # 件名テンプレート
+    subject_template = config.get("email.subject_template", "{date} 週次レポート｜海外スキルベース調査レポート")
+    msg["Subject"] = subject_template.format(date=formatted_date)
 
     # メール本文（HTML形式）
     # summaryがすでにHTMLの<html>...</html>を含んでいる場合、bodyタグの中身だけを抽出
@@ -231,9 +246,12 @@ def send_email(summary, report_info, github_link):
     msg.attach(MIMEText(body, "html", "utf-8"))
 
     # Gmail SMTP経由で送信
+    smtp_server = config.get("email.smtp.server", "smtp.gmail.com")
+    smtp_port = config.get("email.smtp.port", 465)
+
     try:
         print("📤 メール送信中...")
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
             server.login(gmail_user, gmail_password)
             server.send_message(msg)
 
