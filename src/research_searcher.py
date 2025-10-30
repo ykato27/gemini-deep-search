@@ -176,7 +176,7 @@ def search_and_extract_data(target_year: int = None):
         max_results=config.get("tavily.max_results", 5),
         search_depth=config.get("tavily.search_depth", "advanced"),
         include_raw_content=config.get("tavily.include_raw_content", False),
-        start_date=start_date,
+        # start_dateを指定せず、Tavilyに最新の記事を取得させる
     )
     tools = [search_tool]
 
@@ -223,8 +223,12 @@ def search_and_extract_data(target_year: int = None):
         search_prompt = f"""
 あなたは優秀なリサーチアナリストです。以下のタスクを**効率的に**実行してください。
 
+# 重要な前提情報
+**今日の日付: {end_date}**
+この日付を基準に、過去{days_back}日間の記事を検索してください。
+
 # タスク
-過去{days_back}日間（{start_date}以降）の**製造業向けスキルマネジメント・タレントマネジメント**関連の欧米記事を**{articles_per_batch}件**収集し、簡潔に情報を抽出してください。
+**過去{days_back}日間**（今日から{days_back}日前まで）の**製造業向けスキルマネジメント・タレントマネジメント**関連の欧米記事を**{articles_per_batch}件**収集し、簡潔に情報を抽出してください。
 
 # 検索方法
 1. 以下のキーワードで検索してください：
@@ -261,8 +265,8 @@ URL: [URL]
 ---
 
 # 重要な制約
-- **公開日が{start_date}以降（過去{days_back}日以内）の記事のみを選択してください**
-- 古い記事（例：「2025年の予測」を扱った数ヶ月前の記事）は除外してください
+- **最近の記事（過去{days_back}日以内）を優先的に選択してください**
+- 古い記事は除外してください
 - **製造業・工場・プラント関連の記事を優先的に選択してください**
 - 検索は**効率的に**実施してください
 - web_fetchは**使用しない**でください
