@@ -2,99 +2,525 @@
   {
     "title": "Skills Matrix for the Manufacturing Industry | Benefits & Steps",
     "url": "https://cloudassess.com/blog/skill-matrix-manufacturing/",
-    "source": "CloudAssess Blog",
-    "published_date": "不明",
-    "region": "欧米",
+    "source": "CloudAssess",
+    "published_date": null,
+    "region": null,
     "category": "feature",
     "related_companies": [],
-    "summary_japanese": "製造業におけるスキルマトリックスの戦略的価値について解説しており、安全性、コンプライアンス、効率性、従業員の適応性を高めるツールとして強調しています。リアルタイムでのスキルマッピング、ダッシュボードによる可視化、LMSとの連携の重要性を述べています。",
+    "summary_japanese": "製造業におけるスキルマトリックスは、単なるトレーニングツールではなく、安全性、コンプライアンス、効率性、労働力の適応性をサポートする戦略的資産です。リアルタイムのスキルマッピングと追跡により、マネージャーはチームの能力を明確に把握し、運用リスクを低減し、将来にわたって通用する労働力を構築できます。",
     "key_points": [
-      "スキルマトリックスは戦略的資産",
-      "リアルタイムでの能力把握",
-      "運用リスクの低減"
+      "製造業におけるスキルマトリックスの戦略的価値",
+      "リアルタイムの能力マッピングと可視化",
+      "運用リスクの低減と労働力の将来性確保"
     ],
     "tags": [
       "skills matrix",
       "manufacturing",
-      "workforce adaptability",
-      "compliance"
+      "workforce management",
+      "compliance",
+      "efficiency"
     ],
     "manufacturing_relevance": "あり",
-    "relevance_reason": "製造業に特化したスキルマトリックスの導入とメリットを詳細に説明しているため。",
+    "relevance_reason": "製造業に特化したスキルマトリックスの利点と導入ステップを詳細に解説しているため。",
     "confidence_score": 0.8
+  },
+  {
+    "title": "Skills Management and Training Matrix Software - Augmentir",
+    "url": "https://www.augmentir.com/product/skills-management",
+    "source": "Augmentir",
+    "published_date": null,
+    "region": null,
+    "category": "product_overview",
+    "related_companies": [
+      "Augmentir"
+    ],
+    "summary_japanese": "Augmentirは、製造業向けの包括的なスキル管理ツールおよびトレーニングマトリックスソフトウェアプラットフォームを提供しています。これにより、スキルギャップの特定、従業員向けのパーソナライズされた学習パスの提供、および労働力計画の最適化が可能になります。AIを活用した洞察により、トレーニングプログラムを最適化し、変化の速い労働力をデジタルで管理します。",
+    "key_points": [
+      "Augmentirのスキル管理ソフトウェア",
+      "製造業に特化",
+      "AIを活用したトレーニング最適化"
+    ],
+    "tags": [
+      "skills management",
+      "training matrix",
+      "manufacturing",
+      "Augmentir",
+      "AI"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業向けの具体的なスキル管理ソフトウェア（Augmentir）の機能と利点に焦点を当てているため。",
+    "confidence_score": 0.9
   },
   {
     "title": "Manufacturing Skills Management Software | Kahuna",
     "url": "https://kahunaworkforce.com/manufacturing/",
     "source": "Kahuna Workforce",
-    "published_date": "不明",
-    "region": "欧米",
+    "published_date": null,
+    "region": null,
     "category": "product_overview",
     "related_companies": [
       "Kahuna"
     ],
-    "summary_japanese": "Kahunaのスキルマネジメントソフトウェアが、製造業におけるスキルとトレーニング要件を効率化し、標準化する方法を紹介しています。スキルギャップの特定と解消、アジャイルな従業員育成、安全とコンプライアンスの確保に貢献すると説明しています。",
+    "summary_japanese": "Kahunaは、製造業の複雑な運用に対応するスキル管理ソフトウェアを提供しています。このプラットフォームは、プラントの場所、設備、生産ラインに基づいてスキルを割り当て、スキルギャップを特定し、ターゲットを絞ったトレーニング計画を作成するのに役立ちます。労働力不足やサプライチェーンの混乱に直面する製造業において、俊敏性と効率性を高めることを目指しています。",
     "key_points": [
-      "スキルギャップの特定と解消",
-      "アジャイルな従業員育成",
-      "安全とコンプライアンス"
+      "Kahunaの製造業向けスキル管理ソフトウェア",
+      "スキルギャップの特定とトレーニング計画",
+      "労働力の俊敏性と効率性向上"
     ],
     "tags": [
       "skills management",
       "manufacturing",
       "Kahuna",
-      "competency management"
+      "workforce agility",
+      "training"
     ],
     "manufacturing_relevance": "あり",
-    "relevance_reason": "製造業に特化したスキルマネジメントソフトウェアの機能とメリットを具体的に示しているため。",
+    "relevance_reason": "製造業に特化したスキル管理ソフトウェア（Kahuna）の機能と、それが製造業の課題にどう対応するかを説明しているため。",
     "confidence_score": 0.9
   },
   {
-    "title": "Forging Tomorrow: 5 trends to empower the workforce to thrive in ...",
-    "url": "https://www.engineering.com/forging-tomorrow-5-trends-to-empower-the-workforce-to-thrive-in-Industry-4-0/",
+    "title": "Competency Management Software for Frontline Workforces",
+    "url": "https://kahunaworkforce.com/competency-management-software/",
+    "source": "Kahuna Workforce",
+    "published_date": null,
+    "region": null,
+    "category": "feature",
+    "related_companies": [
+      "Kahuna"
+    ],
+    "summary_japanese": "この記事は、最前線の労働力のためのコンピテンシー管理ソフトウェアの重要性を強調しています。デジタル化されたプラットフォームは、従業員、管理者、リーダーがいつでもどこでもスキルとコンピテンシーデータにアクセスできるようにし、運用上の安全性と品質を向上させ、従業員の学習と開発を支援します。",
+    "key_points": [
+      "最前線労働力向けのコンピテンシー管理",
+      "デジタルプラットフォームの利点",
+      "運用安全性と品質の向上"
+    ],
+    "tags": [
+      "competency management",
+      "frontline workforce",
+      "digital platform",
+      "skill development",
+      "Kahuna"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業の主要な構成要素である最前線の労働力に焦点を当てたコンピテンシー管理ソフトウェアの利点を説明しているため。",
+    "confidence_score": 0.85
+  },
+  {
+    "title": "Manufacturing Skills Management Software | Kahuna",
+    "url": "https://kahunaworkforce.com/manufacturing/",
+    "source": "Kahuna Workforce",
+    "published_date": null,
+    "region": "欧米",
+    "category": "Product/Solution Overview",
+    "related_companies": [
+      "Kahuna"
+    ],
+    "summary_japanese": "Kahunaの製造業向けスキルマネジメントソフトウェアは、労働力不足、サプライチェーンの混乱、技術の進歩といった課題に対応し、製造現場の俊敏性を高める。従業員のエンゲージメントを高め、スキルとトレーニング要件の透明性を提供し、安全とコンプライアンス、スケジューリング、トレーニングと開発をサポートする。",
+    "key_points": [
+      "製造業特化",
+      "俊敏な労働力",
+      "スキルギャップ解消"
+    ],
+    "tags": [
+      "skills management",
+      "manufacturing",
+      "workforce development",
+      "Kahuna"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業に特化したスキルマネジメントソフトウェアの機能と利点を直接説明しているため。",
+    "confidence_score": 0.9
+  },
+  {
+    "title": "Manufacturing Skills Management Challenges | Kahuna Workforce ...",
+    "url": "https://kahunaworkforce.com/manufacturing-skills-management-challenges/",
+    "source": "Kahuna Workforce",
+    "published_date": null,
+    "region": "欧米",
+    "category": "Industry Analysis/Solution Overview",
+    "related_companies": [
+      "Kahuna"
+    ],
+    "summary_japanese": "製造業におけるスキルマネジメントは、従業員のスキル検証、人材維持、需要変動への対応、オペレーションの回復力強化に不可欠である。Kahunaのプロセスは、スキルギャップの特定、検証済み評価者の活用、特定のトレーニング計画を通じて、強固なスキルマネジメントフレームワークを確立する。",
+    "key_points": [
+      "製造業の課題",
+      "スキル検証",
+      "人材維持"
+    ],
+    "tags": [
+      "skills management",
+      "manufacturing",
+      "challenges",
+      "talent retention",
+      "Kahuna"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業が直面するスキルマネジメントの課題と、それに対するKahunaのソリューションを詳細に解説しているため。",
+    "confidence_score": 0.9
+  },
+  {
+    "title": "Revolutionizing Workforce Development in Manufacturing: Insights from Jai Shah, CEO of Kahuna - IndMacDig",
+    "url": "https://industrialmachinerydigest.com/workforce-development/revolutionizing-workforce-development-in-manufacturing-insights-from-jai-shah-ceo-of-kahuna/",
+    "source": "Industrial Machinery Digest (IndMacDig)",
+    "published_date": null,
+    "region": "欧米",
+    "category": "Interview/Thought Leadership",
+    "related_companies": [
+      "Kahuna"
+    ],
+    "summary_japanese": "KahunaのCEOであるJai Shah氏の洞察に基づき、インテリジェントマニュファクチャリング時代における製造業の労働力開発の変革について論じている。スキルマネジメントと徒弟制度の活用により、製造業は即座の需要を満たすだけでなく、戦略的に将来に備えることができる。",
+    "key_points": [
+      "CEOの視点",
+      "インテリジェントマニュファクチャリング",
+      "労働力開発"
+    ],
+    "tags": [
+      "workforce development",
+      "manufacturing",
+      "skills management",
+      "Industry 4.0",
+      "Kahuna",
+      "CEO interview"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業における労働力開発とスキルマネジメントの重要性について、KahunaのCEOの視点から具体的な洞察を提供しているため。",
+    "confidence_score": 0.85
+  },
+  {
+    "title": "Skills Base | Skills Management Software",
+    "url": "https://www.skills-base.com/",
+    "source": "Skills Base",
+    "published_date": null,
+    "region": "欧米",
+    "category": "Product Overview",
+    "related_companies": [
+      "Skills Base"
+    ],
+    "summary_japanese": "Skills Baseは、リアルタイムのスキルインサイトを提供し、リソース配分、トレーニング最適化、社内キャリアモビリティを支援するスキルマネジメントソフトウェアである。従業員のスキルデータを一元的に追跡、マッピング、測定、分析し、信頼できるスキルデータに基づいた意思決定を可能にする。",
+    "key_points": [
+      "リアルタイムスキルインサイト",
+      "社内モビリティ",
+      "トレーニング最適化"
+    ],
+    "tags": [
+      "skills management",
+      "skills intelligence",
+      "internal mobility",
+      "Skills Base"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "スキルマネジメントソフトウェアの主要なプロバイダーの一つであり、タスクのキーワードに合致するため。",
+    "confidence_score": 0.8
+  },
+  {
+    "title": "Forging Tomorrow: 5 trends to empower the workforce to thrive in Industry 4.0",
+    "url": "https://www.engineering.com/forging-tomorrow-5-trends-to-empower-the-workforce-to-thrive-in-industry-4-0/",
     "source": "engineering.com",
-    "published_date": "不明",
+    "published_date": null,
     "region": "欧米",
     "category": "feature",
     "related_companies": [],
-    "summary_japanese": "インダストリー4.0時代に製造業の従業員が成功するための5つの主要なトレンドを紹介しています。アップスキリングとリスキリングプログラムの重要性、多様な人材プールの構築、テクノロジーの活用などが挙げられています。",
+    "summary_japanese": "Industry 4.0の進展に伴い、製造業の労働力は技術スキルの需要増加と手作業の減少に直面している。本記事では、製造業のチームが将来にわたって成功するための5つの主要トレンド（アップスキリング、リスキリング、多様な人材プール、インフラ投資、テクノロジー活用、持続可能性）について論じている。",
     "key_points": [
-      "インダストリー4.0のトレンド",
-      "従業員のレジリエンス",
-      "アップスキリングとリスキリング"
+      "Industry 4.0における技術スキル需要の増加",
+      "アップスキリングとリスキリングの重要性",
+      "労働力レジリエンス構築のための多角的なアプローチ"
     ],
     "tags": [
       "Industry 4.0",
-      "manufacturing",
-      "workforce resilience",
-      "upskilling"
+      "製造業",
+      "労働力開発",
+      "スキルギャップ",
+      "リスキリング"
     ],
     "manufacturing_relevance": "あり",
-    "relevance_reason": "製造業におけるインダストリー4.0の進展と、それに伴う人材育成のトレンドを具体的に示しているため。",
+    "relevance_reason": "製造業におけるIndustry 4.0と労働力開発、特にリスキリングに焦点を当てているため。",
     "confidence_score": 0.9
   },
   {
-    "title": "AI Workforce: Transforming Manufacturing 4.0 - Training Industry",
-    "url": "https://trainingindustry.com/articles/workforce-development/manufacturing-4-0-bridging-the-skills-gap-in-the-era-of-smart-factories/",
-    "source": "Training Industry",
-    "published_date": "不明",
+    "title": "Manufacturing Skills Management Challenges | Kahuna Workforce ...",
+    "url": "https://kahunaworkforce.com/manufacturing-skills-management-challenges/",
+    "source": "Kahuna Workforce Solutions",
+    "published_date": null,
+    "region": "米国",
+    "category": "feature",
+    "related_companies": [
+      "Kahuna Workforce Solutions"
+    ],
+    "summary_japanese": "製造業は、人材定着、サプライチェーンの混乱、トレーニングの一貫性、データ整合性、スマートマニュファクチャリング技術の進化といった課題に直面している。スキル管理は、現在の労働力スキルと必要な能力との整合性を可視化し、採用、トレーニング、生産ラインの配置、従業員育成に関する戦略的な意思決定を支援する。",
+    "key_points": [
+      "製造業におけるスキル管理の課題",
+      "スキル管理による労働力能力の可視化",
+      "Kahunaのスキル・トレーニング能力マトリックス"
+    ],
+    "tags": [
+      "製造業",
+      "スキル管理",
+      "労働力課題",
+      "Kahuna",
+      "スマートマニュファクチャリング"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業に特化したスキル管理の課題とソリューション、および具体的な企業名（Kahuna）に言及しているため。",
+    "confidence_score": 0.9
+  },
+  {
+    "title": "2025 Smart Manufacturing and Operations Survey - Deloitte",
+    "url": "https://www.deloitte.com/us/en/insights/industry/manufacturing/2025-smart-manufacturing-survey.html",
+    "source": "Deloitte",
+    "published_date": null,
+    "region": "米国",
+    "category": "survey_report",
+    "related_companies": [
+      "Deloitte"
+    ],
+    "summary_japanese": "Deloitteの2025年スマートマニュファクチャリングおよびオペレーション調査によると、製造業はスマートマニュファクチャリングのトレーニングと導入基準を設けているものの、人的資本の成熟度が最も低い。IT、OT、データサイエンスなどの分野で熟練労働者の採用に大きな課題を抱えており、スマートマニュファクチャリングの潜在能力を最大限に引き出すためにはスキルギャップへの対応が不可欠である。",
+    "key_points": [
+      "2025年のスマートマニュファクチャリング調査結果",
+      "人的資本の成熟度の低さ",
+      "熟練労働者採用の課題"
+    ],
+    "tags": [
+      "スマートマニュファクチャリング",
+      "スキルギャップ",
+      "労働力",
+      "Deloitte",
+      "調査"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "2025年の製造業におけるスマートマニュファクチャリングとスキルギャップに関する最新の調査結果を提供しているため。",
+    "confidence_score": 0.95
+  },
+  {
+    "title": "5 methods for optimizing skills management - Mercateam",
+    "url": "https://merca.team/en/5-methods-for-optimizing-skills-management/",
+    "source": "Mercateam",
+    "published_date": null,
     "region": "欧米",
     "category": "feature",
-    "related_companies": [],
-    "summary_japanese": "製造業4.0におけるAIを活用した人材育成の変革について論じています。AIがスキルギャップを埋め、継続的な学習とイノベーションの文化を育む強力なツールであると強調し、スマートファクトリーでの成功に不可欠であると述べています。",
+    "related_companies": [
+      "Mercateam"
+    ],
+    "summary_japanese": "スキル管理を最適化するための5つの方法を提示しており、デジタルソリューションの導入が運用ニーズと利用可能な人材を結びつけ、計画と管理のための正確で実用的なデータを提供すると述べている。リアルタイムのスキル情報へのアクセス、ターゲットを絞ったトレーニングコースの計画、HRシステムとの互換性によるデータ入力の削減が可能になる。",
     "key_points": [
-      "AIを活用した人材育成",
-      "製造業4.0",
-      "スキルギャップの解消"
+      "スキル管理最適化のためのデジタルソリューション",
+      "リアルタイムスキル情報の活用",
+      "従業員の運用柔軟性の向上"
+    ],
+    "tags": [
+      "スキル管理",
+      "デジタルソリューション",
+      "人材育成",
+      "Mercateam",
+      "オペレーション"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "スキル管理の最適化方法とデジタルソリューションに焦点を当て、具体的な企業名（Mercateam）に言及しているため。",
+    "confidence_score": 0.85
+  },
+  {
+    "title": "Why 2026 Is the Year of Internal Mobility Programs?",
+    "url": "https://www.ccslearningacademy.com/why-2026-is-the-year-for-internal-mobility-programs/",
+    "source": "CCS Learning Academy",
+    "published_date": null,
+    "region": null,
+    "category": "feature",
+    "related_companies": [],
+    "summary_japanese": "2025年には、より多くの組織がタレントマネジメントと人材獲得においてスキルベースのアプローチを採用しており、2026年半ばまでに成熟したプログラムを持つ企業は、人材市場で競争優位に立つと予測されています。テクノロジー、ヘルスケア、連邦政府サービスなどの分野が内部モビリティイニシアチドの採用をリードしています。",
+    "key_points": [
+      "スキルベースのアプローチ",
+      "内部モビリティプログラム",
+      "競争優位"
+    ],
+    "tags": [
+      "スキルマネジメント",
+      "内部モビリティ",
+      "タレントマネジメント"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "内部モビリティとスキルベースのアプローチに関する一般的な記事であり、製造業に特化した記述はないため。",
+    "confidence_score": 0.7
+  },
+  {
+    "title": "Before You Go Global, Get Human: The Playbook for Global HCM ...",
+    "url": "https://www.adp.com/spark/articles/2025/10/before-you-go-global-get-human-the-playbook-for-global-hcm-success.aspx",
+    "source": "ADP",
+    "published_date": "2025-10-30",
+    "region": null,
+    "category": "feature",
+    "related_companies": [
+      "ADP"
+    ],
+    "summary_japanese": "グローバル展開を検討している組織は、競争力を維持するためにHCMプラットフォームの選択が重要です。最適なHCMプラットフォームは、分散したデータを統合し、リアルタイムの従業員インサイトを提供し、グローバルな基準と地域の要件に適応します。これにより、企業は内部人材のスキルを追跡し、コンプライアンスギャップを特定できます。",
+    "key_points": [
+      "グローバルHCM",
+      "スキル追跡",
+      "コンプライアンス"
+    ],
+    "tags": [
+      "HCM",
+      "グローバル展開",
+      "スキルマネジメント"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "グローバルHCMに関する一般的な記事であり、製造業に特化した記述はないため。",
+    "confidence_score": 0.8
+  },
+  {
+    "title": "How Company Culture Can Drive Effective AI Adoption - Forbes",
+    "url": "https://www.forbes.com/sites/johnbremen/2025/10/30/how-company-culture-can-drive-effective-ai-adoption/",
+    "source": "Forbes",
+    "published_date": "2025-10-30",
+    "region": null,
+    "category": "feature",
+    "related_companies": [
+      "WTW"
+    ],
+    "summary_japanese": "AI、機械学習、サイバーセキュリティのスキルを持つ人材は、最も獲得と維持が困難であり、企業文化がAIの導入を効果的に推進する上で重要な役割を果たします。WTWの調査によると、AIリスクは新興リスクの中でトップに挙げられています。",
+    "key_points": [
+      "AI導入",
+      "企業文化",
+      "スキルギャップ"
     ],
     "tags": [
       "AI",
-      "Manufacturing 4.0",
-      "workforce development",
-      "skills gap"
+      "スキルマネジメント",
+      "企業文化"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "AI導入と企業文化に関する一般的な記事であり、製造業に特化した記述はないため。",
+    "confidence_score": 0.8
+  },
+  {
+    "title": "Finding the Best ATS for Recruiters in 2025 - Juicebox",
+    "url": "https://juicebox.ai/blog/best-ats-for-recruiters",
+    "source": "Juicebox",
+    "published_date": null,
+    "region": null,
+    "category": "feature",
+    "related_companies": [],
+    "summary_japanese": "2024年から2031年にかけて、グローバルATS市場は大幅に成長すると予測されており、AIが採用戦略を推進する主要なエンジンとなっています。しかし、最大の課題はユーザーの採用であり、効果的な導入には明確な計画とベンダーからの継続的なサポートが不可欠です。",
+    "key_points": [
+      "ATS市場",
+      "AI採用",
+      "ユーザー採用"
+    ],
+    "tags": [
+      "ATS",
+      "AI",
+      "採用"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "採用管理システム（ATS）に関する一般的な記事であり、製造業に特化した記述はないため。",
+    "confidence_score": 0.6
+  },
+  {
+    "title": "Upskilling for Manufacturing Workers - Epicor",
+    "url": "https://www.epicor.com/en-us/blog/industries/upskilling-can-improve-productivity-engagement-and-satisfaction/",
+    "source": "Epicor Blog",
+    "published_date": null,
+    "region": "米国",
+    "category": "feature",
+    "related_companies": [
+      "Epicor"
+    ],
+    "summary_japanese": "製造業における従業員のスキルアップは、スキルギャップの最小化、俊敏性の向上、生産性と収益の増加に貢献します。オンライン研修プラットフォームやLMSの活用により、従業員満足度とビジネス成功を両立させることができます。",
+    "key_points": [
+      "スキルギャップの最小化",
+      "生産性向上",
+      "オンライン研修プラットフォーム"
+    ],
+    "tags": [
+      "upskilling",
+      "manufacturing",
+      "skill gap",
+      "productivity",
+      "LMS"
     ],
     "manufacturing_relevance": "あり",
-    "relevance_reason": "製造業4.0におけるAIと人材育成の関連性、特にスキルギャップ解消への貢献に焦点を当てているため。",
-    "confidence_score": 0.8
+    "relevance_reason": "製造業におけるスキルアップの重要性と具体的なメリットについて直接的に論じているため。",
+    "confidence_score": 0.6216563
+  },
+  {
+    "title": "Building a future-ready workforce: The power of dynamic skills",
+    "url": "https://curiogroup.com/case-studies/blog/impact/thinking/building-a-future-ready-workforce-the-power-of-dynamic-skills",
+    "source": "Curio Group Blog",
+    "published_date": null,
+    "region": null,
+    "category": "blog",
+    "related_companies": [],
+    "summary_japanese": "将来に備えた労働力を構築するためには、スキルを静的な資格ではなく、相互に関連する動的な能力として捉えることが重要です。スキルタクソノミーやケイパビリティフレームワークは、製造業におけるIndustry 4.0や自動化に対応するための継続的な学習文化を促進します。",
+    "key_points": [
+      "動的なスキル",
+      "スキルタクソノミー",
+      "Industry 4.0",
+      "継続的な学習"
+    ],
+    "tags": [
+      "dynamic skills",
+      "skills taxonomy",
+      "workforce transformation",
+      "manufacturing",
+      "Industry 4.0"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業における動的なスキルとスキルタクソノミーの重要性を強調し、Industry 4.0との関連性も示しているため。",
+    "confidence_score": 0.6654328
+  },
+  {
+    "title": "Technical Skills Training | Frontline Training Solutions",
+    "url": "https://frontlineon.com/technical-skills-training/",
+    "source": "Frontline Training Solutions",
+    "published_date": null,
+    "region": null,
+    "category": "service_description",
+    "related_companies": [
+      "Frontline Training Solutions"
+    ],
+    "summary_japanese": "Frontline Training Solutionsは、製造業企業と提携し、スキルギャップを解消し、生産性を向上させ、より強力な労働力を構築するための技術スキル研修を提供しています。新入社員のオンボーディングから経験豊富なチームメンバーのスキルアップまで、実践的な知識と応用を組み合わせたプログラムを提供します。",
+    "key_points": [
+      "技術スキル研修",
+      "スキルギャップ解消",
+      "フロントラインワーカー",
+      "製造業"
+    ],
+    "tags": [
+      "technical training",
+      "skill gap",
+      "frontline workers",
+      "manufacturing",
+      "workforce development"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業のフロントラインワーカー向けの具体的な技術スキル研修とスキルギャップ解消に焦点を当てているため。",
+    "confidence_score": 0.8055255
+  },
+  {
+    "title": "What Is the Manufacturing Skills Gap? - PTC",
+    "url": "https://www.ptc.com/en/technologies/augmented-reality/training/manufacturing-skills-gap",
+    "source": "PTC",
+    "published_date": null,
+    "region": "米国",
+    "category": "feature",
+    "related_companies": [
+      "PTC"
+    ],
+    "summary_japanese": "製造業におけるスキルギャップは、製品やプロセスの複雑化、紙ベースの指示への依存、フロントライン作業に対する否定的な認識によって拡大しています。AR（拡張現実）は、明確な指示を提供し、安全性を高め、デジタルネイティブな労働者を引き付けることで、このスキルギャップを埋める上で重要な役割を果たします。",
+    "key_points": [
+      "製造業スキルギャップ",
+      "AR（拡張現実）",
+      "フロントラインワーカー",
+      "安全性向上"
+    ],
+    "tags": [
+      "manufacturing",
+      "skill gap",
+      "augmented reality",
+      "frontline workers",
+      "Industry 4.0"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業のスキルギャップの課題を明確にし、ARという具体的な技術ソリューションを提示しているため。PTCという企業名も含まれている。",
+    "confidence_score": 0.7500592
   }
 ]
