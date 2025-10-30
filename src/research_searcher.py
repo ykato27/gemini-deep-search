@@ -158,15 +158,6 @@ def search_and_extract_data(target_year: int = None):
 
     # --- 2. 検索対象年の設定と期間の計算 ---
     today = datetime.now()
-
-    # Tavilyのデータは2024年末までのため、検索範囲を調整
-    # システム日付が2024年を超えている場合は、2024年の最新データを取得
-    max_available_date = datetime(2024, 12, 31)
-    if today > max_available_date:
-        print(f"⚠️ システム日付（{today.strftime('%Y-%m-%d')}）が利用可能なデータ範囲を超えています")
-        print(f"📅 検索範囲を2024年のデータに調整します")
-        today = max_available_date
-
     days_back = config.get("search.days_back", 7)
     start_date = (today - timedelta(days=days_back)).strftime("%Y-%m-%d")
     end_date = today.strftime("%Y-%m-%d")
@@ -471,16 +462,19 @@ URL: [URL]
                     parsed_datetime = parse_publication_date(pub_date_str)
 
                     if not parsed_datetime:
+                        # 日付が解析できない場合は、検索結果に含まれているということは
+                        # Tavilyが最近の記事と判断したと考えられるため、保持する
                         print(
-                            f"[WARN] Skipping article with unparsed date: {article.get('title', 'Unknown title')}"
+                            f"[INFO] Keeping article with unparsed date: {article.get('title', 'Unknown title')[:50]}..."
                             f" (published_date={pub_date_str})"
                         )
+                        filtered_data.append(article)
                         continue
 
                     published_date = parsed_datetime.date()
 
                     if published_date < start_date_limit or published_date > end_date_limit:
-                        print(f"[WARN] Skipping article outside window: {article.get('title', 'Unknown title')} (published_date={pub_date_str})")
+                        print(f"[WARN] Skipping article outside window: {article.get('title', 'Unknown title')[:50]}... (published_date={pub_date_str})")
                         continue
 
                     filtered_data.append(article)
