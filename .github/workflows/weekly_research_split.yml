@@ -44,7 +44,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add reports/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Add weekly report $(date +'%Y%m%d')" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Add weekly report $(date +'%Y%m%d')" && git pull --rebase origin main && git push)
 
       - name: Send email summary
         env:
