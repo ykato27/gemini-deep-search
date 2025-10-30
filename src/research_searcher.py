@@ -466,13 +466,11 @@ URL: [URL]
                     parsed_datetime = parse_publication_date(pub_date_str)
 
                     if not parsed_datetime:
-                        # 日付が解析できない場合は、検索結果に含まれているということは
-                        # Tavilyが最近の記事と判断したと考えられるため、保持する
+                        # 日付が解析できない場合はスキップする
                         print(
-                            f"[INFO] Keeping article with unparsed date: {article.get('title', 'Unknown title')[:50]}..."
+                            f"[WARN] Skipping article with unparsed date: {article.get('title', 'Unknown title')[:50]}..."
                             f" (published_date={pub_date_str})"
                         )
-                        filtered_data.append(article)
                         continue
 
                     published_date = parsed_datetime.date()
