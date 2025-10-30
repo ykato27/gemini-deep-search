@@ -184,23 +184,50 @@ def search_and_extract_data(target_year: int = None):
     agent_executor = create_react_agent(model, tools)
     print("✓ ReActエージェントを設定しました")
 
-    # --- 5. Phase 1: 非構造化テキスト抽出プロンプト（簡潔版） ---
-    min_articles = config.get("search.min_articles", 3)
-    max_articles = config.get("search.max_articles", 5)
+    # --- 5. バッチ処理設定 ---
+    min_articles = config.get("search.min_articles", 10)
+    max_articles = config.get("search.max_articles", 15)
+    batch_size = config.get("search.batch_size", 3)
+    articles_per_batch = config.get("search.articles_per_batch", 3)
+    batch_delay = config.get("search.batch_delay", 70)
     keywords = config.get("search.keywords", [
         "skills management latest trends",
         "talent management workforce news"
     ])
-    keywords_str = "\n   - ".join([f'"{kw}"' for kw in keywords])
 
-    search_prompt = f"""
+    # キーワードをバッチに分割
+    keyword_batches = [keywords[i:i + batch_size] for i in range(0, len(keywords), batch_size)]
+    num_batches = len(keyword_batches)
+
+    print(f"🔍 最新動向調査を開始します（バッチ処理モード）")
+    print(f"📊 目標記事数: {min_articles}～{max_articles}件")
+    print(f"📦 バッチ数: {num_batches}個（各バッチ{articles_per_batch}記事目標）")
+    print(f"⏱️  バッチ間待機時間: {batch_delay}秒")
+
+    # --- 6. Phase 1: バッチごとにエージェントを実行（テキスト抽出） ---
+    MAX_RETRIES = config.get("agent.max_retries", 3)
+    INITIAL_DELAY = config.get("agent.initial_delay", 60)
+    recursion_limit = config.get("agent.recursion_limit", 30)
+
+    all_raw_texts = []  # 各バッチの結果を格納
+
+    for batch_idx, keyword_batch in enumerate(keyword_batches):
+        print(f"\n{'='*60}")
+        print(f"📦 バッチ {batch_idx + 1}/{num_batches} を処理中...")
+        print(f"🔑 キーワード: {', '.join(keyword_batch[:3])}{'...' if len(keyword_batch) > 3 else ''}")
+        print(f"{'='*60}")
+
+        keywords_str = "\n   - ".join([f'"{kw}"' for kw in keyword_batch])
+
+        # バッチ用プロンプト生成
+        search_prompt = f"""
 あなたは優秀なリサーチアナリストです。以下のタスクを**効率的に**実行してください。
 
 # タスク
-過去{days_back}日間（{start_date}以降）の**製造業向けスキルマネジメント・タレントマネジメント**関連の欧米記事を**{min_articles}～{max_articles}件**収集し、簡潔に情報を抽出してください。
+過去{days_back}日間（{start_date}以降）の**製造業向けスキルマネジメント・タレントマネジメント**関連の欧米記事を**{articles_per_batch}件**収集し、簡潔に情報を抽出してください。
 
 # 検索方法
-1. 以下のキーワードリストから、**最も効果的と思われる3～5個を選んで検索**してください：
+1. 以下のキーワードで検索してください：
    {keywords_str}
 
 2. 検索の優先順位：
@@ -209,7 +236,7 @@ def search_and_extract_data(target_year: int = None):
    - Industry 4.0、スマートマニュファクチャリング、スキルギャップ分析に関する記事
    - 実践的なケーススタディや導入事例
 
-3. 検索結果から**最も関連性の高い{min_articles}～{max_articles}記事**を選んでください
+3. 検索結果から**最も関連性の高い{articles_per_batch}記事**を選んでください
 
 4. **web_fetchツールは使用せず**、検索結果のスニペット情報のみを使用してください（トークン節約のため）
 
@@ -237,104 +264,114 @@ URL: [URL]
 - **公開日が{start_date}以降（過去{days_back}日以内）の記事のみを選択してください**
 - 古い記事（例：「2025年の予測」を扱った数ヶ月前の記事）は除外してください
 - **製造業・工場・プラント関連の記事を優先的に選択してください**
-- 検索は**効率的に**（3～5個のキーワードで3～5回程度）実施してください
+- 検索は**効率的に**実施してください
 - web_fetchは**使用しない**でください
-- 記事数は**{min_articles}～{max_articles}件**で十分です
+- 記事数は**{articles_per_batch}件**で十分です
 - 簡潔に情報をまとめてください
 """
 
-    print("🔍 最新動向調査を開始します（トークン節約モード）...")
+        raw_text_output = None
 
-    # --- 6. Phase 1: エージェントの実行（テキスト抽出） ---
-    MAX_RETRIES = config.get("agent.max_retries", 3)
-    INITIAL_DELAY = config.get("agent.initial_delay", 60)
-    recursion_limit = config.get("agent.recursion_limit", 30)
-    raw_text_output = None
+        for attempt in range(MAX_RETRIES):
+            try:
+                if attempt > 0:
+                    # APIクォータリセット待ち（1分間隔を考慮）
+                    delay = max(60, INITIAL_DELAY * (2 ** (attempt - 1)))
+                    print(f"\n⚠️ APIクォータ超過のため、{delay:.0f}秒待機します... (試行 {attempt + 1}/{MAX_RETRIES})")
+                    time.sleep(delay)
 
-    for attempt in range(MAX_RETRIES):
-        try:
-            if attempt > 0:
-                # APIクォータリセット待ち（1分間隔を考慮）
-                delay = max(60, INITIAL_DELAY * (2 ** (attempt - 1)))
-                print(f"\n⚠️ APIクォータ超過のため、{delay:.0f}秒待機します... (試行 {attempt + 1}/{MAX_RETRIES})")
-                time.sleep(delay)
+                print(f"📡 エージェント実行中... (試行 {attempt + 1}/{MAX_RETRIES})")
+                response = agent_executor.invoke(
+                    {"messages": [HumanMessage(content=search_prompt)]},
+                    config={"recursion_limit": recursion_limit}
+                )
 
-            print(f"📡 エージェント実行中... (試行 {attempt + 1}/{MAX_RETRIES})")
-            response = agent_executor.invoke(
-                {"messages": [HumanMessage(content=search_prompt)]},
-                config={"recursion_limit": recursion_limit}
-            )
-            
-            messages = response.get("messages", [])
-            if messages and hasattr(messages[-1], "content"):
-                content = messages[-1].content
+                messages = response.get("messages", [])
+                if messages and hasattr(messages[-1], "content"):
+                    content = messages[-1].content
 
-                # contentがリスト形式の場合（新しいAPI形式）、テキストを抽出
-                if isinstance(content, list) and len(content) > 0:
-                    # リストの最初の要素からテキストを抽出
-                    if isinstance(content[0], dict) and 'text' in content[0]:
-                        raw_text_output = content[0]['text']
+                    # contentがリスト形式の場合（新しいAPI形式）、テキストを抽出
+                    if isinstance(content, list) and len(content) > 0:
+                        # リストの最初の要素からテキストを抽出
+                        if isinstance(content[0], dict) and 'text' in content[0]:
+                            raw_text_output = content[0]['text']
+                        else:
+                            raw_text_output = str(content)
                     else:
-                        raw_text_output = str(content)
+                        # 従来の文字列形式
+                        raw_text_output = content
+
+                    # デバッグ: 実際の出力内容を表示
+                    preview_length = config.get("debug.preview_length", 500)
+                    if config.get("debug.enabled", False):
+                        print(f"\n📊 デバッグ: 出力文字数 = {len(raw_text_output)}")
+                        print(f"📊 デバッグ: 出力プレビュー（最初の{preview_length}文字）:\n{raw_text_output[:preview_length]}\n")
+
+                    # テキスト出力の簡易検証（バッチモードではやや緩めの基準）
+                    min_chars = 600  # バッチモードでは各バッチの文字数を少し緩和
+                    has_article_markers = "記事" in raw_text_output or "タイトル" in raw_text_output
+                    has_enough_content = len(raw_text_output) > min_chars
+
+                    if has_enough_content and has_article_markers:
+                        print(f"✅ テキストデータを取得しました。文字数: {len(raw_text_output)}")
+                        break
+                    else:
+                        print("\n⚠️ 出力が不十分です。再試行します。")
+                        print(f"   - 文字数条件: {has_enough_content} (実際: {len(raw_text_output)}文字、最低: {min_chars}文字)")
+                        print(f"   - キーワード条件: {has_article_markers}")
+                        if attempt == MAX_RETRIES - 1:
+                            # 最後の試行でも失敗した場合、部分的な結果でも使用
+                            if raw_text_output and len(raw_text_output) > 200:
+                                print("⚠️ 部分的な結果を使用します")
+                                print(f"\n📊 取得したテキスト（最初の500文字）:\n{raw_text_output[:500]}\n")
+                                break
+                            print(f"\n📊 最終的な出力内容（デバッグ）:\n{raw_text_output[:1000]}\n")
+                            raise ValueError("有効なテキスト出力が得られませんでした")
+                        continue
                 else:
-                    # 従来の文字列形式
-                    raw_text_output = content
-
-                # デバッグ: 実際の出力内容を表示
-                preview_length = config.get("debug.preview_length", 500)
-                if config.get("debug.enabled", False):
-                    print(f"\n📊 デバッグ: 出力文字数 = {len(raw_text_output)}")
-                    print(f"📊 デバッグ: 出力プレビュー（最初の{preview_length}文字）:\n{raw_text_output[:preview_length]}\n")
-
-                # テキスト出力の簡易検証（最低800文字を要求し、記事情報の存在を確認）
-                min_chars = 800
-                has_article_markers = "記事" in raw_text_output or "タイトル" in raw_text_output
-                has_enough_content = len(raw_text_output) > min_chars
-
-                if has_enough_content and has_article_markers:
-                    print(f"✅ テキストデータを取得しました。文字数: {len(raw_text_output)}")
-                    break
-                else:
-                    print("\n⚠️ 出力が不十分です。再試行します。")
-                    print(f"   - 文字数条件: {has_enough_content} (実際: {len(raw_text_output)}文字、最低: {min_chars}文字)")
-                    print(f"   - キーワード条件: {has_article_markers}")
+                    print("❌ エージェントからの出力取得に失敗しました。")
+                    print(f"📊 デバッグ: messages = {messages}")
                     if attempt == MAX_RETRIES - 1:
-                        # 最後の試行でも失敗した場合、部分的な結果でも使用
-                        if raw_text_output and len(raw_text_output) > 200:
-                            print("⚠️ 部分的な結果を使用します")
-                            print(f"\n📊 取得したテキスト（最初の500文字）:\n{raw_text_output[:500]}\n")
-                            break
-                        print(f"\n📊 最終的な出力内容（デバッグ）:\n{raw_text_output[:1000]}\n")
-                        raise ValueError("有効なテキスト出力が得られませんでした")
+                        sys.exit(1)
                     continue
-            else:
-                print("❌ エージェントからの出力取得に失敗しました。")
-                print(f"📊 デバッグ: messages = {messages}")
+
+            except Exception as e:
+                error_message = str(e)
+                if "429" in error_message or "ResourceExhausted" in error_message or "Quota exceeded" in error_message:
+                    if attempt == MAX_RETRIES - 1:
+                        print(f"\n❌ 最大再試行回数に達しました。")
+                        print("💡 対策: しばらく待ってから再実行するか、有料プランへのアップグレードを検討してください。")
+                        print("📊 Gemini API無料枠: 1分あたり250,000トークン")
+                        traceback.print_exc()
+                        sys.exit(1)
+                    print(f"⏳ APIクォータ超過を検出。待機後に再試行します...")
+                    continue
+
+                print(f"\n❌ 予期せぬエラーが発生しました: {error_message}")
+                traceback.print_exc()
                 if attempt == MAX_RETRIES - 1:
                     sys.exit(1)
                 continue
 
-        except Exception as e:
-            error_message = str(e)
-            if "429" in error_message or "ResourceExhausted" in error_message or "Quota exceeded" in error_message:
-                if attempt == MAX_RETRIES - 1:
-                    print(f"\n❌ 最大再試行回数に達しました。")
-                    print("💡 対策: しばらく待ってから再実行するか、有料プランへのアップグレードを検討してください。")
-                    print("📊 Gemini API無料枠: 1分あたり250,000トークン")
-                    traceback.print_exc()
-                    sys.exit(1)
-                print(f"⏳ APIクォータ超過を検出。待機後に再試行します...")
-                continue
-            
-            print(f"\n❌ 予期せぬエラーが発生しました: {error_message}")
-            traceback.print_exc()
-            if attempt == MAX_RETRIES - 1:
-                sys.exit(1)
-            continue
+        # バッチ処理完了後の処理
+        if raw_text_output:
+            all_raw_texts.append(raw_text_output)
+            print(f"✅ バッチ {batch_idx + 1}/{num_batches} 完了")
+        else:
+            print(f"⚠️ バッチ {batch_idx + 1}/{num_batches} の取得に失敗しました（スキップ）")
 
-    if not raw_text_output:
-        print("❌ テキスト出力の取得に失敗しました")
+        # 次のバッチまで待機（最後のバッチでない場合）
+        if batch_idx < num_batches - 1:
+            print(f"\n⏳ 次のバッチまで{batch_delay}秒待機します（APIクォータリセット待ち）...")
+            time.sleep(batch_delay)
+
+    # すべてのバッチの結果を統合
+    if not all_raw_texts:
+        print("❌ すべてのバッチで記事取得に失敗しました")
         sys.exit(1)
+
+    raw_text_output = "\n\n".join(all_raw_texts)
+    print(f"\n✅ 全バッチ完了。統合テキスト文字数: {len(raw_text_output)}")
 
     # --- 7. Phase 2: JSON整形（別LLMコール・トークン削減） ---
     print("\n" + "=" * 60)
