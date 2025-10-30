@@ -286,18 +286,23 @@ URL: [URL]
                     print(f"\n📊 デバッグ: 出力文字数 = {len(raw_text_output)}")
                     print(f"📊 デバッグ: 出力プレビュー（最初の{preview_length}文字）:\n{raw_text_output[:preview_length]}\n")
 
-                # テキスト出力の簡易検証
-                if len(raw_text_output) > 200 and ("記事" in raw_text_output or "タイトル" in raw_text_output):
+                # テキスト出力の簡易検証（最低800文字を要求し、記事情報の存在を確認）
+                min_chars = 800
+                has_article_markers = "記事" in raw_text_output or "タイトル" in raw_text_output
+                has_enough_content = len(raw_text_output) > min_chars
+
+                if has_enough_content and has_article_markers:
                     print(f"✅ テキストデータを取得しました。文字数: {len(raw_text_output)}")
                     break
                 else:
                     print("\n⚠️ 出力が不十分です。再試行します。")
-                    print(f"   - 文字数条件: {len(raw_text_output) > 200} (実際: {len(raw_text_output)}文字)")
-                    print(f"   - キーワード条件: {'記事' in raw_text_output or 'タイトル' in raw_text_output}")
+                    print(f"   - 文字数条件: {has_enough_content} (実際: {len(raw_text_output)}文字、最低: {min_chars}文字)")
+                    print(f"   - キーワード条件: {has_article_markers}")
                     if attempt == MAX_RETRIES - 1:
                         # 最後の試行でも失敗した場合、部分的な結果でも使用
-                        if raw_text_output and len(raw_text_output) > 100:
+                        if raw_text_output and len(raw_text_output) > 200:
                             print("⚠️ 部分的な結果を使用します")
+                            print(f"\n📊 取得したテキスト（最初の500文字）:\n{raw_text_output[:500]}\n")
                             break
                         print(f"\n📊 最終的な出力内容（デバッグ）:\n{raw_text_output[:1000]}\n")
                         raise ValueError("有効なテキスト出力が得られませんでした")
@@ -399,11 +404,19 @@ URL: [URL]
             # JSONパースを試行
             parsed_data = json.loads(json_output)
 
+            # デバッグ情報の出力
+            if config.get("debug.enabled", False) or attempt > 0:
+                print(f"\n📊 デバッグ: JSON型 = {type(parsed_data)}")
+                if isinstance(parsed_data, list):
+                    print(f"📊 デバッグ: 配列の長さ = {len(parsed_data)}")
+                print(f"📊 デバッグ: JSON出力（最初の500文字）:\n{json_output[:500]}\n")
+
             if isinstance(parsed_data, list) and len(parsed_data) > 0:
                 # 日付フィルタリング: start_date以降の記事のみを保持
                 start_date_limit = datetime.strptime(start_date, "%Y-%m-%d").date()
                 end_date_limit = datetime.strptime(end_date, "%Y-%m-%d").date()
 
+                original_count = len(parsed_data)
                 filtered_data = []
                 for article in parsed_data:
                     pub_date_str = article.get("published_date")
@@ -429,14 +442,29 @@ URL: [URL]
 
                 if len(parsed_data) > 0:
                     print(f"✅ JSONデータを正常に変換しました。記事数: {len(parsed_data)}件（フィルタリング後）")
+                    if original_count != len(parsed_data):
+                        print(f"📊 フィルタリング前の記事数: {original_count}件")
                     break
                 else:
                     print("⚠️ フィルタリング後の記事が0件です。再試行します。")
+                    print(f"📊 フィルタリング前の記事数: {original_count}件")
+                    print(f"📊 検索期間: {start_date} ～ {end_date}")
                     if attempt == MAX_RETRIES - 1:
-                        raise ValueError("有効な記事が見つかりませんでした。")
+                        print(f"\n📊 入力テキスト（最初の500文字）:\n{raw_text_output[:500]}\n")
+                        raise ValueError("有効な記事が見つかりませんでした（フィルタリング後0件）。検索期間内の記事がありませんでした。")
                     continue
             else:
-                raise ValueError("JSONの形式が期待通り（非空の配列）ではありません。")
+                # JSONが配列でない、または空配列の場合
+                error_msg = f"JSONの形式が期待通りではありません。型: {type(parsed_data)}"
+                if isinstance(parsed_data, list):
+                    error_msg = "JSONは配列ですが、空です（長さ0）。"
+                print(f"⚠️ {error_msg}")
+                print(f"📊 JSON出力（最初の1000文字）:\n{json_output[:1000]}\n")
+                print(f"📊 入力テキスト（最初の500文字）:\n{raw_text_output[:500]}\n")
+
+                if attempt == MAX_RETRIES - 1:
+                    raise ValueError(f"{error_msg} 入力テキストが不十分か、JSON変換に失敗しました。")
+                continue
 
         except json.JSONDecodeError as e:
             print(f"\n❌ JSON変換に失敗しました: {str(e)}")
