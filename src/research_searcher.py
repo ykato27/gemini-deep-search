@@ -165,6 +165,7 @@ def search_and_extract_data(target_year: int = None):
 
     print(f"📅 検索対象年: {year}")
     print(f"🗓️ 検索開始日: {start_date} (過去{days_back}日間)")
+    print(f"🔄 段階的フォールバック: 7日 → 14日 → 30日（0件の場合）")
 
     # --- 3. LLMとツールの準備 ---
     model = ChatGoogleGenerativeAI(
@@ -488,12 +489,33 @@ URL: [URL]
                         print(f"📊 フィルタリング前の記事数: {original_count}件")
                     break
                 else:
-                    print("⚠️ フィルタリング後の記事が0件です。再試行します。")
+                    print("⚠️ フィルタリング後の記事が0件です。")
                     print(f"📊 フィルタリング前の記事数: {original_count}件")
                     print(f"📊 検索期間: {start_date} ～ {end_date}")
                     if attempt == MAX_RETRIES - 1:
                         print(f"\n📊 入力テキスト（最初の500文字）:\n{raw_text_output[:500]}\n")
-                        raise ValueError("有効な記事が見つかりませんでした（フィルタリング後0件）。検索期間内の記事がありませんでした。")
+
+                        # 段階的フォールバック: 検索期間を拡大
+                        if days_back < 30:
+                            if days_back < 14:
+                                new_days_back = 14
+                            else:
+                                new_days_back = 30
+
+                            print("\n" + "⚠️ " * 30)
+                            print(f"⚠️ 検索期間を拡大して再検索します: {days_back}日 → {new_days_back}日")
+                            print("⚠️ " * 30 + "\n")
+
+                            # 再帰呼び出しで検索期間を拡大して再検索
+                            # config.yamlの値を一時的に上書き
+                            original_days_back = config.get("search.days_back")
+                            config["search.days_back"] = new_days_back
+                            result = search_and_extract_data(target_year=year)
+                            config["search.days_back"] = original_days_back  # 元に戻す
+                            return result
+                        else:
+                            # 30日でもダメな場合はエラー
+                            raise ValueError("有効な記事が見つかりませんでした（フィルタリング後0件）。検索期間を30日まで拡大しましたが、記事がありませんでした。")
                     continue
             else:
                 # JSONが配列でない、または空配列の場合
@@ -515,7 +537,7 @@ URL: [URL]
                 print(json_output[:2000] if len(json_output) > 2000 else json_output)
                 sys.exit(1)
             continue
-            
+
         except Exception as e:
             error_message = str(e)
             if "429" in error_message or "ResourceExhausted" in error_message or "Quota exceeded" in error_message:
@@ -524,7 +546,7 @@ URL: [URL]
                     traceback.print_exc()
                     sys.exit(1)
                 continue
-            
+
             print(f"\n❌ 予期せぬエラーが発生しました: {error_message}")
             traceback.print_exc()
             if attempt == MAX_RETRIES - 1:
