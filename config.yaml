@@ -75,6 +75,19 @@ search:
     - "dynamic skills taxonomy workforce reskilling"
     - "skill gap frontline technicians manufacturing"
 
+    # 【追加】最新トレンド・ニュース（2025年特化）
+    - "manufacturing workforce skills 2025 news"
+    - "skills management software latest news manufacturing"
+    - "HR tech manufacturing workforce 2025"
+
+    # 【追加】AIと人材管理（最新トレンド）
+    - "AI skills assessment manufacturing workforce"
+    - "generative AI workforce training manufacturing"
+
+    # 【追加】ケーススタディ・事例（実践的な記事）
+    - "skills management case study manufacturing"
+    - "workforce upskilling success story industrial"
+
 # --------------------------------------------------------------------
 # エージェント設定
 # --------------------------------------------------------------------
