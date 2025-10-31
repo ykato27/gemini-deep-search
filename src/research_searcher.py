@@ -176,7 +176,7 @@ def search_and_extract_data(target_year: int = None):
         max_results=config.get("tavily.max_results", 5),
         search_depth=config.get("tavily.search_depth", "advanced"),
         include_raw_content=config.get("tavily.include_raw_content", False),
-        # start_dateを指定せず、Tavilyに最新の記事を取得させる
+        start_date=start_date,  # Tavilyに検索開始日を指定して直近の記事のみ取得
     )
     tools = [search_tool]
 
