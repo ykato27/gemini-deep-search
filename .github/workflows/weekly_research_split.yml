@@ -43,8 +43,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git pull --rebase origin main
           git add reports/
+          git pull --rebase origin main
           git diff --quiet && git diff --staged --quiet || (git commit -m "Add weekly report $(date +'%Y%m%d')" && git push)
 
       - name: Send email summary
