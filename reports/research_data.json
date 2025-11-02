@@ -1,81 +1,106 @@
 [
   {
-    "title": "Manufacturing Skills Management Software | Kahuna",
-    "url": "https://kahunaworkforce.com/manufacturing/",
-    "source": "Kahuna Workforce Solutions",
-    "published_date": "2025-10-24",
-    "region": "欧米 (米国)",
-    "category": "feature",
-    "related_companies": [
-      "Kahuna"
-    ],
-    "summary_japanese": "Kahunaのスキルマネジメントシステムは、製造業における従業員のエンゲージメント向上、定着率改善、学習プロセスの透明化を支援します。労働力不足、サプライチェーンの混乱、技術進歩といった課題に対応し、アジャイルな労働力と堅牢な製造プロセスを実現します。",
+    "title": "Sector Skill Gaps in Tech, Healthcare, and Manufacturing",
+    "url": "https://inop.ai/industry-specific-skill-gaps-tech-healthcare-and-manufacturing/",
+    "source": "INOP.AI",
+    "published_date": "2025-10-30",
+    "region": null,
+    "category": "feature/analysis",
+    "related_companies": [],
+    "summary_japanese": "製造業における特定のスキルギャップに焦点を当て、品質管理の進化や、Lean製造、Six Sigma、データ駆動型プロセス最適化などのスキルが求められていることを指摘しています。現代の機械工には、プログラミングやデジタルデータ解釈など、より幅広いスキルセットが必要であると述べています。",
     "key_points": [
-      "従業員エンゲージメント向上",
-      "スキルとトレーニング要件の透明化",
-      "製造業の課題対応"
+      "製造業のスキルギャップ",
+      "品質管理の高度化",
+      "機械工に必要なスキルセットの拡大"
     ],
     "tags": [
-      "スキルマネジメント",
-      "製造業",
-      "労働力開発",
-      "Kahuna"
+      "skill_gap",
+      "manufacturing_skills",
+      "Industry_4.0",
+      "lean_manufacturing"
     ],
     "manufacturing_relevance": "あり",
-    "relevance_reason": "製造業に特化したスキルマネジメントソフトウェアの機能と利点を直接説明しているため。",
+    "relevance_reason": "製造業に特化したスキルギャップとその解決策、必要なスキルセットの変化について具体的に論じているため。",
     "confidence_score": 0.9
   },
   {
-    "title": "Manufacturing Skills Management Challenges | Kahuna Workforce ...",
-    "url": "https://kahunaworkforce.com/manufacturing-skills-management-challenges/",
-    "source": "Kahuna Workforce Solutions",
-    "published_date": "2025-10-24",
-    "region": "欧米 (米国)",
-    "category": "feature",
+    "title": "5 Industrial CEO Skills to Lead Digital Transformation",
+    "url": "https://www.kornferry.com/insights/featured-topics/leadership/five-industrial-ceo-skills-to-lead-digital-transformation",
+    "source": "Korn Ferry",
+    "published_date": "2025-10-30",
+    "region": null,
+    "category": "feature/analysis",
     "related_companies": [
-      "Kahuna"
+      "Korn Ferry"
     ],
-    "summary_japanese": "製造業におけるスキルマネジメントの課題に焦点を当て、従業員のスキル、知識、能力、経験、資格を検証することの重要性を強調しています。効果的なスキルマネジメントは、労働力の効果的な訓練、人材の定着、需要変動への対応、オペレーションの回復力強化に不可欠です。",
+    "summary_japanese": "スマートファクトリーへの変革を主導するために製造業のCEOに求められる5つのスキルについて解説しています。デジタルシステムを管理するための従業員の再教育や、長期計画と日々のパフォーマンスのバランスの重要性が強調されています。",
     "key_points": [
-      "スキル検証の重要性",
-      "労働力訓練と定着",
-      "オペレーションの回復力"
+      "スマートファクトリー変革におけるCEOの役割",
+      "従業員の再教育とスキルアップ",
+      "デジタル変革のためのリーダーシップ"
     ],
     "tags": [
-      "スキルマネジメント",
-      "製造業",
-      "課題",
-      "人材管理"
+      "digital_transformation",
+      "manufacturing_leadership",
+      "reskilling",
+      "smart_factory"
     ],
     "manufacturing_relevance": "あり",
-    "relevance_reason": "製造業特有のスキルマネジメントの課題と解決策を詳細に論じているため。",
+    "relevance_reason": "製造業のデジタル変革における人材育成とスキルマネジメントの重要性を、リーダーシップの観点から論じているため。",
     "confidence_score": 0.9
   },
   {
-    "title": "Insights from Jai Shah, CEO of Kahuna - IndMacDig",
-    "url": "https://industrialmachinerydigest.com/workforce-development/revolutionizing-workforce-development-in-manufacturing-insights-from-jai-shah-ceo-of-kahuna/",
-    "source": "Industrial Machinery Digest (IndMacDig)",
-    "published_date": "2025-10-24",
-    "region": "欧米",
-    "category": "interview/insights",
+    "title": "AI Won't Wait: Put Skills-First Or Get Left Behind",
+    "url": "https://www.forbes.com/sites/gradsoflife/2025/10/27/ai-wont-wait-put-skills-first-or-get-left-behind/",
+    "source": "Forbes",
+    "published_date": "2025-10-27",
+    "region": "グローバル",
+    "category": "feature/analysis",
     "related_companies": [
-      "Kahuna"
+      "Walmart",
+      "Salesforce"
     ],
-    "summary_japanese": "KahunaのCEOであるJai Shah氏の洞察を通じて、製造業における労働力開発の変革について論じています。インテリジェントマニュファクチャリング時代には、有能で多才な労働力が求められ、スキルマネジメントと徒弟制度の活用が重要であると述べています。",
+    "summary_japanese": "スキルを重視したアプローチが人材管理の未来であり、AIがこの戦略を強力に推進していると述べています。WalmartがAIを活用して従業員のスキル構築とキャリアパスを支援している事例を挙げ、スキル要件が急速に変化する中で、スキルファーストのアプローチの緊急性を強調しています。",
     "key_points": [
-      "製造業の労働力開発変革",
-      "インテリジェントマニュファクチャリング",
-      "スキルマネジメントの戦略的活用"
+      "スキルファーストのアプローチの重要性",
+      "AIによるスキル管理の強化",
+      "スキル要件の急速な変化"
     ],
     "tags": [
-      "労働力開発",
-      "製造業",
-      "スキルマネジメント",
-      "Industry 4.0",
-      "Kahuna"
+      "skills_first",
+      "AI",
+      "talent_management",
+      "workforce_transformation"
     ],
-    "manufacturing_relevance": "あり",
-    "relevance_reason": "製造業における労働力開発とスキルマネジメントの未来について、業界リーダーの視点から解説しているため。",
-    "confidence_score": 0.85
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "スキルマネジメントとタレントマネジメントの最新トレンドである「スキルファースト」とAIの活用について論じており、製造業の文脈でも非常に重要な示唆を与えるため。",
+    "confidence_score": 0.8
+  },
+  {
+    "title": "IBM Report: Two-Thirds of UK Firms Gain from AI--Reskilling Key to Unlocking Greater Productivity",
+    "url": "https://newsroom.ibm.com/2025-10-28-IBM-Report-Two-Thirds-of-UK-Firms-Gain-from-AI-Reskilling-Key-to-Unlocking-Greater-Productivity",
+    "source": "IBM Newsroom",
+    "published_date": "2025-10-28",
+    "region": "英国",
+    "category": "report_summary",
+    "related_companies": [
+      "IBM"
+    ],
+    "summary_japanese": "IBMのレポートによると、英国企業の3分の2がAIから生産性向上を実感しているが、さらなる価値を引き出すには従業員のスキル変革とスキルアップが鍵となる。AIスキル研修への投資が、イノベーションとレジリエンスを推進する未来志向の労働力を構築すると指摘している。",
+    "key_points": [
+      "AIと生産性向上",
+      "スキル変革とスキルアップの重要性",
+      "AIスキル研修の不足"
+    ],
+    "tags": [
+      "AI",
+      "upskilling",
+      "reskilling",
+      "workforce_transformation",
+      "UK"
+    ],
+    "manufacturing_relevance": "なし",
+    "relevance_reason": "AI導入による生産性向上と、それに伴う従業員のスキルアップの必要性という、現代のタレントマネジメントにおける重要な側面を扱っており、公開日も明確なため。",
+    "confidence_score": 0.95
   }
 ]
