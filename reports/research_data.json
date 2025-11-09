@@ -1,106 +1,132 @@
 [
   {
-    "title": "Sector Skill Gaps in Tech, Healthcare, and Manufacturing",
-    "url": "https://inop.ai/industry-specific-skill-gaps-tech-healthcare-and-manufacturing/",
-    "source": "INOP.AI",
-    "published_date": "2025-10-30",
-    "region": null,
-    "category": "feature/analysis",
-    "related_companies": [],
-    "summary_japanese": "製造業における特定のスキルギャップに焦点を当て、品質管理の進化や、Lean製造、Six Sigma、データ駆動型プロセス最適化などのスキルが求められていることを指摘しています。現代の機械工には、プログラミングやデジタルデータ解釈など、より幅広いスキルセットが必要であると述べています。",
-    "key_points": [
-      "製造業のスキルギャップ",
-      "品質管理の高度化",
-      "機械工に必要なスキルセットの拡大"
-    ],
-    "tags": [
-      "skill_gap",
-      "manufacturing_skills",
-      "Industry_4.0",
-      "lean_manufacturing"
-    ],
-    "manufacturing_relevance": "あり",
-    "relevance_reason": "製造業に特化したスキルギャップとその解決策、必要なスキルセットの変化について具体的に論じているため。",
-    "confidence_score": 0.9
-  },
-  {
-    "title": "5 Industrial CEO Skills to Lead Digital Transformation",
-    "url": "https://www.kornferry.com/insights/featured-topics/leadership/five-industrial-ceo-skills-to-lead-digital-transformation",
-    "source": "Korn Ferry",
-    "published_date": "2025-10-30",
-    "region": null,
-    "category": "feature/analysis",
+    "title": "Made Smarter celebrates latest wave of digital pioneers - The Manufacturer",
+    "url": "https://www.themanufacturer.com/articles/made-smarter-celebrates-latest-wave-of-digital-pioneers/",
+    "source": "The Manufacturer",
+    "published_date": "2025-11-05",
+    "region": "UK",
+    "category": "feature",
     "related_companies": [
-      "Korn Ferry"
+      "Made Smarter UK"
     ],
-    "summary_japanese": "スマートファクトリーへの変革を主導するために製造業のCEOに求められる5つのスキルについて解説しています。デジタルシステムを管理するための従業員の再教育や、長期計画と日々のパフォーマンスのバランスの重要性が強調されています。",
+    "summary_japanese": "Made Smarter UKは、製造業におけるデジタル変革を推進する新たなリーダーたちを称賛しています。このプログラムは、スキルギャップに対処し、イノベーションを加速させるためのデジタルインターンシップや技術投資を支援しています。",
     "key_points": [
-      "スマートファクトリー変革におけるCEOの役割",
-      "従業員の再教育とスキルアップ",
-      "デジタル変革のためのリーダーシップ"
+      "デジタル変革",
+      "スキルギャップ対策",
+      "リーダーシップ育成"
     ],
     "tags": [
-      "digital_transformation",
-      "manufacturing_leadership",
-      "reskilling",
-      "smart_factory"
+      "Made Smarter",
+      "デジタル変革",
+      "製造業",
+      "スキルギャップ",
+      "リーダーシップ"
     ],
     "manufacturing_relevance": "あり",
-    "relevance_reason": "製造業のデジタル変革における人材育成とスキルマネジメントの重要性を、リーダーシップの観点から論じているため。",
+    "relevance_reason": "製造業におけるデジタル変革とスキル開発に特化した記事であり、具体的なイニシアチブが紹介されているため。",
     "confidence_score": 0.9
   },
   {
-    "title": "AI Won't Wait: Put Skills-First Or Get Left Behind",
-    "url": "https://www.forbes.com/sites/gradsoflife/2025/10/27/ai-wont-wait-put-skills-first-or-get-left-behind/",
-    "source": "Forbes",
-    "published_date": "2025-10-27",
+    "title": "Next-Generation Workforce Planning Software Market Is Booming So Rapidly | Major Giants Workday - newstrail.com",
+    "url": "https://www.newstrail.com/next-generation-workforce-planning-software-market-is-booming-so-rapidly-major-giants-workday/",
+    "source": "newstrail.com",
+    "published_date": "2025-11-06",
     "region": "グローバル",
-    "category": "feature/analysis",
+    "category": "market_analysis",
     "related_companies": [
-      "Walmart",
-      "Salesforce"
+      "Workday"
     ],
-    "summary_japanese": "スキルを重視したアプローチが人材管理の未来であり、AIがこの戦略を強力に推進していると述べています。WalmartがAIを活用して従業員のスキル構築とキャリアパスを支援している事例を挙げ、スキル要件が急速に変化する中で、スキルファーストのアプローチの緊急性を強調しています。",
+    "summary_japanese": "次世代のワークフォースプランニングソフトウェア市場が急速に成長しており、Workdayのような主要企業が注目されています。このソフトウェアは、従業員のオンボーディング、スキル研修、製造業など様々な分野で活用されています。",
     "key_points": [
-      "スキルファーストのアプローチの重要性",
-      "AIによるスキル管理の強化",
-      "スキル要件の急速な変化"
+      "ワークフォースプランニングソフトウェア",
+      "製造業への応用",
+      "市場成長"
     ],
     "tags": [
-      "skills_first",
-      "AI",
-      "talent_management",
-      "workforce_transformation"
+      "ワークフォースプランニング",
+      "スキルマネジメントソフトウェア",
+      "製造業",
+      "HRテック",
+      "Workday"
     ],
-    "manufacturing_relevance": "なし",
-    "relevance_reason": "スキルマネジメントとタレントマネジメントの最新トレンドである「スキルファースト」とAIの活用について論じており、製造業の文脈でも非常に重要な示唆を与えるため。",
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業における次世代ワークフォースプランニングソフトウェアの市場動向と応用について言及しているため。",
     "confidence_score": 0.8
   },
   {
-    "title": "IBM Report: Two-Thirds of UK Firms Gain from AI--Reskilling Key to Unlocking Greater Productivity",
-    "url": "https://newsroom.ibm.com/2025-10-28-IBM-Report-Two-Thirds-of-UK-Firms-Gain-from-AI-Reskilling-Key-to-Unlocking-Greater-Productivity",
-    "source": "IBM Newsroom",
-    "published_date": "2025-10-28",
-    "region": "英国",
-    "category": "report_summary",
-    "related_companies": [
-      "IBM"
-    ],
-    "summary_japanese": "IBMのレポートによると、英国企業の3分の2がAIから生産性向上を実感しているが、さらなる価値を引き出すには従業員のスキル変革とスキルアップが鍵となる。AIスキル研修への投資が、イノベーションとレジリエンスを推進する未来志向の労働力を構築すると指摘している。",
+    "title": "AI in Manufacturing: What's Now, and What's Next? - IndustryWeek",
+    "url": "https://www.industryweek.com/technology-and-iiot/emerging-technologies/article/55327440/ai-in-manufacturing-whats-now-and-whats-next",
+    "source": "IndustryWeek",
+    "published_date": "2025-11-03",
+    "region": "グローバル",
+    "category": "analysis",
+    "related_companies": [],
+    "summary_japanese": "製造業におけるAIの現在と未来について論じており、AIがエンジニアの役割をどのように変え、スキルセットにどのような影響を与えるかを探っています。AIの導入は、製品設計の精度向上と同時に、人間のエンジニアの役割を再定義します。",
     "key_points": [
-      "AIと生産性向上",
-      "スキル変革とスキルアップの重要性",
-      "AIスキル研修の不足"
+      "AIの製造業への影響",
+      "エンジニアの役割変化",
+      "スキルセットの再定義"
     ],
     "tags": [
       "AI",
-      "upskilling",
-      "reskilling",
-      "workforce_transformation",
-      "UK"
+      "製造業",
+      "スキル変化",
+      "Industry 4.0",
+      "ワークフォース"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業におけるAIの導入が、従業員のスキルと役割に与える影響について具体的に議論しているため。",
+    "confidence_score": 0.85
+  },
+  {
+    "title": "Designing the future workforce: From skills-first strategy to AI-powered ecosystems - Staffing Industry Analysts",
+    "url": "https://www.staffingindustry.com/editorial/cws-30-contingent-workforce-strategies/designing-the-future-workforce-from-skills-first-strategy-to-ai-powered-ecosystems",
+    "source": "Staffing Industry Analysts",
+    "published_date": "2025-11-05",
+    "region": "グローバル",
+    "category": "feature",
+    "related_companies": [],
+    "summary_japanese": "将来の労働力を設計するために、スキルファースト戦略とAIを活用したエコシステムへの移行が重要であると提唱しています。自動化が特定の役割を置き換えたり再形成したりする中で、企業は新しいモデルを導入し、迅速に実行する勇気を持つべきです。",
+    "key_points": [
+      "スキルファースト戦略",
+      "AI活用エコシステム",
+      "労働力再設計"
+    ],
+    "tags": [
+      "スキルファースト",
+      "AI",
+      "ワークフォース戦略",
+      "タレントマネジメント",
+      "自動化"
     ],
     "manufacturing_relevance": "なし",
-    "relevance_reason": "AI導入による生産性向上と、それに伴う従業員のスキルアップの必要性という、現代のタレントマネジメントにおける重要な側面を扱っており、公開日も明確なため。",
+    "relevance_reason": "製造業に特化しているわけではないが、スキルマネジメントとタレントマネジメントの重要なトレンドである「スキルファースト戦略」と「AI活用」について包括的に論じているため。",
+    "confidence_score": 0.75
+  },
+  {
+    "title": "The Power of Data Analytics: Driving Innovation in Manufacturing",
+    "url": "https://mau.com/the-power-of-data-analytics-driving-innovation-in-manufacturing/",
+    "source": "MAU Workforce Solutions",
+    "published_date": "2025-11-04",
+    "region": "不明",
+    "category": "Workforce Insights",
+    "related_companies": [
+      "MAU Workforce Solutions"
+    ],
+    "summary_japanese": "製造業におけるデータ分析の力を強調し、精度、調整、チームワークが重要であると述べている。従業員が変化する状況に迅速に適応できることで、効率性、納期遵守、製品品質が向上する。データ分析を活用して競争優位性を獲得し、成長を促進する。",
+    "key_points": [
+      "製造業におけるデータ分析の活用",
+      "従業員の適応力向上",
+      "効率性・品質向上"
+    ],
+    "tags": [
+      "データ分析",
+      "製造業",
+      "ワークフォースマネジメント",
+      "イノベーション"
+    ],
+    "manufacturing_relevance": "あり",
+    "relevance_reason": "製造業におけるデータ分析がワークフォースの柔軟性と効率性向上に貢献することに焦点を当てているため。",
     "confidence_score": 0.95
   }
 ]
