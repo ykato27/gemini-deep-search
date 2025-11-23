@@ -1,83 +1,29 @@
 [
   {
-    "title": "ManpowerGroup and Maricopa Community Colleges Partner to Develop the Next-Generation Semiconductor and Manufacturing Workforce - Stock Titan",
-    "url": "https://www.stocktitan.net/news/MAN/manpower-group-and-maricopa-community-colleges-partner-to-develop-gqepati9ldsp.html",
-    "source": "Stock Titan",
-    "published_date": "2025-11-11",
-    "region": "米国 (アリゾナ州)",
-    "category": "partnership",
+    "title": "QAD drives manufacturing workforce transformation - SiliconANGLE",
+    "url": "https://siliconangle.com/2025/11/19/qad-drives-manufacturing-workforce-transformation-qadchampionsofmanufacturing/",
+    "source": "SiliconANGLE",
+    "published_date": "2025-11-19",
+    "region": "",
+    "category": "News/Analysis",
     "related_companies": [
-      "ManpowerGroup",
-      "Maricopa Community Colleges"
+      "QAD"
     ],
-    "summary_japanese": "ManpowerGroupとMaricopa Community Collegesが提携し、アリゾナ州で次世代の半導体および先進製造業の労働力育成プログラムを開始しました。この提携は、AI/ML、エンジニアリング、STEM、技術者などの分野で業界に合わせたトレーニング、認定、実地経験、インターンシップ、徒弟制度を提供します。これにより、卒業生を半導体および製造業の雇用主のフルタイム職に繋げます。",
+    "summary_japanese": "QADは、AIを活用した製造業の労働力変革を推進しており、知識労働者を戦略的意思決定者に昇格させることを目指している。多くの企業はまだ評価段階にあるが、QADはエージェントシステムを本格的に導入している。",
     "key_points": [
-      "半導体・先進製造業の労働力育成",
-      "業界に合わせたトレーニングと認定",
-      "インターンシップと徒弟制度"
+      "AIによる製造業の労働力変革",
+      "知識労働者の戦略的意思決定者への昇格",
+      "QADの取り組み"
     ],
     "tags": [
-      "workforce development",
-      "semiconductor",
-      "manufacturing",
-      "skills training",
-      "partnership"
+      "AI",
+      "製造業",
+      "労働力変革",
+      "スキルマネジメント",
+      "タレントマネジメント"
     ],
     "manufacturing_relevance": "あり",
-    "relevance_reason": "製造業におけるスキル開発と労働力育成のための具体的なパートナーシップとプログラムについて述べているため。",
-    "confidence_score": 0.9
-  },
-  {
-    "title": "Manufacturing Leaders’ Summit 2025 – Day 1 key takeaways - The Manufacturer",
-    "url": "https://www.themanufacturer.com/articles/manufacturing-leaders-summit-2025-day-1-key-takeaways/",
-    "source": "The Manufacturer",
-    "published_date": "2025-11-11",
-    "region": "英国",
-    "category": "feature",
-    "related_companies": [],
-    "summary_japanese": "Manufacturing Leaders’ Summit 2025の初日の要点では、英国の製造・流通部門が労働力不足とスキルギャップに直面していることが強調されました。成功する製造業者は、接続、協力、自動化、規模拡大、革新という5つの主要な能力を持つとされています。デジタル技術への投資が限定的であることも指摘されています。",
-    "key_points": [
-      "英国製造業のスキルギャップと労働力不足",
-      "デジタル技術投資の遅れ",
-      "成功する製造業者の5つの能力"
-    ],
-    "tags": [
-      "manufacturing",
-      "skills gap",
-      "labor shortage",
-      "digital transformation",
-      "industry 4.0"
-    ],
-    "manufacturing_relevance": "あり",
-    "relevance_reason": "英国製造業におけるスキルギャップと労働力不足という主要な課題と、その解決に向けた方向性について議論しているため。",
-    "confidence_score": 0.9
-  },
-  {
-    "title": "New report reveals UK manufacturing faces productivity gap – but optimism rising as firms look to digital and skills investments - The Manufacturer",
-    "url": "https://www.themanufacturer.com/articles/new-report-reveals-uk-manufacturing-faces-productivity-gap-but-optimism-rising-as-firms-look-to-digital-and-skills-investments/",
-    "source": "The Manufacturer",
-    "published_date": "2025-11-10",
-    "region": "英国",
-    "category": "report",
-    "related_companies": [
-      "Barclays"
-    ],
-    "summary_japanese": "新しいレポート「Mind the Gap: Closing the Productivity Divide in the UK’s Manufacturing Sector」によると、英国の製造業は国際的な競合他社と比較して生産性ギャップに直面しています。しかし、企業の53%が生産性向上を目指してリスキリングまたはアップスキリングを検討しており、デジタル変革と労働力開発を通じてこのギャップを埋めることに楽観的な見方を示しています。",
-    "key_points": [
-      "英国製造業の生産性ギャップ",
-      "リスキリング・アップスキリングへの投資意欲",
-      "デジタル変革と労働力開発"
-    ],
-    "tags": [
-      "manufacturing",
-      "productivity",
-      "skills investment",
-      "reskilling",
-      "upskilling",
-      "digital transformation"
-    ],
-    "manufacturing_relevance": "あり",
-    "relevance_reason": "英国製造業における生産性向上とスキル投資の重要性、およびデジタル変革を通じた労働力開発の動向を詳細に報告しているため。",
+    "relevance_reason": "2025年11月19日公開の最新記事で、製造業におけるAIと労働力変革、スキルマネジメントに直接関連しているため。",
     "confidence_score": 0.9
   }
 ]
