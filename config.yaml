@@ -11,17 +11,17 @@
 llm:
   # Phase 1: 検索・データ収集で使用するモデル
   searcher:
-    model: "gemini-2.5-flash"
+    model: "gemini-2.5-flash-lite"
     temperature: 0
 
   # Phase 2: 分析レポート生成で使用するモデル
   analyzer:
-    model: "gemini-2.5-flash"
+    model: "gemini-2.5-flash-lite"
     temperature: 0
 
   # メール要約生成で使用するモデル
   email:
-    model: "gemini-2.5-flash"
+    model: "gemini-2.5-flash-lite"
     temperature: 0.1
 
 # --------------------------------------------------------------------
